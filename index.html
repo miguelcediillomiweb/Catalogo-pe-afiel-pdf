@@ -312,6 +312,108 @@ body{
     100%{background-position:0 50%;}
 }
 
+/* NUEVA CAMPAÑA */
+
+.pe-campana{
+    width:100%;
+    max-width:850px;
+    margin:18px auto 20px;
+    text-align:center;
+}
+
+.pe-campana button{
+    width:100%;
+    border:3px solid #fff;
+    border-radius:18px;
+    padding:16px 8px;
+    background:linear-gradient(
+        90deg,
+        #006847,
+        #009b63,
+        #0057b8,
+        #ce1126
+    );
+    background-size:300% 100%;
+    animation:peCampanaBrillo 4s linear infinite;
+    color:#fff;
+    font-size:clamp(20px,5vw,32px);
+    font-weight:900;
+    box-shadow:0 6px 18px rgba(0,0,0,.35);
+    cursor:pointer;
+}
+
+.pe-campana button span{
+    display:inline-block;
+    animation:peCampanaFlecha 1s infinite;
+}
+
+@keyframes peCampanaFlecha{
+    0%,100%{
+        transform:translateX(0);
+    }
+    50%{
+        transform:translateX(8px);
+    }
+}
+
+@keyframes peCampanaBrillo{
+    0%{
+        background-position:0 50%;
+    }
+    100%{
+        background-position:300% 50%;
+    }
+}
+
+/* VIDEO */
+
+.pe-modal-campana{
+    display:none;
+    position:fixed;
+    z-index:99999;
+    inset:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.82);
+    align-items:center;
+    justify-content:center;
+    padding:15px;
+}
+
+.pe-video-contenedor{
+    position:relative;
+    width:100%;
+    max-width:900px;
+    background:#000;
+    border:3px solid #fff;
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 10px 40px rgba(0,0,0,.6);
+}
+
+.pe-video-contenedor iframe{
+    display:block;
+    width:100%;
+    aspect-ratio:16/9;
+    border:0;
+}
+
+.pe-cerrar-campana{
+    position:absolute;
+    z-index:5;
+    top:8px;
+    right:8px;
+    width:42px;
+    height:42px;
+    border:2px solid #fff;
+    border-radius:50%;
+    background:#ce1126;
+    color:#fff;
+    font-size:25px;
+    font-weight:900;
+    cursor:pointer;
+}
+
 /* WHATSAPP */
 
 .pe-whatsapp{
@@ -533,8 +635,44 @@ body{
 
 </div>
 
+<!-- NUEVA CAMPAÑA -->
+<div class="pe-campana">
+
+<button type="button" onclick="abrirCampana()">
+<span>👉</span>
+✨ NUEVA CAMPAÑA PEÑAFIEL ✨
+<span>👈</span>
+</button>
+
+</div>
+
+<!-- VIDEO POPUP -->
+
+<div id="pe-modal-campana" class="pe-modal-campana">
+
+<div class="pe-video-contenedor">
+
+<button
+type="button"
+class="pe-cerrar-campana"
+onclick="cerrarCampana()">
+✕
+</button>
+
+<iframe
+src="https://www.youtube.com/embed/CtGBwVyB024?rel=0"
+title="Nueva campaña Peñafiel"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+allowfullscreen>
+</iframe>
+
+</div>
+
+</div>
+
 <!-- WHATSAPP -->
 <div class="pe-whatsapp">
+
 <a href="https://wa.me/525665470369?text=Hola%21%20Gracias%20por%20visitar%20mi%20cat%C3%A1logo%20digital%20Dime%20en%20qu%C3%A9%20podemos%20ayudarte" target="_blank" rel="noopener">
 
 <img src="https://i.ibb.co/Fk68Lwr0/Ryan-RB-assistant-Person-circle-v2.webp" alt="WhatsApp">
@@ -542,6 +680,7 @@ body{
 <span>Contáctanos por WhatsApp</span>
 
 </a>
+
 </div>
 
 <!-- LOGOS -->
@@ -727,73 +866,4 @@ Creado por Grupo Peñafiel y Ruta 1371 con todo el ❤️
 
         botonAnterior.onclick = function(e){
 
-            e.preventDefault();
-            e.stopPropagation();
-
-            indice--;
-
-            if(indice < 0){
-                indice = total - 1;
-            }
-
-            mostrarSlide();
-
-        };
-
-
-        botonSiguiente.onclick = function(e){
-
-            e.preventDefault();
-            e.stopPropagation();
-
-            indice++;
-
-            if(indice >= total){
-                indice = 0;
-            }
-
-            mostrarSlide();
-
-        };
-
-
-        mostrarSlide();
-
-
-        setInterval(
-            function(){
-
-                indice++;
-
-                if(indice >= total){
-                    indice = 0;
-                }
-
-                mostrarSlide();
-
-            },
-            3000
-        );
-
-    }
-
-
-    if(document.readyState === "loading"){
-
-        document.addEventListener(
-            "DOMContentLoaded",
-            iniciarCarrusel
-        );
-
-    }else{
-
-        iniciarCarrusel();
-
-    }
-
-})();
-
-</script>
-
-</body>
-  </html>
+ 
