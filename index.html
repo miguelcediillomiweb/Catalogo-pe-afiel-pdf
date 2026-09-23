@@ -37,8 +37,6 @@ body{
     color:#fff;
 }
 
-/* MARCO */
-
 .pe-marco{
     position:absolute;
     inset:0;
@@ -50,8 +48,6 @@ body{
         inset 0 0 0 10px #fff,
         inset 0 0 0 15px #ce1126;
 }
-
-/* BURBUJAS */
 
 .pe-burbuja{
     position:absolute;
@@ -65,17 +61,9 @@ body{
 }
 
 @keyframes subir{
-    0%{
-        transform:translateY(0);
-        opacity:0;
-    }
-    10%{
-        opacity:.7;
-    }
-    100%{
-        transform:translateY(-120vh);
-        opacity:0;
-    }
+    0%{transform:translateY(0);opacity:0;}
+    10%{opacity:.7;}
+    100%{transform:translateY(-120vh);opacity:0;}
 }
 
 .b1{left:3%;width:18px;height:18px;animation-duration:8s;}
@@ -115,8 +103,6 @@ body{
     margin:0 auto;
 }
 
-/* BANNER */
-
 .pe-banner{
     width:100%;
     border-radius:12px;
@@ -135,32 +121,33 @@ body{
 .pe-reloj{
     width:100%;
     text-align:center;
-    margin:8px auto 12px;
-    padding:10px 5px;
+    margin:10px auto 16px;
+    padding:14px 8px;
     background:rgba(0,0,0,.30);
-    border-radius:12px;
+    border-radius:14px;
+    box-shadow:0 5px 15px rgba(0,0,0,.25);
 }
 
 #pe-saludo{
     display:block;
-    font-size:clamp(23px,5vw,36px);
+    font-size:clamp(25px,6vw,38px);
     font-weight:900;
 }
 
 #pe-hora{
     display:block;
-    min-height:42px;
+    min-height:48px;
     margin-top:6px;
-    font-size:clamp(28px,7vw,44px);
+    font-size:clamp(32px,8vw,48px);
     font-weight:900;
     letter-spacing:2px;
 }
 
 #pe-fecha{
     display:block;
-    min-height:24px;
+    min-height:28px;
     margin-top:5px;
-    font-size:clamp(15px,3.5vw,21px);
+    font-size:clamp(17px,4vw,23px);
     font-weight:700;
 }
 
@@ -169,10 +156,10 @@ body{
 .pe-carrusel{
     width:100%;
     max-width:480px;
-    margin:10px auto 18px;
+    margin:12px auto 20px;
     display:flex;
     align-items:center;
-    gap:6px;
+    gap:7px;
 }
 
 .pe-carrusel-ventana{
@@ -188,7 +175,7 @@ body{
     display:flex;
     width:100%;
     transform:translateX(0);
-    transition:transform:.4s ease;
+    transition:transform:.45s ease;
 }
 
 .pe-slide{
@@ -209,35 +196,36 @@ body{
 }
 
 .pe-boton-carrusel{
-    flex:0 0 38px;
-    width:38px;
-    height:38px;
+    flex:0 0 40px;
+    width:40px;
+    height:40px;
     padding:0;
     border:0;
     border-radius:50%;
     background:#fff;
     color:#0057b8;
-    font-size:28px;
+    font-size:30px;
     font-weight:bold;
-    line-height:38px;
+    line-height:40px;
     text-align:center;
     cursor:pointer;
+    box-shadow:0 3px 8px rgba(0,0,0,.3);
 }
 
 /* TITULOS */
 
 .pe-titulo{
     text-align:center;
-    font-size:clamp(22px,5vw,32px);
+    font-size:clamp(25px,6vw,36px);
     font-weight:900;
-    margin:12px 0 6px;
+    margin:14px 0 7px;
 }
 
 .pe-actualizado{
     text-align:center;
-    font-size:clamp(14px,3.5vw,19px);
+    font-size:clamp(16px,4vw,21px);
     font-weight:bold;
-    margin-bottom:14px;
+    margin-bottom:16px;
 }
 
 /* CATALOGO */
@@ -266,13 +254,13 @@ body{
 
 .pe-descarga-pdf{
     width:100%;
-    margin:8px 0 18px;
+    margin:9px 0 20px;
 }
 
 .pe-descarga-pdf a{
     display:block;
     width:100%;
-    padding:15px 6px;
+    padding:17px 6px;
     text-align:center;
     text-decoration:none;
     color:#fff;
@@ -288,7 +276,7 @@ body{
     border:3px solid #fff;
     border-radius:14px;
     box-shadow:0 5px 15px rgba(0,0,0,.35);
-    font-size:clamp(19px,5vw,30px);
+    font-size:clamp(21px,5.5vw,31px);
     font-weight:900;
 }
 
@@ -316,8 +304,8 @@ body{
 
 .pe-campana{
     width:100%;
-    max-width:850px;
-    margin:18px auto 20px;
+    max-width:900px;
+    margin:18px auto 22px;
     text-align:center;
 }
 
@@ -325,7 +313,7 @@ body{
     width:100%;
     border:3px solid #fff;
     border-radius:18px;
-    padding:16px 8px;
+    padding:18px 8px;
     background:linear-gradient(
         90deg,
         #006847,
@@ -334,9 +322,9 @@ body{
         #ce1126
     );
     background-size:300% 100%;
-    animation:peCampanaBrillo 4s linear infinite;
+    animation:campanaBrillo 4s linear infinite;
     color:#fff;
-    font-size:clamp(20px,5vw,32px);
+    font-size:clamp(21px,5.5vw,33px);
     font-weight:900;
     box-shadow:0 6px 18px rgba(0,0,0,.35);
     cursor:pointer;
@@ -344,40 +332,36 @@ body{
 
 .pe-campana button span{
     display:inline-block;
-    animation:peCampanaFlecha 1s infinite;
+    animation:campanaFlecha 1s infinite;
 }
 
-@keyframes peCampanaFlecha{
-    0%,100%{
-        transform:translateX(0);
-    }
-    50%{
-        transform:translateX(8px);
-    }
+@keyframes campanaFlecha{
+    0%,100%{transform:translateX(0);}
+    50%{transform:translateX(9px);}
 }
 
-@keyframes peCampanaBrillo{
-    0%{
-        background-position:0 50%;
-    }
-    100%{
-        background-position:300% 50%;
-    }
+@keyframes campanaBrillo{
+    0%{background-position:0 50%;}
+    100%{background-position:300% 50%;}
 }
 
-/* VIDEO */
+/* VIDEO POPUP */
 
 .pe-modal-campana{
     display:none;
     position:fixed;
-    z-index:99999;
+    z-index:100000;
     inset:0;
     width:100%;
     height:100%;
-    background:rgba(0,0,0,.82);
+    background:rgba(0,0,0,.86);
     align-items:center;
     justify-content:center;
-    padding:15px;
+    padding:12px;
+}
+
+.pe-modal-campana.activo{
+    display:flex;
 }
 
 .pe-video-contenedor{
@@ -388,7 +372,7 @@ body{
     border:3px solid #fff;
     border-radius:16px;
     overflow:hidden;
-    box-shadow:0 10px 40px rgba(0,0,0,.6);
+    box-shadow:0 10px 40px rgba(0,0,0,.7);
 }
 
 .pe-video-contenedor iframe{
@@ -400,16 +384,16 @@ body{
 
 .pe-cerrar-campana{
     position:absolute;
-    z-index:5;
-    top:8px;
-    right:8px;
-    width:42px;
-    height:42px;
+    z-index:10;
+    top:7px;
+    right:7px;
+    width:43px;
+    height:43px;
     border:2px solid #fff;
     border-radius:50%;
     background:#ce1126;
     color:#fff;
-    font-size:25px;
+    font-size:24px;
     font-weight:900;
     cursor:pointer;
 }
@@ -418,8 +402,8 @@ body{
 
 .pe-whatsapp{
     width:100%;
-    max-width:600px;
-    margin:18px auto 16px;
+    max-width:650px;
+    margin:18px auto 18px;
     text-align:center;
 }
 
@@ -427,20 +411,20 @@ body{
     display:flex;
     align-items:center;
     justify-content:center;
-    gap:10px;
+    gap:12px;
     text-decoration:none;
     color:#fff;
     background:#25D366;
-    padding:12px 15px;
+    padding:14px 16px;
     border-radius:50px;
-    font-size:clamp(17px,4vw,22px);
+    font-size:clamp(19px,4.5vw,24px);
     font-weight:900;
     box-shadow:0 5px 14px rgba(0,0,0,.3);
 }
 
 .pe-whatsapp img{
-    width:45px;
-    height:45px;
+    width:58px;
+    height:58px;
     object-fit:contain;
 }
 
@@ -453,7 +437,7 @@ body{
     flex-wrap:wrap;
     gap:15px;
     width:100%;
-    margin:10px auto 15px;
+    margin:8px auto 14px;
 }
 
 .pe-logos-finales img{
@@ -469,10 +453,85 @@ body{
 .pe-footer{
     width:100%;
     text-align:center;
-    padding:10px 8px 14px;
-    font-size:clamp(13px,3vw,17px);
+    padding:10px 8px 18px;
+    font-size:clamp(15px,3.5vw,19px);
     font-weight:bold;
-    line-height:1.5;
+    line-height:1.6;
+}
+
+/* POPUP PROMOCIONAL */
+
+.pe-modal-promo{
+    display:none;
+    position:fixed;
+    z-index:99998;
+    inset:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.70);
+    align-items:center;
+    justify-content:center;
+    padding:15px;
+}
+
+.pe-modal-promo.activo{
+    display:flex;
+}
+
+.pe-promo-contenedor{
+    position:relative;
+    width:min(92vw,560px);
+    max-height:92vh;
+    background:#fff;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 10px 40px rgba(0,0,0,.65);
+    animation:promoEntrada .4s ease;
+}
+
+@keyframes promoEntrada{
+    from{
+        transform:scale(.85);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+.pe-promo-contenedor img{
+    display:block;
+    width:100%;
+    max-height:72vh;
+    object-fit:contain;
+    background:#fff;
+}
+
+.pe-promo-texto{
+    padding:12px 10px 15px;
+    text-align:center;
+    color:#0057b8;
+    font-size:clamp(19px,4.8vw,27px);
+    font-weight:900;
+    line-height:1.25;
+}
+
+.pe-promo-cerrar{
+    position:absolute;
+    z-index:5;
+    top:8px;
+    right:8px;
+    width:43px;
+    height:43px;
+    border:2px solid #fff;
+    border-radius:50%;
+    background:#ce1126;
+    color:#fff;
+    font-size:24px;
+    font-weight:900;
+    cursor:pointer;
+    box-shadow:0 3px 8px rgba(0,0,0,.4);
 }
 
 /* MOVIL */
@@ -500,15 +559,29 @@ body{
     }
 
     .pe-boton-carrusel{
-        flex-basis:33px;
-        width:33px;
-        height:33px;
-        line-height:33px;
-        font-size:23px;
+        flex-basis:34px;
+        width:34px;
+        height:34px;
+        line-height:34px;
+        font-size:24px;
     }
 
     .pe-logos-finales img{
         max-height:80px;
+    }
+
+    .pe-modal-campana{
+        padding:8px;
+    }
+
+    .pe-video-contenedor{
+        border-radius:12px;
+    }
+
+    .pe-cerrar-campana{
+        width:39px;
+        height:39px;
+        font-size:21px;
     }
 }
 </style>
@@ -521,6 +594,7 @@ body{
 <div class="pe-marco"></div>
 
 <!-- BURBUJAS -->
+
 <div class="pe-burbuja b1"></div>
 <div class="pe-burbuja b2"></div>
 <div class="pe-burbuja b3"></div>
@@ -553,11 +627,15 @@ body{
 <div class="pe-contenido">
 
 <!-- BANNER -->
+
 <div class="pe-banner">
-<img src="https://i.ibb.co/3yTwSyXD/1000033396-ab06342a2e89ca0c522afd8103642f1f-13-5-2025-7-54-14-p-m-20251013-195122-0000.jpg" alt="Bienvenidos">
+<img
+src="https://i.ibb.co/3yTwSyXD/1000033396-ab06342a2e89ca0c522afd8103642f1f-13-5-2025-7-54-14-p-m-20251013-195122-0000.jpg"
+alt="Bienvenidos">
 </div>
 
 <!-- RELOJ -->
+
 <div class="pe-reloj">
 <span id="pe-saludo">Buenos días ☀️</span>
 <span id="pe-hora">00:00:00</span>
@@ -565,42 +643,74 @@ body{
 </div>
 
 <!-- CARRUSEL -->
+
 <div class="pe-carrusel">
 
 <button id="pe-prev" class="pe-boton-carrusel" type="button">‹</button>
 
 <div class="pe-carrusel-ventana">
+
 <div id="pe-pista" class="pe-carrusel-pista">
 
-<div class="pe-slide"><img src="https://i.ibb.co/Gv3cRRdc/Logo-Aguafiel-2.png" alt="Aguafiel"></div>
+<div class="pe-slide">
+<img src="https://i.ibb.co/Gv3cRRdc/Logo-Aguafiel-2.png" alt="Aguafiel">
+</div>
 
-<div class="pe-slide"><img src="https://i.ibb.co/GfjQ3c1G/1000025618-bf825456c1d5580a528d5315312af723-23-4-2025-6-50-41-p-m-20251013-195258-0000.png" alt="Producto"></div>
+<div class="pe-slide">
+<img src="https://i.ibb.co/GfjQ3c1G/1000025618-bf825456c1d5580a528d5315312af723-23-4-2025-6-50-41-p-m-20251013-195258-0000.png" alt="Producto">
+</div>
 
-<div class="pe-slide"><img src="https://i.ibb.co/ynkKdGX1/1000025606-1d4a51831b907a4f8b501fbec7c7af2e-23-4-2025-6-51-41-p-m-20251013-195212-0000.png" alt="Producto"></div>
+<div class="pe-slide">
+<img src="https://i.ibb.co/ynkKdGX1/1000025606-1d4a51831b907a4f8b501fbec7c7af2e-23-4-2025-6-51-41-p-m-20251013-195212-0000.png" alt="Producto">
+</div>
 
-<div class="pe-slide"><img src="https://i.ibb.co/Mw6dRGG/1000025646-9d370f5f68af783e23b5a9b0f5505bbb-23-4-2025-6-07-08-p-m-20251013-195450-0000.png" alt="Producto"></div>
+<div class="pe-slide">
+<img src="https://i.ibb.co/Mw6dRGG/1000025646-9d370f5f68af783e23b5a9b0f5505bbb-23-4-2025-6-07-08-p-m-20251013-195450-0000.png" alt="Producto">
+</div>
 
-<div class="pe-slide"><img src="https://i.ibb.co/ZzMtgbhD/1000025658-348f843033ce99ece84ca729355c0f1b-23-4-2025-6-00-49-p-m-20251013-195500-0000.png" alt="Producto"></div>
+<div class="pe-slide">
+<img src="https://i.ibb.co/ZzMtgbhD/1000025658-348f843033ce99ece84ca729355c0f1b-23-4-2025-6-00-49-p-m-20251013-195500-0000.png" alt="Producto">
+</div>
 
-<div class="pe-slide"><img src="https://i.ibb.co/nNxrbRyh/1000025602-62ddb21849f0361580bc4d0efa34354e-23-4-2025-6-11-20-p-m-20251013-195339-0000.png" alt="Producto"></div>
+<div class="pe-slide">
+<img src="https://i.ibb.co/nNxrbRyh/1000025602-62ddb21849f0361580bc4d0efa34354e-23-4-2025-6-11-20-p-m-20251013-195339-0000.png" alt="Producto">
+</div>
 
-<div class="pe-slide"><img src="https://i.ibb.co/Y7QxbJjY/1000025654-2692218fc8dc6f2b016e8d3683e5f858-23-4-2025-6-11-09-p-m-20251013-195350-0000.png" alt="Producto"></div>
+<div class="pe-slide">
+<img src="https://i.ibb.co/Y7QxbJjY/1000025654-2692218fc8dc6f2b016e8d3683e5f858-23-4-2025-6-11-09-p-m-20251013-195350-0000.png" alt="Producto">
+</div>
 
-<div class="pe-slide"><img src="https://i.ibb.co/sJt8BFwX/1000025642-c2cb61c3dde506ce9f3069066c669ba5-23-4-2025-6-11-01-p-m-20251013-195405-0000.png" alt="Producto"></div>
+<div class="pe-slide">
+<img src="https://i.ibb.co/sJt8BFwX/1000025642-c2cb61c3dde506ce9f3069066c669ba5-23-4-2025-6-11-01-p-m-20251013-195405-0000.png" alt="Producto">
+</div>
 
-<div class="pe-slide"><img src="https://i.ibb.co/TxN97tWT/1000025626-1bff0cc8fae8cacf77890027fc33815a-23-4-2025-6-10-03-p-m-20251013-195417-0000.png" alt="Producto"></div>
+<div class="pe-slide">
+<img src="https://i.ibb.co/TxN97tWT/1000025626-1bff0cc8fae8cacf77890027fc33815a-23-4-2025-6-10-03-p-m-20251013-195417-0000.png" alt="Producto">
+</div>
 
-<div class="pe-slide"><img src="https://i.ibb.co/CppsgtfQ/1000025630-feb45ba9b765bb9c1de588eb441f6482-23-4-2025-6-07-50-p-m-20251013-200047-0000.png" alt="Producto"></div>
+<div class="pe-slide">
+<img src="https://i.ibb.co/CppsgtfQ/1000025630-feb45ba9b765bb9c1de588eb441f6482-23-4-2025-6-07-50-p-m-20251013-200047-0000.png" alt="Producto">
+</div>
 
-<div class="pe-slide"><img src="https://i.ibb.co/vxJR42Kb/1000025666-58cc64ab75c3f8d940573a1759577a32-23-4-2025-6-00-22-p-m-20251013-195509-0000.png" alt="Producto"></div>
+<div class="pe-slide">
+<img src="https://i.ibb.co/vxJR42Kb/1000025666-58cc64ab75c3f8d940573a1759577a32-23-4-2025-6-00-22-p-m-20251013-195509-0000.png" alt="Producto">
+</div>
 
-<div class="pe-slide"><img src="https://i.ibb.co/V0fSTkwF/1000025650-5c50d0142ea71648da15e8f0ddafd61f-23-4-2025-5-59-26-p-m-20251013-195518-0000.png" alt="Producto"></div>
+<div class="pe-slide">
+<img src="https://i.ibb.co/V0fSTkwF/1000025650-5c50d0142ea71648da15e8f0ddafd61f-23-4-2025-5-59-26-p-m-20251013-195518-0000.png" alt="Producto">
+</div>
 
-<div class="pe-slide"><img src="https://i.ibb.co/jk16xsZJ/1000025638-0b248c89ee1732eb0af84073f3428ec0-23-4-2025-5-49-36-p-m-20251013-195532-0000.png" alt="Producto"></div>
+<div class="pe-slide">
+<img src="https://i.ibb.co/jk16xsZJ/1000025638-0b248c89ee1732eb0af84073f3428ec0-23-4-2025-5-49-36-p-m-20251013-195532-0000.png" alt="Producto">
+</div>
 
-<div class="pe-slide"><img src="https://i.ibb.co/V02qdfLy/1000007070-9694f92c3b44fe9ffead942f230bfb91-9-3-2025-11-01-30-p-m-20251013-195555-0000.png" alt="Producto"></div>
+<div class="pe-slide">
+<img src="https://i.ibb.co/V02qdfLy/1000007070-9694f92c3b44fe9ffead942f230bfb91-9-3-2025-11-01-30-p-m-20251013-195555-0000.png" alt="Producto">
+</div>
 
-<div class="pe-slide"><img src="https://i.ibb.co/N6fbMLZD/1000006945-0068a95808c67fc45319ac198c497c31-9-3-2025-10-24-49-p-m-20251013-195609-0000.png" alt="Producto"></div>
+<div class="pe-slide">
+<img src="https://i.ibb.co/N6fbMLZD/1000006945-0068a95808c67fc45319ac198c497c31-9-3-2025-10-24-49-p-m-20251013-195609-0000.png" alt="Producto">
+</div>
 
 </div>
 </div>
@@ -610,38 +720,62 @@ body{
 </div>
 
 <!-- TITULO -->
+
 <div class="pe-titulo">CATÁLOGO DIGITAL</div>
-<div class="pe-actualizado">Actualizado septiembre 2026</div>
+
+<div class="pe-actualizado">
+Actualizado septiembre 2026
+</div>
 
 <!-- CATALOGO -->
+
 <div class="pe-catalogo-paginas">
 
 <div class="pe-pagina-catalogo">
-<img src="https://i.ibb.co/VYqW9W8K/Catalogo-web-pag-1-20260923-090059-0000.png" alt="Catálogo página 1">
+<img
+src="https://i.ibb.co/VYqW9W8K/Catalogo-web-pag-1-20260923-090059-0000.png"
+alt="Catálogo página 1">
 </div>
 
 <div class="pe-pagina-catalogo">
-<img src="https://i.ibb.co/5PjZYD1/catalogo-web-pag-2-20260923-090238-0000.png" alt="Catálogo página 2">
+<img
+src="https://i.ibb.co/5PjZYD1/catalogo-web-pag-2-20260923-090238-0000.png"
+alt="Catálogo página 2">
 </div>
 
-<!-- DESCARGA PDF -->
+<!-- PDF -->
+
 <div class="pe-descarga-pdf">
-<a href="https://drive.usercontent.google.com/download?id=1qTKriDKOTfIPFwYcaI8K42GH7XGWwvIi&export=download" target="_blank" rel="noopener">
+
+<a
+href="https://drive.usercontent.google.com/download?id=1qTKriDKOTfIPFwYcaI8K42GH7XGWwvIi&export=download"
+target="_blank"
+rel="noopener">
+
 <span class="pe-flecha">👉</span>
+
 &nbsp;DESCARGAR ESTE CATÁLOGO&nbsp;
+
 <span class="pe-flecha derecha">👈</span>
+
 </a>
+
 </div>
 
 </div>
 
 <!-- NUEVA CAMPAÑA -->
+
 <div class="pe-campana">
 
-<button type="button" onclick="abrirCampana()">
+<button id="pe-boton-campana" type="button">
+
 <span>👉</span>
+
 ✨ NUEVA CAMPAÑA PEÑAFIEL ✨
+
 <span>👈</span>
+
 </button>
 
 </div>
@@ -653,16 +787,17 @@ body{
 <div class="pe-video-contenedor">
 
 <button
-type="button"
+id="pe-cerrar-campana"
 class="pe-cerrar-campana"
-onclick="cerrarCampana()">
+type="button">
 ✕
 </button>
 
 <iframe
-src="https://www.youtube.com/embed/CtGBwVyB024?rel=0"
+id="pe-video"
+src=""
 title="Nueva campaña Peñafiel"
-allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 allowfullscreen>
 </iframe>
 
@@ -671,11 +806,17 @@ allowfullscreen>
 </div>
 
 <!-- WHATSAPP -->
+
 <div class="pe-whatsapp">
 
-<a href="https://wa.me/525665470369?text=Hola%21%20Gracias%20por%20visitar%20mi%20cat%C3%A1logo%20digital%20Dime%20en%20qu%C3%A9%20podemos%20ayudarte" target="_blank" rel="noopener">
+<a
+href="https://wa.me/525665470369?text=Hola%21%20Gracias%20por%20visitar%20mi%20cat%C3%A1logo%20digital%20Dime%20en%20qu%C3%A9%20podemos%20ayudarte"
+target="_blank"
+rel="noopener">
 
-<img src="https://i.ibb.co/Fk68Lwr0/Ryan-RB-assistant-Person-circle-v2.webp" alt="WhatsApp">
+<img
+src="https://i.ibb.co/Fk68Lwr0/Ryan-RB-assistant-Person-circle-v2.webp"
+alt="WhatsApp">
 
 <span>Contáctanos por WhatsApp</span>
 
@@ -684,186 +825,141 @@ allowfullscreen>
 </div>
 
 <!-- LOGOS -->
+
 <div class="pe-logos-finales">
 
-<img src="https://i.ibb.co/4Z1XjHRn/Picsart-26-07-23-14-12-11-034.png" alt="Logo">
+<img
+src="https://i.ibb.co/4Z1XjHRn/Picsart-26-07-23-14-12-11-034.png"
+alt="Logo">
 
-<img src="https://i.ibb.co/vvDDfCPG/1000033397-64fea34243d186d8ca4cfd5497610222-13-5-2025-7-59-35-p-m-20251219-110406-0000.png" alt="Logo">
+<img
+src="https://i.ibb.co/vvDDfCPG/1000033397-64fea34243d186d8ca4cfd5497610222-13-5-2025-7-59-35-p-m-20251219-110406-0000.png"
+alt="Logo">
 
 </div>
 
 <!-- FOOTER -->
+
 <div class="pe-footer">
+
 Todos los derechos ©️ reservados.<br>
 Cambios sin previo aviso<br>
 Creado por Grupo Peñafiel y Ruta 1371 con todo el ❤️
+
 </div>
 
 </div>
+
+</div>
+
+<!-- PROMOCIONALES -->
+
+<div id="pe-modal-promo" class="pe-modal-promo">
+
+<div class="pe-promo-contenedor">
+
+<button
+id="pe-promo-cerrar"
+class="pe-promo-cerrar"
+type="button">
+✕
+</button>
+
+<img id="pe-promo-imagen" src="" alt="Promoción">
+
+<div id="pe-promo-texto" class="pe-promo-texto"></div>
+
+</div>
+
 </div>
 
 <script>
 
-/* RELOJ */
+/* =====================================================
+   RELOJ
+   ===================================================== */
 
 (function(){
 
-    function actualizarReloj(){
+function actualizarReloj(){
 
-        var ahora = new Date();
+var ahora = new Date();
 
-        var horas = ahora.getHours();
-        var minutos = ahora.getMinutes();
-        var segundos = ahora.getSeconds();
+var horas = ahora.getHours();
+var minutos = ahora.getMinutes();
+var segundos = ahora.getSeconds();
 
-        var hora =
-            String(horas).padStart(2,"0") +
-            ":" +
-            String(minutos).padStart(2,"0") +
-            ":" +
-            String(segundos).padStart(2,"0");
+var hora =
+String(horas).padStart(2,"0") +
+":" +
+String(minutos).padStart(2,"0") +
+":" +
+String(segundos).padStart(2,"0");
 
-        var dias = [
-            "domingo",
-            "lunes",
-            "martes",
-            "miércoles",
-            "jueves",
-            "viernes",
-            "sábado"
-        ];
+var dias = [
+"domingo",
+"lunes",
+"martes",
+"miércoles",
+"jueves",
+"viernes",
+"sábado"
+];
 
-        var meses = [
-            "enero",
-            "febrero",
-            "marzo",
-            "abril",
-            "mayo",
-            "junio",
-            "julio",
-            "agosto",
-            "septiembre",
-            "octubre",
-            "noviembre",
-            "diciembre"
-        ];
+var meses = [
+"enero",
+"febrero",
+"marzo",
+"abril",
+"mayo",
+"junio",
+"julio",
+"agosto",
+"septiembre",
+"octubre",
+"noviembre",
+"diciembre"
+];
 
-        var fecha =
-            dias[ahora.getDay()] +
-            " " +
-            ahora.getDate() +
-            " de " +
-            meses[ahora.getMonth()] +
-            " de " +
-            ahora.getFullYear();
+var fecha =
+dias[ahora.getDay()] +
+" " +
+ahora.getDate() +
+" de " +
+meses[ahora.getMonth()] +
+" de " +
+ahora.getFullYear();
 
-        fecha =
-            fecha.charAt(0).toUpperCase() +
-            fecha.slice(1);
+fecha =
+fecha.charAt(0).toUpperCase() +
+fecha.slice(1);
 
-        var horaElemento =
-            document.getElementById("pe-hora");
+var horaElemento =
+document.getElementById("pe-hora");
 
-        var fechaElemento =
-            document.getElementById("pe-fecha");
+var fechaElemento =
+document.getElementById("pe-fecha");
 
-        var saludoElemento =
-            document.getElementById("pe-saludo");
+var saludoElemento =
+document.getElementById("pe-saludo");
 
-        if(horaElemento){
-            horaElemento.textContent = hora;
-        }
+if(horaElemento){
+horaElemento.textContent = hora;
+}
 
-        if(fechaElemento){
-            fechaElemento.textContent = fecha;
-        }
+if(fechaElemento){
+fechaElemento.textContent = fecha;
+}
 
-        if(saludoElemento){
+if(saludoElemento){
 
-            if(horas >= 5 && horas < 12){
+if(horas >= 5 && horas < 12){
 
-                saludoElemento.textContent =
-                    "Buenos días ☀️";
+saludoElemento.textContent =
+"Buenos días ☀️";
 
-            }
+}
 
-            else if(horas >= 12 && horas < 19){
+else if(horas >= 12 && horas < 19){
 
-                saludoElemento.textContent =
-                    "Buenas tardes 🌤️";
-
-            }
-
-            else{
-
-                saludoElemento.textContent =
-                    "Buenas noches 🌙";
-
-            }
-
-        }
-
-    }
-
-    if(document.readyState === "loading"){
-
-        document.addEventListener(
-            "DOMContentLoaded",
-            actualizarReloj
-        );
-
-    }else{
-
-        actualizarReloj();
-
-    }
-
-    setInterval(
-        actualizarReloj,
-        1000
-    );
-
-})();
-
-
-/* CARRUSEL */
-
-(function(){
-
-    function iniciarCarrusel(){
-
-        var pista =
-            document.getElementById("pe-pista");
-
-        var botonAnterior =
-            document.getElementById("pe-prev");
-
-        var botonSiguiente =
-            document.getElementById("pe-next");
-
-        if(!pista || !botonAnterior || !botonSiguiente){
-            return;
-        }
-
-        var slides =
-            pista.querySelectorAll(".pe-slide");
-
-        var total =
-            slides.length;
-
-        var indice = 0;
-
-
-        function mostrarSlide(){
-
-            pista.style.transform =
-                "translate3d(-" +
-                (indice * 100) +
-                "%, 0, 0)";
-
-        }
-
-
-        botonAnterior.onclick = function(e){
-
- 
+s
