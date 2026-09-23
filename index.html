@@ -143,7 +143,7 @@ body{
 
 #pe-saludo{
     display:block;
-    font-size:clamp(25px,5.5vw,38px);
+    font-size:clamp(23px,5vw,36px);
     font-weight:900;
 }
 
@@ -151,7 +151,7 @@ body{
     display:block;
     min-height:42px;
     margin-top:6px;
-    font-size:clamp(30px,7.5vw,46px);
+    font-size:clamp(28px,7vw,44px);
     font-weight:900;
     letter-spacing:2px;
 }
@@ -160,7 +160,7 @@ body{
     display:block;
     min-height:24px;
     margin-top:5px;
-    font-size:clamp(17px,3.8vw,22px);
+    font-size:clamp(15px,3.5vw,21px);
     font-weight:700;
 }
 
@@ -228,14 +228,14 @@ body{
 
 .pe-titulo{
     text-align:center;
-    font-size:clamp(24px,5.5vw,34px);
+    font-size:clamp(22px,5vw,32px);
     font-weight:900;
     margin:12px 0 6px;
 }
 
 .pe-actualizado{
     text-align:center;
-    font-size:clamp(16px,3.8vw,21px);
+    font-size:clamp(14px,3.5vw,19px);
     font-weight:bold;
     margin-bottom:14px;
 }
@@ -272,7 +272,7 @@ body{
 .pe-descarga-pdf a{
     display:block;
     width:100%;
-    padding:16px 6px;
+    padding:15px 6px;
     text-align:center;
     text-decoration:none;
     color:#fff;
@@ -288,7 +288,7 @@ body{
     border:3px solid #fff;
     border-radius:14px;
     box-shadow:0 5px 15px rgba(0,0,0,.35);
-    font-size:clamp(21px,5.2vw,31px);
+    font-size:clamp(19px,5vw,30px);
     font-weight:900;
 }
 
@@ -312,116 +312,6 @@ body{
     100%{background-position:0 50%;}
 }
 
-/* =====================================================
-   NUEVA CAMPAÑA
-   ===================================================== */
-
-.pe-campana{
-    width:100%;
-    max-width:850px;
-    margin:18px auto 20px;
-    text-align:center;
-}
-
-.pe-campana button{
-    width:100%;
-    padding:17px 8px;
-    border:3px solid #fff;
-    border-radius:18px;
-    background:linear-gradient(
-        90deg,
-        #006847,
-        #009b63,
-        #0057b8,
-        #ce1126
-    );
-    background-size:300% 100%;
-    animation:campanaBrillo 4s linear infinite;
-    color:#fff;
-    font-size:clamp(21px,5.5vw,32px);
-    font-weight:900;
-    box-shadow:0 6px 18px rgba(0,0,0,.35);
-    cursor:pointer;
-}
-
-.pe-campana button span{
-    display:inline-block;
-    animation:campanaFlecha 1s infinite;
-}
-
-@keyframes campanaFlecha{
-    0%,100%{
-        transform:translateX(0);
-    }
-    50%{
-        transform:translateX(8px);
-    }
-}
-
-@keyframes campanaBrillo{
-    0%{
-        background-position:0 50%;
-    }
-    100%{
-        background-position:300% 50%;
-    }
-}
-
-/* =====================================================
-   POPUP VIDEO
-   ===================================================== */
-
-.pe-modal-campana{
-    display:none;
-    position:fixed;
-    z-index:99999;
-    inset:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,.86);
-    align-items:center;
-    justify-content:center;
-    padding:12px;
-}
-
-.pe-modal-campana.activo{
-    display:flex;
-}
-
-.pe-video-contenedor{
-    position:relative;
-    width:100%;
-    max-width:900px;
-    background:#000;
-    border:3px solid #fff;
-    border-radius:16px;
-    overflow:hidden;
-    box-shadow:0 10px 40px rgba(0,0,0,.7);
-}
-
-.pe-video-contenedor iframe{
-    display:block;
-    width:100%;
-    aspect-ratio:16/9;
-    border:0;
-}
-
-.pe-cerrar-campana{
-    position:absolute;
-    z-index:10;
-    top:7px;
-    right:7px;
-    width:43px;
-    height:43px;
-    border:2px solid #fff;
-    border-radius:50%;
-    background:#ce1126;
-    color:#fff;
-    font-size:24px;
-    font-weight:900;
-    cursor:pointer;
-}
-
 /* WHATSAPP */
 
 .pe-whatsapp{
@@ -439,16 +329,16 @@ body{
     text-decoration:none;
     color:#fff;
     background:#25D366;
-    padding:13px 15px;
+    padding:12px 15px;
     border-radius:50px;
-    font-size:clamp(19px,4.5vw,24px);
+    font-size:clamp(17px,4vw,22px);
     font-weight:900;
     box-shadow:0 5px 14px rgba(0,0,0,.3);
 }
 
 .pe-whatsapp img{
-    width:55px;
-    height:55px;
+    width:45px;
+    height:45px;
     object-fit:contain;
 }
 
@@ -478,86 +368,9 @@ body{
     width:100%;
     text-align:center;
     padding:10px 8px 14px;
-    font-size:clamp(15px,3.5vw,19px);
+    font-size:clamp(13px,3vw,17px);
     font-weight:bold;
     line-height:1.5;
-}
-
-/* =====================================================
-   POPUPS PROMOCIONALES
-   ===================================================== */
-
-.pe-modal-promo{
-    display:none;
-    position:fixed;
-    z-index:99998;
-    inset:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,.72);
-    align-items:center;
-    justify-content:center;
-    padding:12px;
-}
-
-.pe-modal-promo.activo{
-    display:flex;
-}
-
-.pe-promo-contenedor{
-    position:relative;
-    width:min(92vw,560px);
-    max-height:92vh;
-    background:#fff;
-    border-radius:18px;
-    overflow:hidden;
-    box-shadow:0 10px 40px rgba(0,0,0,.65);
-    animation:promoEntrada .4s ease;
-}
-
-@keyframes promoEntrada{
-    from{
-        transform:scale(.85);
-        opacity:0;
-    }
-    to{
-        transform:scale(1);
-        opacity:1;
-    }
-}
-
-.pe-promo-contenedor img{
-    display:block;
-    width:100%;
-    max-height:75vh;
-    object-fit:contain;
-    background:#fff;
-}
-
-.pe-promo-texto{
-    padding:12px 10px 16px;
-    text-align:center;
-    color:#0057b8;
-    font-size:clamp(19px,4.8vw,27px);
-    font-weight:900;
-    line-height:1.25;
-}
-
-.pe-promo-cerrar{
-    position:absolute;
-    z-index:5;
-    top:8px;
-    right:8px;
-    width:43px;
-    height:43px;
-    border:2px solid #fff;
-    border-radius:50%;
-    background:#ce1126;
-    color:#fff;
-    font-size:24px;
-    font-weight:900;
-    cursor:pointer;
-    box-shadow:0 3px 8px rgba(0,0,0,.4);
 }
 
 /* MOVIL */
@@ -594,20 +407,6 @@ body{
 
     .pe-logos-finales img{
         max-height:80px;
-    }
-
-    .pe-campana button{
-        padding:15px 5px;
-    }
-
-    .pe-modal-campana{
-        padding:7px;
-    }
-
-    .pe-cerrar-campana{
-        width:39px;
-        height:39px;
-        font-size:21px;
     }
 }
 </style>
@@ -734,55 +533,8 @@ body{
 
 </div>
 
-<!-- =====================================================
-     NUEVA CAMPAÑA
-     ===================================================== -->
-
-<div class="pe-campana">
-
-<button id="pe-boton-campana" type="button">
-
-<span>👉</span>
-
-✨ NUEVA CAMPAÑA PEÑAFIEL ✨
-
-<span>👈</span>
-
-</button>
-
-</div>
-
-<!-- =====================================================
-     POPUP VIDEO
-     ===================================================== -->
-
-<div id="pe-modal-campana" class="pe-modal-campana">
-
-<div class="pe-video-contenedor">
-
-<button
-id="pe-cerrar-campana"
-class="pe-cerrar-campana"
-type="button">
-✕
-</button>
-
-<iframe
-id="pe-video"
-src=""
-title="Nueva campaña Peñafiel"
-allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-allowfullscreen>
-</iframe>
-
-</div>
-
-</div>
-
 <!-- WHATSAPP -->
-
 <div class="pe-whatsapp">
-
 <a href="https://wa.me/525665470369?text=Hola%21%20Gracias%20por%20visitar%20mi%20cat%C3%A1logo%20digital%20Dime%20en%20qu%C3%A9%20podemos%20ayudarte" target="_blank" rel="noopener">
 
 <img src="https://i.ibb.co/Fk68Lwr0/Ryan-RB-assistant-Person-circle-v2.webp" alt="WhatsApp">
@@ -790,11 +542,9 @@ allowfullscreen>
 <span>Contáctanos por WhatsApp</span>
 
 </a>
-
 </div>
 
 <!-- LOGOS -->
-
 <div class="pe-logos-finales">
 
 <img src="https://i.ibb.co/4Z1XjHRn/Picsart-26-07-23-14-12-11-034.png" alt="Logo">
@@ -804,7 +554,6 @@ allowfullscreen>
 </div>
 
 <!-- FOOTER -->
-
 <div class="pe-footer">
 Todos los derechos ©️ reservados.<br>
 Cambios sin previo aviso<br>
@@ -814,40 +563,9 @@ Creado por Grupo Peñafiel y Ruta 1371 con todo el ❤️
 </div>
 </div>
 
-
-<!-- =====================================================
-     POPUP PROMOCIONAL AUTOMÁTICO
-     ===================================================== -->
-
-<div id="pe-modal-promo" class="pe-modal-promo">
-
-<div class="pe-promo-contenedor">
-
-<button
-id="pe-promo-cerrar"
-class="pe-promo-cerrar"
-type="button">
-✕
-</button>
-
-<img
-id="pe-promo-imagen"
-src=""
-alt="Promoción">
-
-<div
-id="pe-promo-texto"
-class="pe-promo-texto">
-</div>
-
-</div>
-
-</div>
-
-
 <script>
 
-/* RELOJ */
+/* RELOJ — SE MANTIENE EL CÓDIGO QUE YA FUNCIONABA */
 
 (function(){
 
@@ -870,4 +588,212 @@ class="pe-promo-texto">
             "domingo",
             "lunes",
             "martes",
-        
+            "miércoles",
+            "jueves",
+            "viernes",
+            "sábado"
+        ];
+
+        var meses = [
+            "enero",
+            "febrero",
+            "marzo",
+            "abril",
+            "mayo",
+            "junio",
+            "julio",
+            "agosto",
+            "septiembre",
+            "octubre",
+            "noviembre",
+            "diciembre"
+        ];
+
+        var fecha =
+            dias[ahora.getDay()] +
+            " " +
+            ahora.getDate() +
+            " de " +
+            meses[ahora.getMonth()] +
+            " de " +
+            ahora.getFullYear();
+
+        fecha =
+            fecha.charAt(0).toUpperCase() +
+            fecha.slice(1);
+
+        var horaElemento =
+            document.getElementById("pe-hora");
+
+        var fechaElemento =
+            document.getElementById("pe-fecha");
+
+        var saludoElemento =
+            document.getElementById("pe-saludo");
+
+        if(horaElemento){
+            horaElemento.textContent = hora;
+        }
+
+        if(fechaElemento){
+            fechaElemento.textContent = fecha;
+        }
+
+        if(saludoElemento){
+
+            if(horas >= 5 && horas < 12){
+
+                saludoElemento.textContent =
+                    "Buenos días ☀️";
+
+            }
+
+            else if(horas >= 12 && horas < 19){
+
+                saludoElemento.textContent =
+                    "Buenas tardes 🌤️";
+
+            }
+
+            else{
+
+                saludoElemento.textContent =
+                    "Buenas noches 🌙";
+
+            }
+
+        }
+
+    }
+
+    if(document.readyState === "loading"){
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            actualizarReloj
+        );
+
+    }else{
+
+        actualizarReloj();
+
+    }
+
+    setInterval(
+        actualizarReloj,
+        1000
+    );
+
+})();
+
+
+/* CARRUSEL */
+
+(function(){
+
+    function iniciarCarrusel(){
+
+        var pista =
+            document.getElementById("pe-pista");
+
+        var botonAnterior =
+            document.getElementById("pe-prev");
+
+        var botonSiguiente =
+            document.getElementById("pe-next");
+
+        if(!pista || !botonAnterior || !botonSiguiente){
+            return;
+        }
+
+        var slides =
+            pista.querySelectorAll(".pe-slide");
+
+        var total =
+            slides.length;
+
+        var indice = 0;
+
+
+        function mostrarSlide(){
+
+            pista.style.transform =
+                "translate3d(-" +
+                (indice * 100) +
+                "%, 0, 0)";
+
+        }
+
+
+        botonAnterior.onclick = function(e){
+
+            e.preventDefault();
+            e.stopPropagation();
+
+            indice--;
+
+            if(indice < 0){
+                indice = total - 1;
+            }
+
+            mostrarSlide();
+
+        };
+
+
+        botonSiguiente.onclick = function(e){
+
+            e.preventDefault();
+            e.stopPropagation();
+
+            indice++;
+
+            if(indice >= total){
+                indice = 0;
+            }
+
+            mostrarSlide();
+
+        };
+
+
+        mostrarSlide();
+
+
+        setInterval(
+            function(){
+
+                indice++;
+
+                if(indice >= total){
+                    indice = 0;
+                }
+
+                mostrarSlide();
+
+            },
+            3000
+        );
+
+    }
+
+
+    if(document.readyState === "loading"){
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            iniciarCarrusel
+        );
+
+    }else{
+
+        iniciarCarrusel();
+
+    }
+
+})();
+
+</script>
+
+</body>
+</html>
