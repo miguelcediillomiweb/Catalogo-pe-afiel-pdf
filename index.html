@@ -1,1 +1,799 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Catálogo Digital Peñafiel</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+html,body{
+    margin:0;
+    padding:0;
+    width:100%;
+    min-height:100%;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#0057b8;
+    overflow-x:hidden;
+}
+
+.pe-catalogo{
+    position:relative;
+    width:100%;
+    min-height:100vh;
+    padding:18px 12px 0;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 20% 20%,rgba(255,255,255,.10),transparent 20%),
+        radial-gradient(circle at 80% 40%,rgba(255,255,255,.08),transparent 25%),
+        linear-gradient(180deg,#0075d9 0%,#0057bd 50%,#003e9e 100%);
+    color:#fff;
+}
+
+/* MARCO */
+
+.pe-marco{
+    position:absolute;
+    inset:0;
+    z-index:50;
+    pointer-events:none;
+    border:12px solid #fff;
+    box-shadow:
+        inset 0 0 0 5px #006847,
+        inset 0 0 0 10px #fff,
+        inset 0 0 0 15px #ce1126;
+}
+
+/* BURBUJAS */
+
+.pe-burbuja{
+    position:absolute;
+    bottom:-80px;
+    z-index:1;
+    border:2px solid rgba(255,255,255,.45);
+    background:rgba(255,255,255,.10);
+    border-radius:50%;
+    pointer-events:none;
+    animation:subir linear infinite;
+}
+
+@keyframes subir{
+    0%{
+        transform:translateY(0);
+        opacity:0;
+    }
+    10%{
+        opacity:.7;
+    }
+    100%{
+        transform:translateY(-120vh);
+        opacity:0;
+    }
+}
+
+.b1{left:3%;width:18px;height:18px;animation-duration:8s;}
+.b2{left:8%;width:30px;height:30px;animation-duration:11s;animation-delay:2s;}
+.b3{left:14%;width:12px;height:12px;animation-duration:7s;animation-delay:1s;}
+.b4{left:20%;width:24px;height:24px;animation-duration:10s;animation-delay:4s;}
+.b5{left:27%;width:15px;height:15px;animation-duration:8s;animation-delay:3s;}
+.b6{left:33%;width:35px;height:35px;animation-duration:13s;animation-delay:1s;}
+.b7{left:40%;width:13px;height:13px;animation-duration:7s;animation-delay:5s;}
+.b8{left:46%;width:25px;height:25px;animation-duration:10s;animation-delay:2s;}
+.b9{left:53%;width:17px;height:17px;animation-duration:8s;animation-delay:4s;}
+.b10{left:59%;width:32px;height:32px;animation-duration:12s;animation-delay:1s;}
+.b11{left:65%;width:14px;height:14px;animation-duration:7s;animation-delay:3s;}
+.b12{left:71%;width:27px;height:27px;animation-duration:11s;animation-delay:5s;}
+.b13{left:77%;width:18px;height:18px;animation-duration:8s;animation-delay:2s;}
+.b14{left:83%;width:34px;height:34px;animation-duration:13s;animation-delay:4s;}
+.b15{left:90%;width:14px;height:14px;animation-duration:7s;animation-delay:1s;}
+.b16{left:96%;width:24px;height:24px;animation-duration:10s;animation-delay:3s;}
+.b17{left:11%;width:20px;height:20px;animation-duration:9s;animation-delay:6s;}
+.b18{left:24%;width:11px;height:11px;animation-duration:6s;animation-delay:2s;}
+.b19{left:37%;width:29px;height:29px;animation-duration:12s;animation-delay:7s;}
+.b20{left:49%;width:16px;height:16px;animation-duration:8s;animation-delay:6s;}
+.b21{left:62%;width:22px;height:22px;animation-duration:10s;animation-delay:5s;}
+.b22{left:74%;width:12px;height:12px;animation-duration:7s;animation-delay:7s;}
+.b23{left:87%;width:26px;height:26px;animation-duration:11s;animation-delay:6s;}
+.b24{left:5%;width:13px;height:13px;animation-duration:9s;animation-delay:8s;}
+.b25{left:31%;width:21px;height:21px;animation-duration:10s;animation-delay:5s;}
+.b26{left:56%;width:30px;height:30px;animation-duration:12s;animation-delay:8s;}
+.b27{left:69%;width:15px;height:15px;animation-duration:7s;animation-delay:9s;}
+.b28{left:94%;width:28px;height:28px;animation-duration:11s;animation-delay:7s;}
+
+.pe-contenido{
+    position:relative;
+    z-index:10;
+    width:100%;
+    max-width:1050px;
+    margin:0 auto;
+}
+
+/* BANNER */
+
+.pe-banner{
+    width:100%;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 5px 18px rgba(0,0,0,.3);
+}
+
+.pe-banner img{
+    display:block;
+    width:100%;
+    height:auto;
+}
+
+/* RELOJ */
+
+.pe-reloj{
+    width:100%;
+    text-align:center;
+    margin:8px auto 12px;
+    padding:10px 5px;
+    background:rgba(0,0,0,.30);
+    border-radius:12px;
+}
+
+#pe-saludo{
+    display:block;
+    font-size:clamp(23px,5vw,36px);
+    font-weight:900;
+}
+
+#pe-hora{
+    display:block;
+    min-height:42px;
+    margin-top:6px;
+    font-size:clamp(28px,7vw,44px);
+    font-weight:900;
+    letter-spacing:2px;
+}
+
+#pe-fecha{
+    display:block;
+    min-height:24px;
+    margin-top:5px;
+    font-size:clamp(15px,3.5vw,21px);
+    font-weight:700;
+}
+
+/* CARRUSEL */
+
+.pe-carrusel{
+    width:100%;
+    max-width:480px;
+    margin:10px auto 18px;
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+
+.pe-carrusel-ventana{
+    flex:1;
+    min-width:0;
+    overflow:hidden;
+    background:#fff;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,.3);
+}
+
+.pe-carrusel-pista{
+    display:flex;
+    width:100%;
+    transform:translateX(0);
+    transition:transform:.4s ease;
+}
+
+.pe-slide{
+    flex:0 0 100%;
+    width:100%;
+    height:145px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#fff;
+}
+
+.pe-slide img{
+    width:100%;
+    height:145px;
+    display:block;
+    object-fit:contain;
+}
+
+.pe-boton-carrusel{
+    flex:0 0 38px;
+    width:38px;
+    height:38px;
+    padding:0;
+    border:0;
+    border-radius:50%;
+    background:#fff;
+    color:#0057b8;
+    font-size:28px;
+    font-weight:bold;
+    line-height:38px;
+    text-align:center;
+    cursor:pointer;
+}
+
+/* TITULOS */
+
+.pe-titulo{
+    text-align:center;
+    font-size:clamp(22px,5vw,32px);
+    font-weight:900;
+    margin:12px 0 6px;
+}
+
+.pe-actualizado{
+    text-align:center;
+    font-size:clamp(14px,3.5vw,19px);
+    font-weight:bold;
+    margin-bottom:14px;
+}
+
+/* CATALOGO */
+
+.pe-catalogo-paginas{
+    width:100%;
+    margin:0 auto;
+}
+
+.pe-pagina-catalogo{
+    width:100%;
+    margin:0 0 14px;
+    background:#fff;
+    border-radius:8px;
+    overflow:hidden;
+    box-shadow:0 5px 16px rgba(0,0,0,.3);
+}
+
+.pe-pagina-catalogo img{
+    width:100%;
+    height:auto;
+    display:block;
+}
+
+/* PDF */
+
+.pe-descarga-pdf{
+    width:100%;
+    margin:8px 0 18px;
+}
+
+.pe-descarga-pdf a{
+    display:block;
+    width:100%;
+    padding:15px 6px;
+    text-align:center;
+    text-decoration:none;
+    color:#fff;
+    background:linear-gradient(
+        90deg,
+        #006847,
+        #008f5a,
+        #0057b8,
+        #ce1126
+    );
+    background-size:200% 100%;
+    animation:brillo 3s linear infinite;
+    border:3px solid #fff;
+    border-radius:14px;
+    box-shadow:0 5px 15px rgba(0,0,0,.35);
+    font-size:clamp(19px,5vw,30px);
+    font-weight:900;
+}
+
+.pe-flecha{
+    display:inline-block;
+    animation:moverFlecha 1s infinite;
+}
+
+.pe-flecha.derecha{
+    animation-delay:.25s;
+}
+
+@keyframes moverFlecha{
+    0%,100%{transform:translateX(0);}
+    50%{transform:translateX(7px);}
+}
+
+@keyframes brillo{
+    0%{background-position:0 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0 50%;}
+}
+
+/* WHATSAPP */
+
+.pe-whatsapp{
+    width:100%;
+    max-width:600px;
+    margin:18px auto 16px;
+    text-align:center;
+}
+
+.pe-whatsapp a{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    text-decoration:none;
+    color:#fff;
+    background:#25D366;
+    padding:12px 15px;
+    border-radius:50px;
+    font-size:clamp(17px,4vw,22px);
+    font-weight:900;
+    box-shadow:0 5px 14px rgba(0,0,0,.3);
+}
+
+.pe-whatsapp img{
+    width:45px;
+    height:45px;
+    object-fit:contain;
+}
+
+/* LOGOS */
+
+.pe-logos-finales{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:15px;
+    width:100%;
+    margin:10px auto 15px;
+}
+
+.pe-logos-finales img{
+    display:block;
+    width:auto;
+    max-width:45%;
+    max-height:100px;
+    object-fit:contain;
+}
+
+/* FOOTER */
+
+.pe-footer{
+    width:100%;
+    text-align:center;
+    padding:10px 8px 14px;
+    font-size:clamp(13px,3vw,17px);
+    font-weight:bold;
+    line-height:1.5;
+}
+
+/* MOVIL */
+
+@media(max-width:600px){
+
+    .pe-catalogo{
+        padding:14px 6px 0;
+    }
+
+    .pe-marco{
+        border-width:9px;
+        box-shadow:
+            inset 0 0 0 4px #006847,
+            inset 0 0 0 8px #fff,
+            inset 0 0 0 12px #ce1126;
+    }
+
+    .pe-slide{
+        height:115px;
+    }
+
+    .pe-slide img{
+        height:115px;
+    }
+
+    .pe-boton-carrusel{
+        flex-basis:33px;
+        width:33px;
+        height:33px;
+        line-height:33px;
+        font-size:23px;
+    }
+
+    .pe-logos-finales img{
+        max-height:80px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="pe-catalogo">
+
+<div class="pe-marco"></div>
+
+<!-- BURBUJAS -->
+<div class="pe-burbuja b1"></div>
+<div class="pe-burbuja b2"></div>
+<div class="pe-burbuja b3"></div>
+<div class="pe-burbuja b4"></div>
+<div class="pe-burbuja b5"></div>
+<div class="pe-burbuja b6"></div>
+<div class="pe-burbuja b7"></div>
+<div class="pe-burbuja b8"></div>
+<div class="pe-burbuja b9"></div>
+<div class="pe-burbuja b10"></div>
+<div class="pe-burbuja b11"></div>
+<div class="pe-burbuja b12"></div>
+<div class="pe-burbuja b13"></div>
+<div class="pe-burbuja b14"></div>
+<div class="pe-burbuja b15"></div>
+<div class="pe-burbuja b16"></div>
+<div class="pe-burbuja b17"></div>
+<div class="pe-burbuja b18"></div>
+<div class="pe-burbuja b19"></div>
+<div class="pe-burbuja b20"></div>
+<div class="pe-burbuja b21"></div>
+<div class="pe-burbuja b22"></div>
+<div class="pe-burbuja b23"></div>
+<div class="pe-burbuja b24"></div>
+<div class="pe-burbuja b25"></div>
+<div class="pe-burbuja b26"></div>
+<div class="pe-burbuja b27"></div>
+<div class="pe-burbuja b28"></div>
+
+<div class="pe-contenido">
+
+<!-- BANNER -->
+<div class="pe-banner">
+<img src="https://i.ibb.co/3yTwSyXD/1000033396-ab06342a2e89ca0c522afd8103642f1f-13-5-2025-7-54-14-p-m-20251013-195122-0000.jpg" alt="Bienvenidos">
+</div>
+
+<!-- RELOJ -->
+<div class="pe-reloj">
+<span id="pe-saludo">Buenos días ☀️</span>
+<span id="pe-hora">00:00:00</span>
+<span id="pe-fecha">Cargando fecha...</span>
+</div>
+
+<!-- CARRUSEL -->
+<div class="pe-carrusel">
+
+<button id="pe-prev" class="pe-boton-carrusel" type="button">‹</button>
+
+<div class="pe-carrusel-ventana">
+<div id="pe-pista" class="pe-carrusel-pista">
+
+<div class="pe-slide"><img src="https://i.ibb.co/Gv3cRRdc/Logo-Aguafiel-2.png" alt="Aguafiel"></div>
+
+<div class="pe-slide"><img src="https://i.ibb.co/GfjQ3c1G/1000025618-bf825456c1d5580a528d5315312af723-23-4-2025-6-50-41-p-m-20251013-195258-0000.png" alt="Producto"></div>
+
+<div class="pe-slide"><img src="https://i.ibb.co/ynkKdGX1/1000025606-1d4a51831b907a4f8b501fbec7c7af2e-23-4-2025-6-51-41-p-m-20251013-195212-0000.png" alt="Producto"></div>
+
+<div class="pe-slide"><img src="https://i.ibb.co/Mw6dRGG/1000025646-9d370f5f68af783e23b5a9b0f5505bbb-23-4-2025-6-07-08-p-m-20251013-195450-0000.png" alt="Producto"></div>
+
+<div class="pe-slide"><img src="https://i.ibb.co/ZzMtgbhD/1000025658-348f843033ce99ece84ca729355c0f1b-23-4-2025-6-00-49-p-m-20251013-195500-0000.png" alt="Producto"></div>
+
+<div class="pe-slide"><img src="https://i.ibb.co/nNxrbRyh/1000025602-62ddb21849f0361580bc4d0efa34354e-23-4-2025-6-11-20-p-m-20251013-195339-0000.png" alt="Producto"></div>
+
+<div class="pe-slide"><img src="https://i.ibb.co/Y7QxbJjY/1000025654-2692218fc8dc6f2b016e8d3683e5f858-23-4-2025-6-11-09-p-m-20251013-195350-0000.png" alt="Producto"></div>
+
+<div class="pe-slide"><img src="https://i.ibb.co/sJt8BFwX/1000025642-c2cb61c3dde506ce9f3069066c669ba5-23-4-2025-6-11-01-p-m-20251013-195405-0000.png" alt="Producto"></div>
+
+<div class="pe-slide"><img src="https://i.ibb.co/TxN97tWT/1000025626-1bff0cc8fae8cacf77890027fc33815a-23-4-2025-6-10-03-p-m-20251013-195417-0000.png" alt="Producto"></div>
+
+<div class="pe-slide"><img src="https://i.ibb.co/CppsgtfQ/1000025630-feb45ba9b765bb9c1de588eb441f6482-23-4-2025-6-07-50-p-m-20251013-200047-0000.png" alt="Producto"></div>
+
+<div class="pe-slide"><img src="https://i.ibb.co/vxJR42Kb/1000025666-58cc64ab75c3f8d940573a1759577a32-23-4-2025-6-00-22-p-m-20251013-195509-0000.png" alt="Producto"></div>
+
+<div class="pe-slide"><img src="https://i.ibb.co/V0fSTkwF/1000025650-5c50d0142ea71648da15e8f0ddafd61f-23-4-2025-5-59-26-p-m-20251013-195518-0000.png" alt="Producto"></div>
+
+<div class="pe-slide"><img src="https://i.ibb.co/jk16xsZJ/1000025638-0b248c89ee1732eb0af84073f3428ec0-23-4-2025-5-49-36-p-m-20251013-195532-0000.png" alt="Producto"></div>
+
+<div class="pe-slide"><img src="https://i.ibb.co/V02qdfLy/1000007070-9694f92c3b44fe9ffead942f230bfb91-9-3-2025-11-01-30-p-m-20251013-195555-0000.png" alt="Producto"></div>
+
+<div class="pe-slide"><img src="https://i.ibb.co/N6fbMLZD/1000006945-0068a95808c67fc45319ac198c497c31-9-3-2025-10-24-49-p-m-20251013-195609-0000.png" alt="Producto"></div>
+
+</div>
+</div>
+
+<button id="pe-next" class="pe-boton-carrusel" type="button">›</button>
+
+</div>
+
+<!-- TITULO -->
+<div class="pe-titulo">CATÁLOGO DIGITAL</div>
+<div class="pe-actualizado">Actualizado septiembre 2026</div>
+
+<!-- CATALOGO -->
+<div class="pe-catalogo-paginas">
+
+<div class="pe-pagina-catalogo">
+<img src="https://i.ibb.co/VYqW9W8K/Catalogo-web-pag-1-20260923-090059-0000.png" alt="Catálogo página 1">
+</div>
+
+<div class="pe-pagina-catalogo">
+<img src="https://i.ibb.co/5PjZYD1/catalogo-web-pag-2-20260923-090238-0000.png" alt="Catálogo página 2">
+</div>
+
+<!-- DESCARGA PDF -->
+<div class="pe-descarga-pdf">
+<a href="https://drive.usercontent.google.com/download?id=1qTKriDKOTfIPFwYcaI8K42GH7XGWwvIi&export=download" target="_blank" rel="noopener">
+<span class="pe-flecha">👉</span>
+&nbsp;DESCARGAR ESTE CATÁLOGO&nbsp;
+<span class="pe-flecha derecha">👈</span>
+</a>
+</div>
+
+</div>
+
+<!-- WHATSAPP -->
+<div class="pe-whatsapp">
+<a href="https://wa.me/525665470369?text=Hola%21%20Gracias%20por%20visitar%20mi%20cat%C3%A1logo%20digital%20Dime%20en%20qu%C3%A9%20podemos%20ayudarte" target="_blank" rel="noopener">
+
+<img src="https://i.ibb.co/Fk68Lwr0/Ryan-RB-assistant-Person-circle-v2.webp" alt="WhatsApp">
+
+<span>Contáctanos por WhatsApp</span>
+
+</a>
+</div>
+
+<!-- LOGOS -->
+<div class="pe-logos-finales">
+
+<img src="https://i.ibb.co/4Z1XjHRn/Picsart-26-07-23-14-12-11-034.png" alt="Logo">
+
+<img src="https://i.ibb.co/vvDDfCPG/1000033397-64fea34243d186d8ca4cfd5497610222-13-5-2025-7-59-35-p-m-20251219-110406-0000.png" alt="Logo">
+
+</div>
+
+<!-- FOOTER -->
+<div class="pe-footer">
+Todos los derechos ©️ reservados.<br>
+Cambios sin previo aviso<br>
+Creado por Grupo Peñafiel y Ruta 1371 con todo el ❤️
+</div>
+
+</div>
+</div>
+
+<script>
+
+/* RELOJ */
+
+(function(){
+
+    function actualizarReloj(){
+
+        var ahora = new Date();
+
+        var horas = ahora.getHours();
+        var minutos = ahora.getMinutes();
+        var segundos = ahora.getSeconds();
+
+        var hora =
+            String(horas).padStart(2,"0") +
+            ":" +
+            String(minutos).padStart(2,"0") +
+            ":" +
+            String(segundos).padStart(2,"0");
+
+        var dias = [
+            "domingo",
+            "lunes",
+            "martes",
+            "miércoles",
+            "jueves",
+            "viernes",
+            "sábado"
+        ];
+
+        var meses = [
+            "enero",
+            "febrero",
+            "marzo",
+            "abril",
+            "mayo",
+            "junio",
+            "julio",
+            "agosto",
+            "septiembre",
+            "octubre",
+            "noviembre",
+            "diciembre"
+        ];
+
+        var fecha =
+            dias[ahora.getDay()] +
+            " " +
+            ahora.getDate() +
+            " de " +
+            meses[ahora.getMonth()] +
+            " de " +
+            ahora.getFullYear();
+
+        fecha =
+            fecha.charAt(0).toUpperCase() +
+            fecha.slice(1);
+
+        var horaElemento =
+            document.getElementById("pe-hora");
+
+        var fechaElemento =
+            document.getElementById("pe-fecha");
+
+        var saludoElemento =
+            document.getElementById("pe-saludo");
+
+        if(horaElemento){
+            horaElemento.textContent = hora;
+        }
+
+        if(fechaElemento){
+            fechaElemento.textContent = fecha;
+        }
+
+        if(saludoElemento){
+
+            if(horas >= 5 && horas < 12){
+
+                saludoElemento.textContent =
+                    "Buenos días ☀️";
+
+            }
+
+            else if(horas >= 12 && horas < 19){
+
+                saludoElemento.textContent =
+                    "Buenas tardes 🌤️";
+
+            }
+
+            else{
+
+                saludoElemento.textContent =
+                    "Buenas noches 🌙";
+
+            }
+
+        }
+
+    }
+
+    if(document.readyState === "loading"){
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            actualizarReloj
+        );
+
+    }else{
+
+        actualizarReloj();
+
+    }
+
+    setInterval(
+        actualizarReloj,
+        1000
+    );
+
+})();
+
+
+/* CARRUSEL */
+
+(function(){
+
+    function iniciarCarrusel(){
+
+        var pista =
+            document.getElementById("pe-pista");
+
+        var botonAnterior =
+            document.getElementById("pe-prev");
+
+        var botonSiguiente =
+            document.getElementById("pe-next");
+
+        if(!pista || !botonAnterior || !botonSiguiente){
+            return;
+        }
+
+        var slides =
+            pista.querySelectorAll(".pe-slide");
+
+        var total =
+            slides.length;
+
+        var indice = 0;
+
+
+        function mostrarSlide(){
+
+            pista.style.transform =
+                "translate3d(-" +
+                (indice * 100) +
+                "%, 0, 0)";
+
+        }
+
+
+        botonAnterior.onclick = function(e){
+
+            e.preventDefault();
+            e.stopPropagation();
+
+            indice--;
+
+            if(indice < 0){
+                indice = total - 1;
+            }
+
+            mostrarSlide();
+
+        };
+
+
+        botonSiguiente.onclick = function(e){
+
+            e.preventDefault();
+            e.stopPropagation();
+
+            indice++;
+
+            if(indice >= total){
+                indice = 0;
+            }
+
+            mostrarSlide();
+
+        };
+
+
+        mostrarSlide();
+
+
+        setInterval(
+            function(){
+
+                indice++;
+
+                if(indice >= total){
+                    indice = 0;
+                }
+
+                mostrarSlide();
+
+            },
+            3000
+        );
+
+    }
+
+
+    if(document.readyState === "loading"){
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            iniciarCarrusel
+        );
+
+    }else{
+
+        iniciarCarrusel();
+
+    }
+
+})();
+
+</script>
+
+</body>
+  </html>
