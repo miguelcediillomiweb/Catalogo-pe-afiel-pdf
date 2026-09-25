@@ -401,7 +401,7 @@ body{
     }
 }
 /* =====================================================
-   CELEBRACIÓN DE APERTURA — VIVA MÉXICO
+   CELEBRACIÓN DE APERTURA — AVIONETAS + VIVA MÉXICO
 ===================================================== */
 #pe-celebracion{
     position:fixed;
@@ -410,60 +410,67 @@ body{
     pointer-events:none;
     overflow:hidden;
     opacity:1;
-    animation:peCelebracionSalida .8s ease 4.7s forwards;
+    background:transparent;
+    animation:peCelebracionSalida .6s ease 6s forwards;
 }
-#pe-confeti{
+.pe-avioneta{
     position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
+    left:-100px;
+    top:27%;
+    z-index:3;
+    color:#fff;
+    font-size:clamp(42px,9vw,78px);
+    text-shadow:0 3px 8px rgba(0,0,0,.35);
+    transform:rotate(-4deg);
 }
+.pe-avioneta-1{animation:peAvionetaVuelo 3.1s ease-in-out .2s forwards}
+.pe-avioneta-2{top:39%;animation:peAvionetaVuelo 3.1s ease-in-out .65s forwards}
 #pe-viva-mexico{
     position:absolute;
     left:50%;
-    top:50%;
-    transform:translate(-50%,-50%) scale(.55);
-    width:min(94vw,900px);
+    top:58%;
+    transform:translate(-50%,-50%) scale(.7);
+    width:min(96vw,1000px);
     text-align:center;
     font-size:clamp(38px,10vw,105px);
     line-height:1;
     font-weight:1000;
     letter-spacing:-2px;
-    text-shadow:0 4px 14px rgba(0,0,0,.32),0 0 22px rgba(255,255,255,.35);
+    text-shadow:0 4px 14px rgba(0,0,0,.42),0 0 25px rgba(255,255,255,.45);
     white-space:nowrap;
     opacity:0;
-    animation:peVivaEntrada 3.8s cubic-bezier(.18,.8,.2,1) .45s forwards;
+    animation:peVivaCartel 4.7s ease .8s forwards;
 }
+#pe-viva-mexico::before,
+#pe-viva-mexico::after{
+    content:"";
+    position:absolute;
+    left:2%;
+    right:2%;
+    height:7px;
+    border-radius:10px;
+    background:linear-gradient(90deg,#006847 0 33%,#fff 33% 66%,#ce1126 66% 100%);
+    box-shadow:0 0 10px rgba(255,255,255,.7);
+}
+#pe-viva-mexico::before{top:-18px}
+#pe-viva-mexico::after{bottom:-18px}
 #pe-viva-mexico span{
     display:inline-block;
-    opacity:0;
-    transform:translateY(35px) scale(.4) rotate(-12deg);
-    animation:peLetraViva .55s cubic-bezier(.2,.9,.25,1) forwards;
 }
-#pe-viva-mexico span:nth-child(1){animation-delay:.45s}
-#pe-viva-mexico span:nth-child(2){animation-delay:.55s}
-#pe-viva-mexico span:nth-child(3){animation-delay:.65s}
-#pe-viva-mexico span:nth-child(4){animation-delay:.75s}
-#pe-viva-mexico span:nth-child(5){animation-delay:.82s}
-#pe-viva-mexico span:nth-child(6){animation-delay:.92s}
-#pe-viva-mexico span:nth-child(7){animation-delay:1.02s}
-#pe-viva-mexico span:nth-child(8){animation-delay:1.12s}
-#pe-viva-mexico span:nth-child(9){animation-delay:1.22s}
-#pe-viva-mexico span:nth-child(10){animation-delay:1.32s}
-#pe-viva-mexico span:nth-child(11){animation-delay:1.42s}
 .viva-verde{color:#006847}
 .viva-blanco{color:#fff}
 .viva-rojo{color:#ce1126}
-@keyframes peVivaEntrada{
-    0%{opacity:0;transform:translate(-50%,-50%) scale(.55)}
-    25%{opacity:1;transform:translate(-50%,-50%) scale(1.05)}
-    42%,72%{opacity:1;transform:translate(-50%,-50%) scale(1)}
-    100%{opacity:0;transform:translate(calc(-50% + 24vw),calc(-50% - 24vh)) scale(.8)}
+@keyframes peAvionetaVuelo{
+    0%{left:-110px;opacity:0}
+    10%{opacity:1}
+    45%{opacity:1}
+    100%{left:calc(100vw + 110px);opacity:0}
 }
-@keyframes peLetraViva{
-    0%{opacity:0;transform:translateY(35px) scale(.4) rotate(-12deg)}
-    70%{opacity:1;transform:translateY(-5px) scale(1.08) rotate(2deg)}
-    100%{opacity:1;transform:translateY(0) scale(1) rotate(0)}
+@keyframes peVivaCartel{
+    0%{opacity:0;transform:translate(-50%,-50%) scale(.65)}
+    15%{opacity:1;transform:translate(-50%,-50%) scale(1.05)}
+    25%,72%{opacity:1;transform:translate(-50%,-50%) scale(1)}
+    100%{opacity:0;transform:translate(-50%,-50%) scale(1.03)}
 }
 @keyframes peCelebracionSalida{
     to{opacity:0;visibility:hidden}
@@ -514,9 +521,10 @@ body{
 </head>
 
 <body>
-<!-- CELEBRACIÓN DE APERTURA: CONFETI + VIVA MÉXICO -->
+<!-- CELEBRACIÓN DE APERTURA — AVIONETAS + VIVA MÉXICO -->
 <div id="pe-celebracion" aria-hidden="true">
-<canvas id="pe-confeti"></canvas>
+<div class="pe-avioneta pe-avioneta-1">✈</div>
+<div class="pe-avioneta pe-avioneta-2">✈</div>
 <div id="pe-viva-mexico" aria-label="Viva México">
 <span class="viva-verde">V</span><span class="viva-blanco">i</span><span class="viva-rojo">v</span><span class="viva-verde">a</span>
 <span class="viva-blanco"> </span>
@@ -525,14 +533,6 @@ body{
 </div>
 <div id="pe-loading" aria-label="Cargando Catálogo Peñafiel">
 <div class="pe-loading-marco"></div>
-<div class="pe-loading-burbuja" style="left:5%;width:18px;height:18px;animation-duration:7s"></div>
-<div class="pe-loading-burbuja" style="left:13%;width:30px;height:30px;animation-duration:10s;animation-delay:1s"></div>
-<div class="pe-loading-burbuja" style="left:24%;width:14px;height:14px;animation-duration:6s;animation-delay:2s"></div>
-<div class="pe-loading-burbuja" style="left:36%;width:26px;height:26px;animation-duration:11s;animation-delay:1s"></div>
-<div class="pe-loading-burbuja" style="left:50%;width:18px;height:18px;animation-duration:8s;animation-delay:3s"></div>
-<div class="pe-loading-burbuja" style="left:64%;width:32px;height:32px;animation-duration:12s;animation-delay:2s"></div>
-<div class="pe-loading-burbuja" style="left:77%;width:15px;height:15px;animation-duration:7s;animation-delay:4s"></div>
-<div class="pe-loading-burbuja" style="left:89%;width:28px;height:28px;animation-duration:10s;animation-delay:1s"></div>
 <div class="pe-loading-contenido">
 <div class="pe-loading-bienvenidos">BIENVENIDOS</div>
 <div class="pe-loading-titulo">Catálogo Peñafiel</div>
@@ -940,88 +940,6 @@ Creado por Grupo Peñafiel y Ruta 1371 con todo el ❤️
 </script>
 
 <script>
-/* CONFETI DE APERTURA — SALE DE ABAJO A LA IZQUIERDA Y SUBE A LA DERECHA */
-(function(){
-    var overlay=document.getElementById("pe-celebracion");
-    var canvas=document.getElementById("pe-confeti");
-    if(!overlay||!canvas)return;
-
-    var ctx=canvas.getContext("2d");
-    var particles=[];
-    var start=performance.now();
-    var duration=4800;
-    var colors=["#006847","#ffffff","#ce1126"];
-    var w=0,h=0;
-
-    function resize(){
-        w=canvas.width=window.innerWidth;
-        h=canvas.height=window.innerHeight;
-    }
-    resize();
-    window.addEventListener("resize",resize);
-
-    function crearParticula(){
-        var t=Math.random();
-        var x=w*(0.02+0.78*t)+Math.random()*35;
-        var y=h*(0.96-0.82*t)+Math.random()*30;
-        var angle=-Math.PI/4+(Math.random()-.5)*.8;
-        var speed=3+Math.random()*7;
-        particles.push({
-            x:x,y:y,
-            vx:Math.cos(angle)*speed,
-            vy:Math.sin(angle)*speed,
-            size:4+Math.random()*8,
-            rot:Math.random()*Math.PI,
-            vr:(Math.random()-.5)*.25,
-            color:colors[Math.floor(Math.random()*colors.length)],
-            life:0,
-            max:900+Math.random()*1800
-        });
-    }
-
-    function dibujar(t){
-        ctx.clearRect(0,0,w,h);
-        var elapsed=t-start;
-
-        if(elapsed<3900){
-            for(var i=0;i<7;i++)crearParticula();
-        }
-
-        for(var i=particles.length-1;i>=0;i--){
-            var p=particles[i];
-            p.x+=p.vx;
-            p.y+=p.vy;
-            p.vy+=.035;
-            p.vx*=.997;
-            p.rot+=p.vr;
-            p.life+=16;
-
-            if(p.life>p.max||p.x>w+30||p.y>h+30){
-                particles.splice(i,1);
-                continue;
-            }
-
-            var fade=Math.min(1,p.life/100)*Math.min(1,(p.max-p.life)/350);
-            ctx.save();
-            ctx.globalAlpha=Math.max(0,fade);
-            ctx.translate(p.x,p.y);
-            ctx.rotate(p.rot);
-            ctx.fillStyle=p.color;
-            ctx.fillRect(-p.size/2,-p.size/3,p.size,p.size*.65);
-            ctx.restore();
-        }
-
-        if(elapsed<duration+500){
-            requestAnimationFrame(dibujar);
-        }else{
-            ctx.clearRect(0,0,w,h);
-        }
-    }
-    requestAnimationFrame(dibujar);
-})();
-</script>
-
-<script>
 (function(){
 var promoData=[
 {nombre:"Aguafiel",imagen:"https://i.ibb.co/MyzQpzLL/images-2026-09-23-T110419-647.jpg",texto:"Conoce nuevas formas de hidratarte<br>Hazlo con Aguafiel"},
@@ -1057,8 +975,8 @@ setTimeout(function(){
 function elegirPromo(){var i;if(promoData.length<=1)return 0;do{i=Math.floor(Math.random()*promoData.length)}while(i===ultimoPromo);ultimoPromo=i;return i}
 function ocultarPromo(){if(!modalPromo)return;modalPromo.classList.remove("activo");modalPromo.setAttribute("aria-hidden","true");clearTimeout(promoTimer)}
 function programarSiguientePromo(){clearTimeout(promoTimer);promoTimer=setTimeout(function(){mostrarPromo()},60000)}
-function mostrarPromo(){if(!modalPromo||promoOcultoPorVideo)return;var p=promoData[elegirPromo()];imagenPromo.src=p.imagen;imagenPromo.alt=p.nombre;textoPromo.innerHTML=p.texto;modalPromo.classList.add("activo");modalPromo.setAttribute("aria-hidden","false");clearTimeout(promoTimer);promoTimer=setTimeout(function(){ocultarPromo();programarSiguientePromo()},4000)}
-function iniciarPromos(){setTimeout(function(){mostrarPromo()},500)}
+function mostrarPromo(){if(!modalPromo||promoOcultoPorVideo)return;var p=promoData[elegirPromo()];imagenPromo.src=p.imagen;imagenPromo.alt=p.nombre;textoPromo.innerHTML=p.texto;modalPromo.classList.add("activo");modalPromo.setAttribute("aria-hidden","false");clearTimeout(promoTimer);promoTimer=setTimeout(function(){ocultarPromo();programarSiguientePromo()},5000)}
+function iniciarPromos(){setTimeout(function(){mostrarPromo()},5500)}
 
 if(cerrarPromo)cerrarPromo.onclick=function(){ocultarPromo();programarSiguientePromo()};
 if(modalPromo)modalPromo.addEventListener("click",function(e){if(e.target===modalPromo){ocultarPromo();programarSiguientePromo()}});
