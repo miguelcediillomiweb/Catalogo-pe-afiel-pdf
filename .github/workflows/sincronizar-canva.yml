@@ -55,16 +55,29 @@ jobs:
                   deviceScaleFactor: 1
                 });
 
-                await page.goto(diseño.url, {
+                await page.goto(diseño.url + "&_sync=" + Date.now(), {
                   waitUntil: "domcontentloaded",
                   timeout: 120000
                 });
 
                 await page.waitForTimeout(10000);
 
+                const iframe = page.locator('iframe[src*="canva.com"]').first();
+                await iframe.waitFor({ state: "visible", timeout: 120000 });
+
+                const box = await iframe.boundingBox();
+                if (!box || box.width < 500 || box.height < 500) {
+                  throw new Error("No se encontró correctamente el área del catálogo en Canva.");
+                }
+
                 await page.screenshot({
                   path: diseño.archivo,
-                  clip: { x: 172, y: 142, width: 1056, height: 816 }
+                  clip: {
+                    x: Math.max(0, box.x),
+                    y: Math.max(0, box.y),
+                    width: box.width,
+                    height: box.height
+                  }
                 });
 
                 if (!fs.existsSync(diseño.archivo) || fs.statSync(diseño.archivo).size < 10000) {
