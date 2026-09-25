@@ -413,15 +413,15 @@ body{
    PANTALLA DE CARGA + MARCO ANIMADO
 ===================================================== */
 #pe-loading{position:fixed;inset:0;z-index:100000;display:flex;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(circle at 20% 20%,rgba(255,255,255,.12),transparent 22%),radial-gradient(circle at 80% 70%,rgba(255,255,255,.10),transparent 25%),linear-gradient(180deg,#0075d9 0%,#0057bd 52%,#003e9e 100%);transition:opacity .6s ease,visibility .6s ease}
-#pe-loading.oculto{opacity:0;visibility:hidden;pointer-events:none}
+#pe-loading.oculto{opacity:0;visibility:hidden;pointer-events:none}\n#pe-loading{animation:peCargaAuto 5s ease forwards}\n@keyframes peCargaAuto{0%,88%{opacity:1;visibility:visible}100%{opacity:0;visibility:hidden;pointer-events:none}}
 .pe-loading-marco{position:absolute;inset:0;border:12px solid #fff;box-shadow:inset 0 0 0 5px #006847,inset 0 0 0 10px #fff,inset 0 0 0 15px #ce1126;pointer-events:none;animation:peMarcoCarga 3s linear infinite}
 @keyframes peMarcoCarga{0%,100%{box-shadow:inset 0 0 0 5px #006847,inset 0 0 0 10px #fff,inset 0 0 0 15px #ce1126}50%{box-shadow:inset 0 0 0 5px #ce1126,inset 0 0 0 10px #fff,inset 0 0 0 15px #006847}}
 .pe-loading-contenido{position:relative;z-index:2;width:min(88vw,700px);text-align:center;color:#fff}
 .pe-loading-bienvenidos{margin:0;font-size:clamp(34px,8vw,70px);font-weight:900;line-height:1.05;text-shadow:0 4px 14px rgba(0,0,0,.35)}
 .pe-loading-titulo{margin:10px 0 28px;font-size:clamp(24px,5.5vw,42px);font-weight:900;text-shadow:0 3px 10px rgba(0,0,0,.3)}
 .pe-loading-barra{width:100%;height:22px;padding:3px;overflow:hidden;border:2px solid #fff;border-radius:50px;background:rgba(0,0,0,.28);box-shadow:0 5px 18px rgba(0,0,0,.3)}
-#pe-loading-progreso{width:0%;height:100%;border-radius:50px;background:linear-gradient(90deg,#006847,#fff,#ce1126,#0057b8);background-size:300% 100%;animation:peProgresoBrillo 2s linear infinite;transition:width .08s linear}
-@keyframes peProgresoBrillo{0%{background-position:0 50%}100%{background-position:300% 50%}}
+#pe-loading-progreso{width:0%;height:100%;border-radius:50px;animation:peCargaBarra 4.4s ease forwards,peProgresoBrillo 2s linear infinite;background:linear-gradient(90deg,#006847,#fff,#ce1126,#0057b8);background-size:300% 100%;animation:peProgresoBrillo 2s linear infinite;transition:width .08s linear}
+@keyframes peCargaBarra{0%{width:0%}100%{width:100%}}\n@keyframes peProgresoBrillo{0%{background-position:0 50%}100%{background-position:300% 50%}}
 #pe-loading-porcentaje{display:block;margin-top:10px;font-size:clamp(18px,4vw,25px);font-weight:900}
 .pe-loading-burbuja{position:absolute;bottom:-60px;border:2px solid rgba(255,255,255,.45);background:rgba(255,255,255,.10);border-radius:50%;animation:peBurbujaCarga linear infinite}
 @keyframes peBurbujaCarga{0%{transform:translateY(0) scale(.8);opacity:0}10%{opacity:.7}100%{transform:translateY(-120vh) scale(1.15);opacity:0}}
@@ -885,11 +885,24 @@ var loading=document.getElementById("pe-loading"),progreso=document.getElementBy
 var modalPromo=document.getElementById("pe-modal-promo"),imagenPromo=document.getElementById("pe-promo-imagen"),textoPromo=document.getElementById("pe-promo-texto"),cerrarPromo=document.getElementById("pe-cerrar-promo");
 var modalCampana=document.getElementById("pe-modal-campana"),abrirCampana=document.getElementById("pe-abrir-campana"),cerrarCampana=document.getElementById("pe-cerrar-campana");
 var progresoActual=0,cargaLista=false;
-function actualizarProgreso(v){progresoActual=Math.max(progresoActual,Math.min(100,v));if(progreso)progreso.style.width=progresoActual+"%";if(porcentaje)porcentaje.textContent=Math.round(progresoActual)+"%"}
-function ocultarCarga(){if(cargaLista||!loading)return;cargaLista=true;actualizarProgreso(100);setTimeout(function(){loading.classList.add("oculto");iniciarPromos()},450)}
-var pi=setInterval(function(){if(progresoActual<92)actualizarProgreso(progresoActual+Math.random()*2.4)},90);
-window.addEventListener("load",function(){clearInterval(pi);ocultarCarga()});
-setTimeout(function(){if(!cargaLista){clearInterval(pi);ocultarCarga()}},7000);
+function actualizarProgreso(v){
+  progresoActual=Math.max(progresoActual,Math.min(100,v));
+  if(porcentaje)porcentaje.textContent=Math.round(progresoActual)+"%";
+}
+function ocultarCarga(){
+  if(cargaLista||!loading)return;
+  cargaLista=true;
+  actualizarProgreso(100);
+  loading.classList.add("oculto");
+  iniciarPromos();
+}
+var pi=setInterval(function(){
+  if(progresoActual<96)actualizarProgreso(progresoActual+2);
+},90);
+setTimeout(function(){
+  clearInterval(pi);
+  ocultarCarga();
+},4800);
 
 function elegirPromo(){var i;if(promoData.length<=1)return 0;do{i=Math.floor(Math.random()*promoData.length)}while(i===ultimoPromo);ultimoPromo=i;return i}
 function ocultarPromo(){if(!modalPromo)return;modalPromo.classList.remove("activo");modalPromo.setAttribute("aria-hidden","true");clearTimeout(promoTimer)}
