@@ -46,7 +46,6 @@ body{
 
 .pe-burbuja{
     position:fixed;
-    bottom:-80px;
     z-index:9990;
     border:2px solid rgba(255,255,255,.62);
     background:
@@ -55,70 +54,61 @@ body{
     border-radius:50%;
     box-shadow:inset 0 0 8px rgba(255,255,255,.35),0 0 8px rgba(160,230,255,.16);
     pointer-events:none !important;
-    z-index:9990;
-    animation:subir linear infinite;
+    animation:flotarBurbuja linear infinite;
 }
 
-@keyframes subir{
-    0%{
-        transform:translateY(0);
-        opacity:0;
-    }
-    10%{
-        opacity:.7;
-    }
-    100%{
-        transform:translateY(-120vh);
-        opacity:0;
-    }
+@keyframes flotarBurbuja{
+    0%{transform:translate3d(0,18px,0) scale(.88);opacity:.15}
+    50%{transform:translate3d(8px,-10px,0) scale(1);opacity:.72}
+    100%{transform:translate3d(-6px,-38px,0) scale(.9);opacity:.12}
 }
 
-.b1{left:3%;width:18px;height:18px;animation-duration:8s;}
-.b2{left:8%;width:30px;height:30px;animation-duration:11s;animation-delay:2s;}
-.b3{left:14%;width:12px;height:12px;animation-duration:7s;animation-delay:1s;}
-.b4{left:20%;width:24px;height:24px;animation-duration:10s;animation-delay:4s;}
-.b5{left:27%;width:15px;height:15px;animation-duration:8s;animation-delay:3s;}
-.b6{left:33%;width:35px;height:35px;animation-duration:13s;animation-delay:1s;}
-.b7{left:40%;width:13px;height:13px;animation-duration:7s;animation-delay:5s;}
-.b8{left:46%;width:25px;height:25px;animation-duration:10s;animation-delay:2s;}
-.b9{left:53%;width:17px;height:17px;animation-duration:8s;animation-delay:4s;}
-.b10{left:59%;width:32px;height:32px;animation-duration:12s;animation-delay:1s;}
-.b11{left:65%;width:14px;height:14px;animation-duration:7s;animation-delay:3s;}
-.b12{left:71%;width:27px;height:27px;animation-duration:11s;animation-delay:5s;}
-.b13{left:77%;width:18px;height:18px;animation-duration:8s;animation-delay:2s;}
-.b14{left:83%;width:34px;height:34px;animation-duration:13s;animation-delay:4s;}
-.b15{left:90%;width:14px;height:14px;animation-duration:7s;animation-delay:1s;}
-.b16{left:96%;width:24px;height:24px;animation-duration:10s;animation-delay:3s;}
-.b17{left:11%;width:20px;height:20px;animation-duration:9s;animation-delay:6s;}
-.b18{left:24%;width:11px;height:11px;animation-duration:6s;animation-delay:2s;}
-.b19{left:37%;width:29px;height:29px;animation-duration:12s;animation-delay:7s;}
-.b20{left:49%;width:16px;height:16px;animation-duration:8s;animation-delay:6s;}
-.b21{left:62%;width:22px;height:22px;animation-duration:10s;animation-delay:5s;}
-.b22{left:74%;width:12px;height:12px;animation-duration:7s;animation-delay:7s;}
-.b23{left:87%;width:26px;height:26px;animation-duration:11s;animation-delay:6s;}
-.b24{left:5%;width:13px;height:13px;animation-duration:9s;animation-delay:8s;}
-.b25{left:31%;width:21px;height:21px;animation-duration:10s;animation-delay:5s;}
-.b26{left:56%;width:30px;height:30px;animation-duration:12s;animation-delay:8s;}
-.b27{left:69%;width:15px;height:15px;animation-duration:7s;animation-delay:9s;}
-.b28{left:94%;width:28px;height:28px;animation-duration:11s;animation-delay:7s;}
-.b29{left:7%;width:9px;height:9px;animation-duration:6s;animation-delay:1s}
-.b30{left:16%;width:38px;height:38px;animation-duration:14s;animation-delay:4s}
-.b31{left:22%;width:17px;height:17px;animation-duration:8s;animation-delay:7s}
-.b32{left:29%;width:10px;height:10px;animation-duration:6.5s;animation-delay:3s}
-.b33{left:35%;width:26px;height:26px;animation-duration:11s;animation-delay:9s}
-.b34{left:43%;width:9px;height:9px;animation-duration:6s;animation-delay:2s}
-.b35{left:51%;width:37px;height:37px;animation-duration:14s;animation-delay:5s}
-.b36{left:58%;width:12px;height:12px;animation-duration:7s;animation-delay:8s}
-.b37{left:67%;width:31px;height:31px;animation-duration:12s;animation-delay:3s}
-.b38{left:73%;width:9px;height:9px;animation-duration:6s;animation-delay:6s}
-.b39{left:80%;width:21px;height:21px;animation-duration:9s;animation-delay:9s}
-.b40{left:85%;width:40px;height:40px;animation-duration:15s;animation-delay:4s}
-.b41{left:92%;width:11px;height:11px;animation-duration:7s;animation-delay:10s}
-.b42{left:13%;width:28px;height:28px;animation-duration:12s;animation-delay:11s}
-.b43{left:44%;width:18px;height:18px;animation-duration:8s;animation-delay:11s}
-.b44{left:61%;width:15px;height:15px;animation-duration:7s;animation-delay:12s}
-.b45{left:76%;width:25px;height:25px;animation-duration:10s;animation-delay:13s}
-.b46{left:97%;width:18px;height:18px;animation-duration:8s;animation-delay:11s}
+.b1{left:3%;width:18px;height:18px;animation-duration:8s;;top:8vh}
+.b2{left:8%;width:30px;height:30px;animation-duration:11s;animation-delay:2s;;top:18vh}
+.b3{left:14%;width:12px;height:12px;animation-duration:7s;animation-delay:1s;;top:30vh}
+.b4{left:20%;width:24px;height:24px;animation-duration:10s;animation-delay:4s;;top:43vh}
+.b5{left:27%;width:15px;height:15px;animation-duration:8s;animation-delay:3s;;top:55vh}
+.b6{left:33%;width:35px;height:35px;animation-duration:13s;animation-delay:1s;;top:68vh}
+.b7{left:40%;width:13px;height:13px;animation-duration:7s;animation-delay:5s;;top:80vh}
+.b8{left:46%;width:25px;height:25px;animation-duration:10s;animation-delay:2s;;top:92vh}
+.b9{left:53%;width:17px;height:17px;animation-duration:8s;animation-delay:4s;;top:14vh}
+.b10{left:59%;width:32px;height:32px;animation-duration:12s;animation-delay:1s;;top:25vh}
+.b11{left:65%;width:14px;height:14px;animation-duration:7s;animation-delay:3s;;top:37vh}
+.b12{left:71%;width:27px;height:27px;animation-duration:11s;animation-delay:5s;;top:49vh}
+.b13{left:77%;width:18px;height:18px;animation-duration:8s;animation-delay:2s;;top:61vh}
+.b14{left:83%;width:34px;height:34px;animation-duration:13s;animation-delay:4s;;top:73vh}
+.b15{left:90%;width:14px;height:14px;animation-duration:7s;animation-delay:1s;;top:86vh}
+.b16{left:96%;width:24px;height:24px;animation-duration:10s;animation-delay:3s;;top:95vh}
+.b17{left:11%;width:20px;height:20px;animation-duration:9s;animation-delay:6s;;top:12vh}
+.b18{left:24%;width:11px;height:11px;animation-duration:6s;animation-delay:2s;;top:34vh}
+.b19{left:37%;width:29px;height:29px;animation-duration:12s;animation-delay:7s;;top:58vh}
+.b20{left:49%;width:16px;height:16px;animation-duration:8s;animation-delay:6s;;top:76vh}
+.b21{left:62%;width:22px;height:22px;animation-duration:10s;animation-delay:5s;;top:88vh}
+.b22{left:74%;width:12px;height:12px;animation-duration:7s;animation-delay:7s;;top:20vh}
+.b23{left:87%;width:26px;height:26px;animation-duration:11s;animation-delay:6s;;top:46vh}
+.b24{left:5%;width:13px;height:13px;animation-duration:9s;animation-delay:8s;;top:70vh}
+.b25{left:31%;width:21px;height:21px;animation-duration:10s;animation-delay:5s;;top:82vh}
+.b26{left:56%;width:30px;height:30px;animation-duration:12s;animation-delay:8s;;top:28vh}
+.b27{left:69%;width:15px;height:15px;animation-duration:7s;animation-delay:9s;;top:52vh}
+.b28{left:94%;width:28px;height:28px;animation-duration:11s;animation-delay:7s;;top:64vh}
+.b29{left:7%;width:9px;height:9px;animation-duration:6s;animation-delay:1s;top:6vh}
+.b30{left:16%;width:38px;height:38px;animation-duration:14s;animation-delay:4s;top:22vh}
+.b31{left:22%;width:17px;height:17px;animation-duration:8s;animation-delay:7s;top:40vh}
+.b32{left:29%;width:10px;height:10px;animation-duration:6.5s;animation-delay:3s;top:57vh}
+.b33{left:35%;width:26px;height:26px;animation-duration:11s;animation-delay:9s;top:74vh}
+.b34{left:43%;width:9px;height:9px;animation-duration:6s;animation-delay:2s;top:90vh}
+.b35{left:51%;width:37px;height:37px;animation-duration:14s;animation-delay:5s;top:16vh}
+.b36{left:58%;width:12px;height:12px;animation-duration:7s;animation-delay:8s;top:33vh}
+.b37{left:67%;width:31px;height:31px;animation-duration:12s;animation-delay:3s;top:48vh}
+.b38{left:73%;width:9px;height:9px;animation-duration:6s;animation-delay:6s;top:63vh}
+.b39{left:80%;width:21px;height:21px;animation-duration:9s;animation-delay:9s;top:79vh}
+.b40{left:85%;width:40px;height:40px;animation-duration:15s;animation-delay:4s;top:94vh}
+.b41{left:92%;width:11px;height:11px;animation-duration:7s;animation-delay:10s;top:27vh}
+.b42{left:13%;width:28px;height:28px;animation-duration:12s;animation-delay:11s;top:44vh}
+.b43{left:44%;width:18px;height:18px;animation-duration:8s;animation-delay:11s;top:59vh}
+.b44{left:61%;width:15px;height:15px;animation-duration:7s;animation-delay:12s;top:71vh}
+.b45{left:76%;width:25px;height:25px;animation-duration:10s;animation-delay:13s;top:84vh}
+.b46{left:97%;width:18px;height:18px;animation-duration:8s;animation-delay:11s;top:96vh}
 
 
 .pe-contenido{
