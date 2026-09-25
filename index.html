@@ -945,14 +945,19 @@ function abrirVideo(){
   promoOcultoPorVideo=true;
   ocultarPromo();
   var video=document.getElementById("pe-video-campana");
+  modalCampana.classList.add("activo");
+  modalCampana.setAttribute("aria-hidden","false");
   if(video){
     video.src="about:blank";
     setTimeout(function(){
       video.src="https://www.youtube.com/embed/CtGBwVyB024?rel=0&autoplay=1&playsinline=1&enablejsapi=1&origin="+encodeURIComponent(location.origin);
-    },50);
+      video.onload=function(){
+        try{
+          video.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}',"*");
+        }catch(e){}
+      };
+    },80);
   }
-  modalCampana.classList.add("activo");
-  modalCampana.setAttribute("aria-hidden","false");
 }
 function cerrarVideo(){
   if(!modalCampana)return;
