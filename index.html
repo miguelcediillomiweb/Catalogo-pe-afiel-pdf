@@ -29,7 +29,9 @@ body{
     width:100%;
     min-height:100vh;
     padding:18px 12px 0;
-    overflow:hidden;
+    overflow-x:hidden;
+    overflow-y:visible;
+    padding-bottom:70px;
     background:
         radial-gradient(circle at 20% 20%,rgba(255,255,255,.10),transparent 20%),
         radial-gradient(circle at 80% 40%,rgba(255,255,255,.08),transparent 25%),
@@ -49,23 +51,28 @@ body{
 .pe-marco::before{
     content:"";
     position:absolute;
-    inset:-12px;
-    padding:6px;
-    background:conic-gradient(
-        from 0deg,
-        #006847 0deg 120deg,
-        #fff 120deg 240deg,
-        #ce1126 240deg 360deg
-    );
+    inset:-7px;
+    padding:7px;
+    background:
+        conic-gradient(
+            from 0deg,
+            #006847 0deg 118deg,
+            #ffffff 118deg 242deg,
+            #ce1126 242deg 360deg
+        );
     -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
     -webkit-mask-composite:xor;
     mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
     mask-composite:exclude;
-    animation:peMarcoColores 7s linear infinite;
+    filter:drop-shadow(0 0 3px rgba(255,255,255,.85))
+           drop-shadow(0 0 7px rgba(0,104,71,.45))
+           drop-shadow(0 0 7px rgba(206,17,38,.45));
+    animation:peMarcoVuelta 5s linear infinite;
+    transform-origin:center;
 }
-@keyframes peMarcoColores{
-    from{transform:rotate(0deg)}
-    to{transform:rotate(360deg)}
+@keyframes peMarcoVuelta{
+    0%{transform:rotate(0deg)}
+    100%{transform:rotate(360deg)}
 }
 
 /* BURBUJAS */
@@ -361,6 +368,9 @@ body{
 
 /* LOGOS */
 
+.pe-contenido{
+    padding-bottom:40px;
+}
 .pe-logos-finales{
     display:flex;
     justify-content:center;
@@ -384,7 +394,8 @@ body{
 .pe-footer{
     width:100%;
     text-align:center;
-    padding:18px 12px 45px;
+    padding:18px 12px 80px;
+    margin-bottom:20px;
     font-size:clamp(13px,3vw,17px);
     font-weight:bold;
     line-height:1.5;
@@ -937,7 +948,7 @@ function abrirVideo(){
   if(video){
     video.src="about:blank";
     setTimeout(function(){
-      video.src="https://www.youtube.com/embed/CtGBwVyB024?rel=0&autoplay=1&playsinline=1";
+      video.src="https://www.youtube.com/embed/CtGBwVyB024?rel=0&autoplay=1&playsinline=1&enablejsapi=1&origin="+encodeURIComponent(location.origin);
     },50);
   }
   modalCampana.classList.add("activo");
