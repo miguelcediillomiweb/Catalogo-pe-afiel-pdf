@@ -46,28 +46,28 @@ body{
     inset:0;
     z-index:50;
     pointer-events:none;
-    border:12px solid #fff;
+    overflow:hidden;
 }
 .pe-marco::before{
     content:"";
     position:absolute;
-    inset:-7px;
-    padding:7px;
+    inset:0;
+    padding:8px;
     background:
         conic-gradient(
             from 0deg,
-            #006847 0deg 118deg,
-            #ffffff 118deg 242deg,
-            #ce1126 242deg 360deg
+            #006847 0deg 120deg,
+            #ffffff 120deg 240deg,
+            #ce1126 240deg 360deg
         );
     -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
     -webkit-mask-composite:xor;
     mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
     mask-composite:exclude;
-    filter:drop-shadow(0 0 3px rgba(255,255,255,.85))
-           drop-shadow(0 0 7px rgba(0,104,71,.45))
-           drop-shadow(0 0 7px rgba(206,17,38,.45));
-    animation:peMarcoVuelta 5s linear infinite;
+    filter:drop-shadow(0 0 3px rgba(255,255,255,.95))
+           drop-shadow(0 0 8px rgba(0,104,71,.75))
+           drop-shadow(0 0 8px rgba(206,17,38,.75));
+    animation:peMarcoVuelta 4.5s linear infinite;
     transform-origin:center;
 }
 @keyframes peMarcoVuelta{
@@ -409,12 +409,8 @@ body{
         padding:14px 6px 0;
     }
 
-    .pe-marco{
-        border-width:9px;
-        box-shadow:
-            inset 0 0 0 4px #006847,
-            inset 0 0 0 8px #fff,
-            inset 0 0 0 12px #ce1126;
+    .pe-marco::before{
+        padding:6px;
     }
 
     .pe-slide{
@@ -476,7 +472,7 @@ body{
 .pe-promo-contenedor img{display:block;width:100%;max-height:75vh;object-fit:contain;background:#fff}
 .pe-promo-texto{padding:12px 10px 16px;text-align:center;color:#0057b8;font-size:clamp(19px,4.8vw,27px);font-weight:900;line-height:1.25}
 .pe-promo-cerrar{top:8px;right:8px}
-@media(max-width:600px){.pe-loading-marco{border-width:9px}.pe-marco::before{inset:-9px;padding:4px}.pe-video-contenedor{border-radius:12px}.pe-cerrar-campana,.pe-promo-cerrar{width:40px;height:40px;font-size:22px}.pe-promo-contenedor{width:94vw;max-height:90vh}.pe-promo-contenedor img{max-height:70vh}}
+@media(max-width:600px){.pe-loading-marco{border-width:9px}.pe-video-contenedor{border-radius:12px}.pe-cerrar-campana,.pe-promo-cerrar{width:40px;height:40px;font-size:22px}.pe-promo-contenedor{width:94vw;max-height:90vh}.pe-promo-contenedor img{max-height:70vh}}
 
 </style>
 </head>
