@@ -39,8 +39,7 @@ body{
     color:#fff;
 }
 
-/* MARCO */
-
+/* MARCO — LUZ LED RECORRIENDO EL PERÍMETRO */
 .pe-marco{
     position:absolute;
     inset:0;
@@ -51,28 +50,47 @@ body{
 .pe-marco::before{
     content:"";
     position:absolute;
-    inset:0;
-    padding:8px;
-    background:
-        conic-gradient(
-            from 0deg,
-            #006847 0deg 120deg,
-            #ffffff 120deg 240deg,
-            #ce1126 240deg 360deg
-        );
-    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-    -webkit-mask-composite:xor;
-    mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-    mask-composite:exclude;
-    filter:drop-shadow(0 0 3px rgba(255,255,255,.95))
-           drop-shadow(0 0 8px rgba(0,104,71,.75))
-           drop-shadow(0 0 8px rgba(206,17,38,.75));
-    animation:peMarcoVuelta 4.5s linear infinite;
-    transform-origin:center;
+    top:0;
+    left:0;
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#fff;
+    box-shadow:
+        0 0 5px #fff,
+        0 0 12px #006847,
+        0 0 22px #006847,
+        0 0 34px rgba(0,104,71,.9);
+    animation:peLuzPerimetro 6s linear infinite;
 }
-@keyframes peMarcoVuelta{
-    0%{transform:rotate(0deg)}
-    100%{transform:rotate(360deg)}
+.pe-marco::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:4px;
+    height:100%;
+    background:linear-gradient(180deg,#006847 0%,#fff 50%,#ce1126 100%);
+    box-shadow:0 0 8px #fff,0 0 18px #006847,0 0 24px #ce1126;
+    opacity:.9;
+    transform:translate(-100%,0);
+    animation:peDestelloPerimetro 6s linear infinite;
+}
+@keyframes peLuzPerimetro{
+    0%{transform:translate(0,0);background:#006847;box-shadow:0 0 5px #fff,0 0 12px #006847,0 0 24px #006847}
+    24%{transform:translate(calc(100vw - 8px),0);background:#006847;box-shadow:0 0 5px #fff,0 0 12px #006847,0 0 24px #006847}
+    25%{transform:translate(calc(100vw - 8px),0);background:#fff;box-shadow:0 0 5px #fff,0 0 14px #fff,0 0 25px #fff}
+    49%{transform:translate(calc(100vw - 8px),calc(100vh - 8px));background:#fff;box-shadow:0 0 5px #fff,0 0 14px #fff,0 0 25px #fff}
+    50%{transform:translate(calc(100vw - 8px),calc(100vh - 8px));background:#ce1126;box-shadow:0 0 5px #fff,0 0 12px #ce1126,0 0 24px #ce1126}
+    74%{transform:translate(0,calc(100vh - 8px));background:#ce1126;box-shadow:0 0 5px #fff,0 0 12px #ce1126,0 0 24px #ce1126}
+    75%{transform:translate(0,calc(100vh - 8px));background:#006847;box-shadow:0 0 5px #fff,0 0 12px #006847,0 0 24px #006847}
+    100%{transform:translate(0,0);background:#006847;box-shadow:0 0 5px #fff,0 0 12px #006847,0 0 24px #006847}
+}
+@keyframes peDestelloPerimetro{
+    0%,24%{top:0;left:0;width:100%;height:5px;transform:translate(0,-100%);background:linear-gradient(90deg,#006847,#fff,#ce1126)}
+    25%,49%{top:0;left:100%;width:5px;height:100%;transform:translate(0,0);background:linear-gradient(180deg,#006847,#fff,#ce1126)}
+    50%,74%{top:100%;left:0;width:100%;height:5px;transform:translate(0,0);background:linear-gradient(90deg,#ce1126,#fff,#006847)}
+    75%,100%{top:0;left:0;width:5px;height:100%;transform:translate(-100%,0);background:linear-gradient(180deg,#006847,#fff,#ce1126)}
 }
 
 /* BURBUJAS */
