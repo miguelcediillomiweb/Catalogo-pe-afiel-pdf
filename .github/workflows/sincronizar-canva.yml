@@ -1,0 +1,102 @@
+name: Sincronizar catálogo desde Canva
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/30 * * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  sincronizar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Instalar Playwright
+        run: |
+          npm init -y
+          npm install playwright
+          npx playwright install --with-deps chromium
+
+      - name: Exportar páginas públicas de Canva
+        run: |
+          node <<'NODE'
+          const { chromium } = require("playwright");
+          const fs = require("fs");
+
+          const diseños = [
+            {
+              url: "https://www.canva.com/design/DAHV8TMPWN8/pEFSWbYx9CHc9fXCcW_xEw/view?embed",
+              archivo: "catalogo-pag-1.png"
+            },
+            {
+              url: "https://www.canva.com/design/DAHWBYZVjfU/_XS_6RKjyGUBWG5lH3oTQg/view?embed",
+              archivo: "catalogo-pag-2.png"
+            }
+          ];
+
+          (async () => {
+            const browser = await chromium.launch({ headless: true });
+            try {
+              for (const diseño of diseños) {
+                const page = await browser.newPage({
+                  viewport: { width: 1400, height: 1100 },
+                  deviceScaleFactor: 1
+                });
+
+                await page.goto(diseño.url, {
+                  waitUntil: "domcontentloaded",
+                  timeout: 120000
+                });
+
+                await page.waitForTimeout(10000);
+
+                const iframe = page.locator("iframe").first();
+
+                if (await iframe.count()) {
+                  await iframe.screenshot({
+                    path: diseño.archivo
+                  });
+                } else {
+                  await page.screenshot({
+                    path: diseño.archivo,
+                    fullPage: false
+                  });
+                }
+
+                if (!fs.existsSync(diseño.archivo) || fs.statSync(diseño.archivo).size < 10000) {
+                  throw new Error("La captura de " + diseño.archivo + " no parece válida.");
+                }
+
+                await page.close();
+                console.log("Generado:", diseño.archivo);
+              }
+            } finally {
+              await browser.close();
+            }
+          })().catch(error => {
+            console.error(error);
+            process.exit(1);
+          });
+          NODE
+
+      - name: Publicar imágenes actualizadas
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add catalogo-pag-1.png catalogo-pag-2.png
+          if git diff --cached --quiet; then
+            echo "No hubo cambios en Canva."
+          else
+            git commit -m "Actualizar catálogo desde Canva [skip ci]"
+            git push
+          fi
