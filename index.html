@@ -39,59 +39,24 @@ body{
 }
 
 /* =====================================================
-   MARCO TRICOLOR ANIMADO
-   SOLO SE DIBUJA EL BORDE - EL CENTRO QUEDA TRANSPARENTE
-===================================================== */
+   MARCO TRICOLOR ESTABLE
+   ===================================================== */
 
 .pe-marco{
     position:absolute;
     inset:0;
     z-index:50;
     pointer-events:none;
-    overflow:hidden;
-}
-
-.pe-marco::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    padding:12px;
-
-    background:conic-gradient(
-        from 0deg,
-        #006847 0deg 120deg,
-        #ffffff 120deg 240deg,
-        #ce1126 240deg 360deg
-    );
-
-    -webkit-mask:
-        linear-gradient(#000 0 0) content-box,
-        linear-gradient(#000 0 0);
-
-    -webkit-mask-composite:xor;
-
-    mask:
-        linear-gradient(#000 0 0) content-box,
-        linear-gradient(#000 0 0);
-
-    mask-composite:exclude;
-
-    animation:girarMarco 5s linear infinite;
-}
-
-@keyframes girarMarco{
-    from{
-        transform:rotate(0deg);
-    }
-
-    to{
-        transform:rotate(360deg);
-    }
+    border:12px solid #fff;
+    box-shadow:
+        inset 0 0 0 5px #006847,
+        inset 0 0 0 10px #fff,
+        inset 0 0 0 15px #ce1126;
 }
 
 /* =====================================================
    BURBUJAS
-===================================================== */
+   ===================================================== */
 
 .pe-burbuja{
     position:absolute;
@@ -897,3 +862,114 @@ alt="Producto">
 <img
 src="https://i.ibb.co/ZzMtgbhD/1000025658-348f843033ce99ece84ca729355c0f1b-23-4-2025-6-00-49-p-m-20251013-195500-0000.png"
 alt="Producto">
+</div>
+
+
+<div class="pe-slide">
+<img
+src="https://i.ibb.co/nNxrbRyh/1000025602-62ddb21849f0361580bc4d0efa34354e-23-4-2025-6-11-20-p-m-20251013-195339-0000.png"
+alt="Producto">
+</div>
+
+
+<div class="pe-slide">
+<img
+src="https://i.ibb.co/Y7QxbJjY/1000025654-2692218fc8dc6f2b016e8d3683e5f858-23-4-2025-6-11-09-p-m-20251013-195350-0000.png"
+alt="Producto">
+</div>
+
+
+<div class="pe-slide">
+<img
+src="https://i.ibb.co/sJt8BFwX/1000025642-c2cb61c3dde506ce9f3069066c669ba5-23-4-2025-6-11-01-p-m-20251013-195405-0000.png"
+alt="Producto">
+</div>
+
+
+<div class="pe-slide">
+<img
+src="https://i.ibb.co/TxN97tWT/1000025626-1bff0cc8fae8cacf77890027fc33815a-23-4-2025-6-10-03-p-m-20251013-195417-0000.png"
+alt="Producto">
+</div>
+
+
+<div class="pe-slide">
+<img
+src="https://i.ibb.co/CppsgtfQ/1000025630-feb45ba9b765bb9c1de588eb441f6482-23-4-2025-6-07-50-p-m-20251013-200047-0000.png"
+alt="Producto">
+</div>
+
+
+<div class="pe-slide">
+<img
+src="https://i.ibb.co/vxJR42Kb/1000025666-58cc64ab75c3f8d940573a1759577a32-23-4-2025-6-00-22-p-m-20251013-195509-0000.png"
+alt="Producto">
+</div>
+
+
+<div class="pe-slide">
+<img
+src="https://i.ibb.co/V0fSTkwF/1000025650-5c50d0142ea71648da15e8f0ddafd61f-23-4-2025-5-59-26-p-m-20251013-195518-0000.png"
+alt="Producto">
+</div>
+
+
+<div class="pe-slide">
+<img
+src="https://i.ibb.co/jk16xsZJ/1000025638-0b248c89ee1732eb0af84073f3428ec0-23-4-2025-5-49-36-p-m-20251013-195532-0000.png"
+alt="Producto">
+</div>
+
+
+<div class="pe-slide">
+<img
+src="https://i.ibb.co/V02qdfLy/1000007070-9694f92c3b44fe9ffead942f230bfb91-9-3-2025-11-01-30-p-m-20251013-195555-0000.png"
+alt="Producto">
+</div>
+
+
+<div class="pe-slide">
+<img
+src="https://i.ibb.co/N6fbMLZD/1000006945-0068a95808c67fc45319ac198c497c31-9-3-2025-10-24-49-p-m-20251013-195609-0000.png"
+alt="Producto">
+</div>
+
+
+</div>
+</div>
+
+
+<button
+id="pe-next"
+class="pe-boton-carrusel"
+type="button">
+›
+</button>
+
+</div>
+
+
+<!-- ==================================================
+     TITULO
+================================================== -->
+
+<div class="pe-titulo">
+CATÁLOGO DIGITAL
+</div>
+
+<div class="pe-actualizado">
+Actualizado septiembre 2026
+</div>
+
+
+<!-- ==================================================
+     CATALOGO
+================================================== -->
+
+<div class="pe-catalogo-paginas">
+
+
+<div class="pe-pagina-catalogo">
+
+<img
+src="https:
