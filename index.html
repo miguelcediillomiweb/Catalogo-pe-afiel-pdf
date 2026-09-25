@@ -401,7 +401,7 @@ body{
     }
 }
 /* =====================================================
-   CELEBRACIÓN DE APERTURA — AVIONETAS + VIVA MÉXICO
+   CELEBRACIÓN DE APERTURA — DOS AVIONETAS CON MANTA
 ===================================================== */
 #pe-celebracion{
     position:fixed;
@@ -410,67 +410,77 @@ body{
     pointer-events:none;
     overflow:hidden;
     opacity:1;
-    background:transparent;
-    animation:peCelebracionSalida .6s ease 6s forwards;
+    animation:peCelebracionSalida .7s ease 6s forwards;
 }
-.pe-avioneta{
+.pe-manta-viva{
     position:absolute;
-    left:-100px;
-    top:27%;
-    z-index:3;
-    color:#fff;
-    font-size:clamp(42px,9vw,78px);
-    text-shadow:0 3px 8px rgba(0,0,0,.35);
-    transform:rotate(-4deg);
-}
-.pe-avioneta-1{animation:peAvionetaVuelo 3.1s ease-in-out .2s forwards}
-.pe-avioneta-2{top:39%;animation:peAvionetaVuelo 3.1s ease-in-out .65s forwards}
-#pe-viva-mexico{
-    position:absolute;
-    left:50%;
-    top:58%;
-    transform:translate(-50%,-50%) scale(.7);
-    width:min(96vw,1000px);
+    top:34%;
+    left:-70vw;
+    width:55vw;
+    min-width:260px;
+    max-width:700px;
+    padding:20px 28px;
     text-align:center;
-    font-size:clamp(38px,10vw,105px);
+    white-space:nowrap;
+    font-size:clamp(30px,6vw,68px);
     line-height:1;
     font-weight:1000;
-    letter-spacing:-2px;
-    text-shadow:0 4px 14px rgba(0,0,0,.42),0 0 25px rgba(255,255,255,.45);
-    white-space:nowrap;
-    opacity:0;
-    animation:peVivaCartel 4.7s ease .8s forwards;
+    letter-spacing:-1px;
+    background:rgba(255,255,255,.96);
+    border:5px solid #fff;
+    box-shadow:0 6px 20px rgba(0,0,0,.35);
+    transform:rotate(-1deg);
+    z-index:1;
+    animation:peMantaVuelo 4.8s linear .3s forwards;
 }
-#pe-viva-mexico::before,
-#pe-viva-mexico::after{
+.pe-manta-viva::before,
+.pe-manta-viva::after{
     content:"";
     position:absolute;
-    left:2%;
-    right:2%;
-    height:7px;
-    border-radius:10px;
-    background:linear-gradient(90deg,#006847 0 33%,#fff 33% 66%,#ce1126 66% 100%);
-    box-shadow:0 0 10px rgba(255,255,255,.7);
+    top:-5px;
+    bottom:-5px;
+    width:7px;
+    background:linear-gradient(180deg,#006847 0 33%,#fff 33% 66%,#ce1126 66% 100%);
 }
-#pe-viva-mexico::before{top:-18px}
-#pe-viva-mexico::after{bottom:-18px}
-#pe-viva-mexico span{
-    display:inline-block;
+.pe-manta-viva::before{left:-7px}
+.pe-manta-viva::after{right:-7px}
+.pe-avioneta{
+    position:absolute;
+    z-index:3;
+    color:#fff;
+    font-size:clamp(42px,8vw,72px);
+    line-height:1;
+    text-shadow:0 3px 8px rgba(0,0,0,.5);
+    opacity:0;
+}
+.pe-avioneta-1{
+    top:28%;
+    left:-120px;
+    transform:rotate(-2deg);
+    animation:peAvionetaDelantera 4.8s linear .3s forwards;
+}
+.pe-avioneta-2{
+    top:39%;
+    left:-120px;
+    transform:rotate(-2deg);
+    animation:peAvionetaTrasera 4.8s linear .3s forwards;
 }
 .viva-verde{color:#006847}
-.viva-blanco{color:#fff}
+.viva-blanco{color:#222}
 .viva-rojo{color:#ce1126}
-@keyframes peAvionetaVuelo{
-    0%{left:-110px;opacity:0}
-    10%{opacity:1}
-    45%{opacity:1}
-    100%{left:calc(100vw + 110px);opacity:0}
+@keyframes peMantaVuelo{
+    0%{left:-65vw}
+    100%{left:110vw}
 }
-@keyframes peVivaCartel{
-    0%{opacity:0;transform:translate(-50%,-50%) scale(.65)}
-    15%{opacity:1;transform:translate(-50%,-50%) scale(1.05)}
-    25%,72%{opacity:1;transform:translate(-50%,-50%) scale(1)}
-    100%{opacity:0;transform:translate(-50%,-50%) scale(1.03)}
+@keyframes peAvionetaDelantera{
+    0%{left:-120px;opacity:0}
+    8%{opacity:1}
+    100%{left:calc(110vw + 40px);opacity:0}
+}
+@keyframes peAvionetaTrasera{
+    0%{left:-220px;opacity:0}
+    8%{opacity:1}
+    100%{left:calc(110vw - 80px);opacity:0}
 }
 @keyframes peCelebracionSalida{
     to{opacity:0;visibility:hidden}
@@ -521,15 +531,15 @@ body{
 </head>
 
 <body>
-<!-- CELEBRACIÓN DE APERTURA — AVIONETAS + VIVA MÉXICO -->
+<!-- CELEBRACIÓN DE APERTURA — DOS AVIONETAS CON MANTA -->
 <div id="pe-celebracion" aria-hidden="true">
-<div class="pe-avioneta pe-avioneta-1">✈</div>
-<div class="pe-avioneta pe-avioneta-2">✈</div>
-<div id="pe-viva-mexico" aria-label="Viva México">
-<span class="viva-verde">V</span><span class="viva-blanco">i</span><span class="viva-rojo">v</span><span class="viva-verde">a</span>
-<span class="viva-blanco"> </span>
-<span class="viva-rojo">M</span><span class="viva-verde">é</span><span class="viva-blanco">x</span><span class="viva-rojo">i</span><span class="viva-verde">c</span><span class="viva-blanco">o</span>
-</div>
+    <div class="pe-manta-viva">
+        <span class="viva-verde">V</span><span class="viva-blanco">i</span><span class="viva-rojo">v</span><span class="viva-verde">a</span>
+        <span class="viva-blanco">&nbsp;</span>
+        <span class="viva-rojo">M</span><span class="viva-verde">é</span><span class="viva-blanco">x</span><span class="viva-rojo">i</span><span class="viva-verde">c</span><span class="viva-blanco">o</span>
+    </div>
+    <div class="pe-avioneta pe-avioneta-1">✈</div>
+    <div class="pe-avioneta pe-avioneta-2">✈</div>
 </div>
 <div id="pe-loading" aria-label="Cargando Catálogo Peñafiel">
 <div class="pe-loading-marco"></div>
