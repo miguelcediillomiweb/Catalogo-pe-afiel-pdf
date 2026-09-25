@@ -51,41 +51,41 @@ jobs:
             try {
               for (const diseño of diseños) {
                 const page = await browser.newPage({
-                  viewport: { width: 1400, height: 1100 },
+                  viewport: { width: 1056, height: 816 },
                   deviceScaleFactor: 1
                 });
 
-                await page.goto(diseño.url + "&_sync=" + Date.now(), {
-                  waitUntil: "domcontentloaded",
+                const url = diseño.url + "&_sync=" + Date.now() + Math.random();
+                console.log("Abriendo:", url);
+
+                await page.goto(url, {
+                  waitUntil: "networkidle",
                   timeout: 120000
                 });
 
-                await page.waitForTimeout(10000);
+                await page.waitForTimeout(15000);
 
-                const iframe = page.locator('iframe[src*="canva.com"]').first();
-                await iframe.waitFor({ state: "visible", timeout: 120000 });
-
-                const box = await iframe.boundingBox();
-                if (!box || box.width < 500 || box.height < 500) {
-                  throw new Error("No se encontró correctamente el área del catálogo en Canva.");
-                }
+                const info = await page.evaluate(() => ({
+                  title: document.title,
+                  width: document.documentElement.scrollWidth,
+                  height: document.documentElement.scrollHeight,
+                  body: document.body ? document.body.innerText.slice(0, 300) : "",
+                  canvases: document.querySelectorAll("canvas").length,
+                  iframes: document.querySelectorAll("iframe").length
+                }));
+                console.log("Estado Canva:", JSON.stringify(info));
 
                 await page.screenshot({
                   path: diseño.archivo,
-                  clip: {
-                    x: Math.max(0, box.x),
-                    y: Math.max(0, box.y),
-                    width: box.width,
-                    height: box.height
-                  }
+                  fullPage: false
                 });
 
                 if (!fs.existsSync(diseño.archivo) || fs.statSync(diseño.archivo).size < 10000) {
                   throw new Error("La captura de " + diseño.archivo + " no parece válida.");
                 }
 
+                console.log("Generado:", diseño.archivo, fs.statSync(diseño.archivo).size, "bytes");
                 await page.close();
-                console.log("Generado:", diseño.archivo);
               }
             } finally {
               await browser.close();
