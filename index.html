@@ -48,9 +48,12 @@ body{
     position:absolute;
     bottom:-80px;
     z-index:1;
-    border:2px solid rgba(255,255,255,.45);
-    background:rgba(255,255,255,.10);
+    border:2px solid rgba(255,255,255,.62);
+    background:
+        radial-gradient(circle at 30% 25%,rgba(255,255,255,.95) 0 7%,rgba(255,255,255,.35) 8% 18%,transparent 19%),
+        radial-gradient(circle at 65% 70%,rgba(120,220,255,.22),rgba(255,255,255,.08) 58%,rgba(255,255,255,.02) 100%);
     border-radius:50%;
+    box-shadow:inset 0 0 8px rgba(255,255,255,.35),0 0 8px rgba(160,230,255,.16);
     pointer-events:none;
     animation:subir linear infinite;
 }
@@ -97,6 +100,25 @@ body{
 .b26{left:56%;width:30px;height:30px;animation-duration:12s;animation-delay:8s;}
 .b27{left:69%;width:15px;height:15px;animation-duration:7s;animation-delay:9s;}
 .b28{left:94%;width:28px;height:28px;animation-duration:11s;animation-delay:7s;}
+.b29{left:7%;width:9px;height:9px;animation-duration:6s;animation-delay:1s}
+.b30{left:16%;width:38px;height:38px;animation-duration:14s;animation-delay:4s}
+.b31{left:22%;width:17px;height:17px;animation-duration:8s;animation-delay:7s}
+.b32{left:29%;width:10px;height:10px;animation-duration:6.5s;animation-delay:3s}
+.b33{left:35%;width:26px;height:26px;animation-duration:11s;animation-delay:9s}
+.b34{left:43%;width:9px;height:9px;animation-duration:6s;animation-delay:2s}
+.b35{left:51%;width:37px;height:37px;animation-duration:14s;animation-delay:5s}
+.b36{left:58%;width:12px;height:12px;animation-duration:7s;animation-delay:8s}
+.b37{left:67%;width:31px;height:31px;animation-duration:12s;animation-delay:3s}
+.b38{left:73%;width:9px;height:9px;animation-duration:6s;animation-delay:6s}
+.b39{left:80%;width:21px;height:21px;animation-duration:9s;animation-delay:9s}
+.b40{left:85%;width:40px;height:40px;animation-duration:15s;animation-delay:4s}
+.b41{left:92%;width:11px;height:11px;animation-duration:7s;animation-delay:10s}
+.b42{left:13%;width:28px;height:28px;animation-duration:12s;animation-delay:11s}
+.b43{left:44%;width:18px;height:18px;animation-duration:8s;animation-delay:11s}
+.b44{left:61%;width:15px;height:15px;animation-duration:7s;animation-delay:12s}
+.b45{left:76%;width:25px;height:25px;animation-duration:10s;animation-delay:13s}
+.b46{left:97%;width:18px;height:18px;animation-duration:8s;animation-delay:11s}
+
 
 .pe-contenido{
     position:relative;
@@ -500,7 +522,38 @@ body{
 #pe-loading-progreso{width:0%;height:100%;border-radius:50px;animation:peCargaBarra 4.4s ease forwards,peProgresoBrillo 2s linear infinite;background:linear-gradient(90deg,#006847,#fff,#ce1126,#0057b8);background-size:300% 100%;animation:peProgresoBrillo 2s linear infinite;transition:width .08s linear}
 @keyframes peCargaBarra{0%{width:0%}100%{width:100%}}\n@keyframes peProgresoBrillo{0%{background-position:0 50%}100%{background-position:300% 50%}}
 #pe-loading-porcentaje{display:block;margin-top:10px;font-size:clamp(18px,4vw,25px);font-weight:900}
-.pe-loading-burbuja{position:absolute;bottom:-60px;border:2px solid rgba(255,255,255,.45);background:rgba(255,255,255,.10);border-radius:50%;animation:peBurbujaCarga linear infinite}
+
+/* BURBUJAS DE AGUA MINERAL — PANTALLA DE CARGA */
+.pe-loading-burbuja{
+    position:absolute;
+    bottom:-70px;
+    border:2px solid rgba(255,255,255,.62);
+    background:
+        radial-gradient(circle at 30% 25%,rgba(255,255,255,.95) 0 8%,rgba(255,255,255,.38) 9% 20%,transparent 21%),
+        radial-gradient(circle at 65% 70%,rgba(120,220,255,.22),rgba(255,255,255,.08) 58%,rgba(255,255,255,.02) 100%);
+    border-radius:50%;
+    box-shadow:inset 0 0 9px rgba(255,255,255,.4),0 0 10px rgba(160,230,255,.18);
+    pointer-events:none;
+    animation:peBurbujaCarga linear infinite;
+}
+.lc1{left:3%;width:18px;height:18px;animation-duration:7s;animation-delay:0s}
+.lc2{left:10%;width:34px;height:34px;animation-duration:12s;animation-delay:2s}
+.lc3{left:18%;width:11px;height:11px;animation-duration:6s;animation-delay:1s}
+.lc4{left:26%;width:24px;height:24px;animation-duration:9s;animation-delay:4s}
+.lc5{left:34%;width:42px;height:42px;animation-duration:14s;animation-delay:3s}
+.lc6{left:43%;width:14px;height:14px;animation-duration:7s;animation-delay:5s}
+.lc7{left:51%;width:28px;height:28px;animation-duration:10s;animation-delay:1s}
+.lc8{left:59%;width:12px;height:12px;animation-duration:6s;animation-delay:4s}
+.lc9{left:67%;width:38px;height:38px;animation-duration:13s;animation-delay:2s}
+.lc10{left:75%;width:17px;height:17px;animation-duration:8s;animation-delay:6s}
+.lc11{left:83%;width:30px;height:30px;animation-duration:11s;animation-delay:3s}
+.lc12{left:91%;width:13px;height:13px;animation-duration:7s;animation-delay:5s}
+.lc13{left:6%;width:9px;height:9px;animation-duration:5.5s;animation-delay:7s}
+.lc14{left:22%;width:20px;height:20px;animation-duration:8s;animation-delay:8s}
+.lc15{left:48%;width:19px;height:19px;animation-duration:9s;animation-delay:7s}
+.lc16{left:72%;width:23px;height:23px;animation-duration:10s;animation-delay:9s}
+.lc17{left:88%;width:21px;height:21px;animation-duration:9s;animation-delay:8s}
+
 @keyframes peBurbujaCarga{0%{transform:translateY(0) scale(.8);opacity:0}10%{opacity:.7}100%{transform:translateY(-120vh) scale(1.15);opacity:0}}
 
 
@@ -543,6 +596,23 @@ body{
 </div>
 <div id="pe-loading" aria-label="Cargando Catálogo Peñafiel">
 <div class="pe-loading-marco"></div>
+<div class="pe-loading-burbuja lc1"></div>
+<div class="pe-loading-burbuja lc2"></div>
+<div class="pe-loading-burbuja lc3"></div>
+<div class="pe-loading-burbuja lc4"></div>
+<div class="pe-loading-burbuja lc5"></div>
+<div class="pe-loading-burbuja lc6"></div>
+<div class="pe-loading-burbuja lc7"></div>
+<div class="pe-loading-burbuja lc8"></div>
+<div class="pe-loading-burbuja lc9"></div>
+<div class="pe-loading-burbuja lc10"></div>
+<div class="pe-loading-burbuja lc11"></div>
+<div class="pe-loading-burbuja lc12"></div>
+<div class="pe-loading-burbuja lc13"></div>
+<div class="pe-loading-burbuja lc14"></div>
+<div class="pe-loading-burbuja lc15"></div>
+<div class="pe-loading-burbuja lc16"></div>
+<div class="pe-loading-burbuja lc17"></div>
 <div class="pe-loading-contenido">
 <div class="pe-loading-bienvenidos">BIENVENIDOS</div>
 <div class="pe-loading-titulo">Catálogo Peñafiel</div>
@@ -584,6 +654,24 @@ body{
 <div class="pe-burbuja b26"></div>
 <div class="pe-burbuja b27"></div>
 <div class="pe-burbuja b28"></div>
+<div class="pe-burbuja b29"></div>
+<div class="pe-burbuja b30"></div>
+<div class="pe-burbuja b31"></div>
+<div class="pe-burbuja b32"></div>
+<div class="pe-burbuja b33"></div>
+<div class="pe-burbuja b34"></div>
+<div class="pe-burbuja b35"></div>
+<div class="pe-burbuja b36"></div>
+<div class="pe-burbuja b37"></div>
+<div class="pe-burbuja b38"></div>
+<div class="pe-burbuja b39"></div>
+<div class="pe-burbuja b40"></div>
+<div class="pe-burbuja b41"></div>
+<div class="pe-burbuja b42"></div>
+<div class="pe-burbuja b43"></div>
+<div class="pe-burbuja b44"></div>
+<div class="pe-burbuja b45"></div>
+<div class="pe-burbuja b46"></div>
 
 <div class="pe-contenido">
 
