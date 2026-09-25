@@ -1,8 +1,6 @@
 name: Sincronizar catálogo desde Canva
 
 on:
-  push:
-    branches: ["main"]
   workflow_dispatch:
   schedule:
     - cron: "*/30 * * * *"
@@ -18,77 +16,118 @@ jobs:
       - name: Descargar repositorio
         uses: actions/checkout@v4
 
-      - name: Configurar Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Instalar Playwright
+      - name: Exportar páginas directamente desde Canva
+        env:
+          CANVA_ACCESS_TOKEN: ${{ secrets.CANVA_ACCESS_TOKEN }}
         run: |
-          npm init -y
-          npm install playwright
-          npx playwright install --with-deps chromium
+          if [ -z "$CANVA_ACCESS_TOKEN" ]; then
+            echo "Falta el secreto CANVA_ACCESS_TOKEN en GitHub."
+            exit 1
+          fi
 
-      - name: Exportar páginas públicas de Canva
-        run: |
           node <<'NODE'
-          const { chromium } = require("playwright");
           const fs = require("fs");
+
+          const token = process.env.CANVA_ACCESS_TOKEN;
 
           const diseños = [
             {
-              url: "https://www.canva.com/design/DAHV8TMPWN8/pEFSWbYx9CHc9fXCcW_xEw/view?embed",
+              id: "DAHV8TMPWN8",
               archivo: "catalogo-pag-1.png"
             },
             {
-              url: "https://www.canva.com/design/DAHWBYZVjfU/_XS_6RKjyGUBWG5lH3oTQg/view?embed",
+              id: "DAHWBYZVjfU",
               archivo: "catalogo-pag-2.png"
             }
           ];
 
-          (async () => {
-            const browser = await chromium.launch({ headless: true });
+          async function canva(path, options = {}) {
+            const response = await fetch("https://api.canva.com/rest/v1" + path, {
+              ...options,
+              headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+                ...(options.headers || {})
+              }
+            });
+
+            const text = await response.text();
+            let data;
             try {
-              for (const diseño of diseños) {
-                const page = await browser.newPage({
-                  viewport: { width: 1056, height: 816 },
-                  deviceScaleFactor: 1
-                });
+              data = JSON.parse(text);
+            } catch {
+              throw new Error(`Canva devolvió HTTP ${response.status}: ${text.slice(0, 500)}`);
+            }
 
-                const url = diseño.url + "&_sync=" + Date.now() + Math.random();
-                console.log("Abriendo:", url);
+            if (!response.ok) {
+              throw new Error(`Canva devolvió HTTP ${response.status}: ${JSON.stringify(data)}`);
+            }
 
-                await page.goto(url, {
-                  waitUntil: "networkidle",
-                  timeout: 120000
-                });
+            return data;
+          }
 
-                await page.waitForTimeout(15000);
+          async function exportar(diseño) {
+            console.log("Solicitando exportación PNG:", diseño.id);
 
-                const info = await page.evaluate(() => ({
-                  title: document.title,
-                  width: document.documentElement.scrollWidth,
-                  height: document.documentElement.scrollHeight,
-                  body: document.body ? document.body.innerText.slice(0, 300) : "",
-                  canvases: document.querySelectorAll("canvas").length,
-                  iframes: document.querySelectorAll("iframe").length
-                }));
-                console.log("Estado Canva:", JSON.stringify(info));
+            const creado = await canva("/exports", {
+              method: "POST",
+              body: JSON.stringify({
+                design_id: diseño.id,
+                format: {
+                  type: "png",
+                  lossless: true
+                }
+              })
+            });
 
-                await page.screenshot({
-                  path: diseño.archivo,
-                  fullPage: false
-                });
+            const exportId = creado?.job?.id;
+            if (!exportId) {
+              throw new Error("Canva no devolvió el ID del trabajo de exportación.");
+            }
 
-                if (!fs.existsSync(diseño.archivo) || fs.statSync(diseño.archivo).size < 10000) {
-                  throw new Error("La captura de " + diseño.archivo + " no parece válida.");
+            console.log("Trabajo Canva:", exportId);
+
+            for (let intento = 1; intento <= 30; intento++) {
+              await new Promise(resolve => setTimeout(resolve, 4000));
+
+              const estado = await canva("/exports/" + exportId);
+              console.log("Estado exportación:", estado?.job?.status);
+
+              if (estado?.job?.status === "failed") {
+                throw new Error(
+                  "Canva no pudo exportar " + diseño.id + ": " +
+                  JSON.stringify(estado?.job?.error || {})
+                );
+              }
+
+              if (estado?.job?.status === "success") {
+                const url = estado?.job?.urls?.[0];
+                if (!url) {
+                  throw new Error("Canva terminó la exportación pero no entregó una URL.");
                 }
 
-                console.log("Generado:", diseño.archivo, fs.statSync(diseño.archivo).size, "bytes");
-                await page.close();
+                const imagen = await fetch(url);
+                if (!imagen.ok) {
+                  throw new Error("No se pudo descargar el PNG exportado: HTTP " + imagen.status);
+                }
+
+                const buffer = Buffer.from(await imagen.arrayBuffer());
+                if (buffer.length < 10000) {
+                  throw new Error("El PNG descargado parece inválido o demasiado pequeño.");
+                }
+
+                fs.writeFileSync(diseño.archivo, buffer);
+                console.log("Generado:", diseño.archivo, buffer.length, "bytes");
+                return;
               }
-            } finally {
-              await browser.close();
+            }
+
+            throw new Error("Canva tardó demasiado en completar la exportación de " + diseño.id);
+          }
+
+          (async () => {
+            for (const diseño of diseños) {
+              await exportar(diseño);
             }
           })().catch(error => {
             console.error(error);
