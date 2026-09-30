@@ -564,6 +564,27 @@ body{
     }
 }
 
+
+/* IMAGEN EXCLUSIVA AL FINAL DE LA PÁGINA */
+.pe-imagen-final{
+    display:block;
+    width:min(92%,1050px);
+    height:auto;
+    max-height:220px;
+    margin:8px auto 18px;
+    object-fit:contain;
+    object-position:center bottom;
+    border-radius:12px;
+    filter:drop-shadow(0 4px 8px rgba(0,0,0,.22));
+}
+@media(max-width:600px){
+    .pe-imagen-final{
+        width:96%;
+        max-height:150px;
+        margin-bottom:12px;
+    }
+}
+
 </style>
 </head>
 
@@ -782,6 +803,10 @@ body{
 <img src="https://i.ibb.co/vvDDfCPG/1000033397-64fea34243d186d8ca4cfd5497610222-13-5-2025-7-59-35-p-m-20251219-110406-0000.png" alt="Logo">
 
 </div>
+
+
+<!-- IMAGEN EXCLUSIVA AL FINAL -->
+<img class="pe-imagen-final" src="https://i.ibb.co/qL2BW3J0/15-28-03-653-340.jpg" alt="" aria-hidden="true">
 
 <!-- FOOTER -->
 <div class="pe-footer">
