@@ -474,15 +474,15 @@ body{
    PANTALLA DE CARGA + MARCO ANIMADO
 ===================================================== */
 #pe-loading{position:fixed;inset:0;z-index:100000;display:flex;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(circle at 18% 18%,rgba(255,214,0,.28),transparent 24%),radial-gradient(circle at 82% 72%,rgba(255,214,0,.18),transparent 30%),linear-gradient(135deg,#050505 0%,#111 34%,#8a6500 66%,#ffd400 100%);transition:opacity .6s ease,visibility .6s ease}
-#pe-loading.oculto{opacity:0;visibility:hidden;pointer-events:none}\n#pe-loading{animation:peCargaAuto 5s ease forwards}\n@keyframes peCargaAuto{0%,88%{opacity:1;visibility:visible}100%{opacity:0;visibility:hidden;pointer-events:none}}
+#pe-loading.oculto{opacity:0;visibility:hidden;pointer-events:none}
  .pe-loading-marco{position:absolute;inset:0;border:12px solid #ffd400;box-shadow:inset 0 0 0 5px #111,inset 0 0 0 10px #ffd400,inset 0 0 0 15px #111;pointer-events:none;animation:peMarcoCarga 3s linear infinite}
 @keyframes peMarcoCarga{0%,100%{box-shadow:inset 0 0 0 5px #111,inset 0 0 0 10px #ffd400,inset 0 0 0 15px #111}50%{box-shadow:inset 0 0 0 5px #ffd400,inset 0 0 0 10px #111,inset 0 0 0 15px #ffd400}}
 .pe-loading-contenido{position:relative;z-index:2;width:min(88vw,700px);text-align:center;color:#fff}
 .pe-loading-bienvenidos{margin:0;font-size:clamp(34px,8vw,70px);font-weight:900;line-height:1.05;text-shadow:0 4px 14px rgba(0,0,0,.35)}
 .pe-loading-titulo{margin:10px 0 28px;font-size:clamp(24px,5.5vw,42px);font-weight:900;text-shadow:0 3px 10px rgba(0,0,0,.3)}
 .pe-loading-barra{width:100%;height:22px;padding:3px;overflow:hidden;border:2px solid #fff;border-radius:50px;background:rgba(0,0,0,.28);box-shadow:0 5px 18px rgba(0,0,0,.3)}
-#pe-loading-progreso{width:0%;height:100%;border-radius:50px;animation:peCargaBarra 4.4s ease forwards,peProgresoBrillo 2s linear infinite;background:linear-gradient(90deg,#111,#ffd400,#fff0a3,#111);background-size:300% 100%;animation:peProgresoBrillo 2s linear infinite;transition:width .08s linear}
-@keyframes peCargaBarra{0%{width:0%}100%{width:100%}}\n@keyframes peProgresoBrillo{0%{background-position:0 50%}100%{background-position:300% 50%}}
+#pe-loading-progreso{width:0%;height:100%;border-radius:50px;background:linear-gradient(90deg,#111,#ffd400,#fff0a3,#111);background-size:300% 100%;animation:peProgresoBrillo 2s linear infinite;transition:width .08s linear}
+@keyframes peProgresoBrillo{0%{background-position:0 50%}100%{background-position:300% 50%}}
 #pe-loading-porcentaje{display:block;margin-top:10px;font-size:clamp(18px,4vw,25px);font-weight:900}
 
 /* HALLOWEEN SUTIL — PANTALLA DE CARGA */
@@ -654,7 +654,7 @@ body{
 <div class="pe-loading-burbuja lc15"></div>
 <div class="pe-loading-burbuja lc16"></div>
 <div class="pe-loading-burbuja lc17"></div>
-<div class="pe-loading-murcielagos" aria-hidden="true"><span>🦇</span><span>🦇</span><span>🦇</span><span>🦇</span><span>🦇</span><span>🦇</span><span>🦇</span><span>🦇</span><span>🦇</span><span>🦇</span><span>🦇</span><span>🦇</span></div><div class="pe-loading-fantasma" aria-hidden="true">👻</div><video class="pe-loading-zombie" src="zombie%201.mp4" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+<div class="pe-loading-murcielagos" aria-hidden="true"><span>🦇</span><span>🦇</span><span>🦇</span><span>🦇</span><span>🦇</span><span>🦇</span><span>🦇</span><span>🦇</span><span>🦇</span><span>🦇</span><span>🦇</span><span>🦇</span></div><div class="pe-loading-fantasma" aria-hidden="true">👻</div><video class="pe-loading-zombie" src="zombie%201.mp4" autoplay muted playsinline preload="auto" aria-hidden="true" id="pe-loading-zombie-video"></video>
 <div class="pe-loading-contenido">
 <div class="pe-loading-bienvenidos">BIENVENIDOS</div>
 <div class="pe-loading-titulo">Catálogo Peñafiel</div>
@@ -1127,13 +1127,32 @@ function ocultarCarga(){
   loading.classList.add("oculto");
   iniciarPromos();
 }
-var pi=setInterval(function(){
-  if(progresoActual<96)actualizarProgreso(progresoActual+2);
-},90);
-setTimeout(function(){
-  clearInterval(pi);
-  ocultarCarga();
-},4800);
+var videoCarga=document.getElementById("pe-loading-zombie-video");
+
+function sincronizarCargaConVideo(){
+  if(!videoCarga)return;
+
+  function actualizarDesdeVideo(){
+    if(!isFinite(videoCarga.duration)||videoCarga.duration<=0)return;
+    actualizarProgreso((videoCarga.currentTime/videoCarga.duration)*100);
+  }
+
+  videoCarga.addEventListener("loadedmetadata",actualizarDesdeVideo);
+  videoCarga.addEventListener("timeupdate",actualizarDesdeVideo);
+  videoCarga.addEventListener("ended",function(){
+    actualizarProgreso(100);
+    ocultarCarga();
+  });
+
+  if(videoCarga.readyState>=1)actualizarDesdeVideo();
+
+  var reproduccion=videoCarga.play();
+  if(reproduccion&&typeof reproduccion.catch==="function"){
+    reproduccion.catch(function(){});
+  }
+}
+
+sincronizarCargaConVideo();
 
 function elegirPromo(){var i;if(promoData.length<=1)return 0;do{i=Math.floor(Math.random()*promoData.length)}while(i===ultimoPromo);ultimoPromo=i;return i}
 function ocultarPromo(){if(!modalPromo)return;modalPromo.classList.remove("activo");modalPromo.setAttribute("aria-hidden","true");clearTimeout(promoTimer)}
