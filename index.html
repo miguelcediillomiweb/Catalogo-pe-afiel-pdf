@@ -559,6 +559,13 @@ body{
 .pe-modal-campana,.pe-modal-promo{display:none;position:fixed;z-index:99999;inset:0;width:100%;height:100%;align-items:center;justify-content:center;padding:12px}
 .pe-modal-campana{background:rgba(0,0,0,.86)}
 .pe-modal-promo{z-index:99998;background:rgba(0,0,0,.78)}
+.pe-alerta-tendencia{position:fixed;z-index:100001;inset:0;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,.55)}
+.pe-alerta-tendencia.activo{display:flex}
+.pe-alerta-tendencia-contenido{background:linear-gradient(135deg,#0057b8,#009b63);color:#fff;border:3px solid #fff;border-radius:20px;padding:22px 28px;text-align:center;font-size:clamp(24px,6vw,38px);font-weight:900;box-shadow:0 10px 35px rgba(0,0,0,.55);animation:peAlertaEntrada .25s ease}
+@keyframes peAlertaEntrada{from{transform:scale(.75);opacity:0}to{transform:scale(1);opacity:1}}
+.pe-promo-contenedor.zoom-activo{overflow:auto}
+.pe-promo-contenedor.zoom-activo img{max-width:none;width:180%;max-height:none;cursor:zoom-out}
+.pe-promo-contenedor img{cursor:zoom-in}
 .pe-modal-campana.activo,.pe-modal-promo.activo{display:flex}
  .pe-video-contenedor{position:relative;width:100%;max-width:1050px;background:#000;border:3px solid #fff;border-radius:16px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.7)}
 .pe-video-contenedor iframe{display:block;width:100%;aspect-ratio:16/9;border:0}
@@ -829,6 +836,7 @@ body{
 <iframe id="pe-video-campana" src="https://www.youtube.com/embed/CtGBwVyB024?rel=0&autoplay=1&playsinline=1" title="Campaña Peñafiel" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
 </div>
+<div id="pe-alerta-tendencia" class="pe-alerta-tendencia" aria-hidden="true"><div class="pe-alerta-tendencia-contenido">✨ NUEVO PRODUCTO TENDENCIA ✨</div></div>
 <div id="pe-modal-promo" class="pe-modal-promo" aria-hidden="true">
 <div class="pe-promo-contenedor">
 <button id="pe-cerrar-promo" class="pe-promo-cerrar" type="button" aria-label="Cerrar">×</button>
@@ -1111,9 +1119,9 @@ var promoData=[
 {nombre:"Red Bull y Venom",imagen:"https://i.ibb.co/9H8xYT7C/Picsart-26-09-23-11-22-44-308.png",texto:"Ahora solo te falta decidir<br>Peñafiel te da las alas"},
 {nombre:"Crush",imagen:"https://i.ibb.co/Y45PxT1Z/Picsart-26-09-23-13-08-22-164.png",texto:"Grandes sabores al mejor precio<br>Tus comidas y reuniones ponle sabor con Crush sabores"}
 ];
-var ultimoPromo=-1,promoTimer=null,promoOcultoPorVideo=false;
+var ultimoPromo=-1,promoTimer=null,promoOcultoPorVideo=false,promoAlertaTimer=null;
 var loading=document.getElementById("pe-loading"),progreso=document.getElementById("pe-loading-progreso"),porcentaje=document.getElementById("pe-loading-porcentaje");
-var modalPromo=document.getElementById("pe-modal-promo"),imagenPromo=document.getElementById("pe-promo-imagen"),textoPromo=document.getElementById("pe-promo-texto"),cerrarPromo=document.getElementById("pe-cerrar-promo");
+var modalPromo=document.getElementById("pe-modal-promo"),imagenPromo=document.getElementById("pe-promo-imagen"),textoPromo=document.getElementById("pe-promo-texto"),cerrarPromo=document.getElementById("pe-cerrar-promo"),alertaTendencia=document.getElementById("pe-alerta-tendencia"),contenedorPromo=document.querySelector(".pe-promo-contenedor");
 var modalCampana=document.getElementById("pe-modal-campana"),abrirCampana=document.getElementById("pe-abrir-campana"),cerrarCampana=document.getElementById("pe-cerrar-campana");
 var progresoActual=0,cargaLista=false;
 function actualizarProgreso(v){
@@ -1155,12 +1163,14 @@ function sincronizarCargaConVideo(){
 sincronizarCargaConVideo();
 
 function elegirPromo(){var i;if(promoData.length<=1)return 0;do{i=Math.floor(Math.random()*promoData.length)}while(i===ultimoPromo);ultimoPromo=i;return i}
-function ocultarPromo(){if(!modalPromo)return;modalPromo.classList.remove("activo");modalPromo.setAttribute("aria-hidden","true");clearTimeout(promoTimer)}
+function ocultarAlertaTendencia(){if(!alertaTendencia)return;alertaTendencia.classList.remove("activo");alertaTendencia.setAttribute("aria-hidden","true")}
+function ocultarPromo(){if(!modalPromo)return;modalPromo.classList.remove("activo");modalPromo.setAttribute("aria-hidden","true");if(contenedorPromo)contenedorPromo.classList.remove("zoom-activo");clearTimeout(promoTimer);clearTimeout(promoAlertaTimer)}
 function programarSiguientePromo(){clearTimeout(promoTimer);promoTimer=setTimeout(function(){mostrarPromo()},60000)}
-function mostrarPromo(){if(!modalPromo||promoOcultoPorVideo)return;var p=promoData[elegirPromo()];imagenPromo.src=p.imagen;imagenPromo.alt=p.nombre;textoPromo.innerHTML=p.texto;modalPromo.classList.add("activo");modalPromo.setAttribute("aria-hidden","false");clearTimeout(promoTimer);promoTimer=setTimeout(function(){ocultarPromo();programarSiguientePromo()},5000)}
+function mostrarPromo(){if(!modalPromo||promoOcultoPorVideo)return;var p=promoData[elegirPromo()];imagenPromo.src=p.imagen;imagenPromo.alt=p.nombre;textoPromo.innerHTML=p.texto;ocultarAlertaTendencia();if(alertaTendencia){alertaTendencia.classList.add("activo");alertaTendencia.setAttribute("aria-hidden","false");promoAlertaTimer=setTimeout(function(){ocultarAlertaTendencia();modalPromo.classList.add("activo");modalPromo.setAttribute("aria-hidden","false");clearTimeout(promoTimer);promoTimer=setTimeout(function(){ocultarPromo();programarSiguientePromo()},5000)},1000)}else{modalPromo.classList.add("activo");modalPromo.setAttribute("aria-hidden","false");clearTimeout(promoTimer);promoTimer=setTimeout(function(){ocultarPromo();programarSiguientePromo()},5000)}}
 function iniciarPromos(){setTimeout(function(){mostrarPromo()},5500)}
 
 if(cerrarPromo)cerrarPromo.onclick=function(){ocultarPromo();programarSiguientePromo()};
+if(imagenPromo)imagenPromo.onclick=function(){if(contenedorPromo)contenedorPromo.classList.toggle("zoom-activo")};
 if(modalPromo)modalPromo.addEventListener("click",function(e){if(e.target===modalPromo){ocultarPromo();programarSiguientePromo()}});
 
 function abrirVideo(){
