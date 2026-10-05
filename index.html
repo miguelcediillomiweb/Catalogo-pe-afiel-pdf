@@ -622,20 +622,20 @@ body{
 /* IMAGEN EXCLUSIVA AL FINAL DE LA PÁGINA */
 .pe-imagen-final{
     display:block;
-    width:min(92%,1050px);
+    width:100%;
     height:auto;
-    max-height:220px;
-    margin:8px auto 18px;
-    object-fit:contain;
-    object-position:center bottom;
-    border-radius:12px;
-    filter:drop-shadow(0 4px 8px rgba(0,0,0,.22));
+    max-height:none;
+    margin:8px 0 18px;
+    object-fit:cover;
+    object-position:center;
+    border-radius:0;
+    filter:none;
 }
 @media(max-width:600px){
     .pe-imagen-final{
-        width:96%;
-        max-height:150px;
-        margin-bottom:12px;
+        width:100%;
+        max-height:none;
+        margin:8px 0 12px;
     }
 }
 
