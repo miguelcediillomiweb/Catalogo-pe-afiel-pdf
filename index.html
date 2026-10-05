@@ -266,13 +266,15 @@ body{
     margin:0 0 14px;
     background:#fff;
     border-radius:8px;
-    overflow:hidden;
+    overflow:visible;
     box-shadow:0 5px 16px rgba(0,0,0,.3);
 }
 
 .pe-pagina-catalogo img{
     width:100%;
     height:auto;
+    min-height:0;
+    max-height:none;
     display:block;
     object-fit:contain;
     object-position:center top;
@@ -453,8 +455,8 @@ body{
     right:0;
     bottom:0;
     width:100%;
-    height:32%;
-    object-fit:cover;
+    height:38%;
+    object-fit:contain;
     object-position:center bottom;
     z-index:1;
     pointer-events:none;
@@ -467,7 +469,7 @@ body{
         max-width:105px;
         max-height:92px;
     }
-    .pe-loading-zombie{height:28%;}
+    .pe-loading-zombie{height:34%;}
 }
 
 /* =====================================================
@@ -1165,12 +1167,14 @@ sincronizarCargaConVideo();
 function elegirPromo(){var i;if(promoData.length<=1)return 0;do{i=Math.floor(Math.random()*promoData.length)}while(i===ultimoPromo);ultimoPromo=i;return i}
 function ocultarAlertaTendencia(){if(!alertaTendencia)return;alertaTendencia.classList.remove("activo");alertaTendencia.setAttribute("aria-hidden","true")}
 function ocultarPromo(){if(!modalPromo)return;modalPromo.classList.remove("activo");modalPromo.setAttribute("aria-hidden","true");if(contenedorPromo)contenedorPromo.classList.remove("zoom-activo");clearTimeout(promoTimer);clearTimeout(promoAlertaTimer)}
-function programarSiguientePromo(){clearTimeout(promoTimer);promoTimer=setTimeout(function(){mostrarPromo()},60000)}
+function programarSiguientePromo(){clearTimeout(promoTimer);if(contenedorPromo&&contenedorPromo.classList.contains("zoom-activo"))return;promoTimer=setTimeout(function(){mostrarPromo()},60000)}
+function pausarPromoPorZoom(){clearTimeout(promoTimer);clearTimeout(promoAlertaTimer);ocultarAlertaTendencia()}
+function reanudarPromoDespuesDeZoom(){if(modalPromo&&modalPromo.classList.contains("activo"))return;programarSiguientePromo()}
 function mostrarPromo(){if(!modalPromo||promoOcultoPorVideo)return;var p=promoData[elegirPromo()];imagenPromo.src=p.imagen;imagenPromo.alt=p.nombre;textoPromo.innerHTML=p.texto;ocultarAlertaTendencia();if(alertaTendencia){alertaTendencia.classList.add("activo");alertaTendencia.setAttribute("aria-hidden","false");promoAlertaTimer=setTimeout(function(){ocultarAlertaTendencia();modalPromo.classList.add("activo");modalPromo.setAttribute("aria-hidden","false");clearTimeout(promoTimer);promoTimer=setTimeout(function(){ocultarPromo();programarSiguientePromo()},5000)},1000)}else{modalPromo.classList.add("activo");modalPromo.setAttribute("aria-hidden","false");clearTimeout(promoTimer);promoTimer=setTimeout(function(){ocultarPromo();programarSiguientePromo()},5000)}}
 function iniciarPromos(){setTimeout(function(){mostrarPromo()},5500)}
 
 if(cerrarPromo)cerrarPromo.onclick=function(){ocultarPromo();programarSiguientePromo()};
-if(imagenPromo)imagenPromo.onclick=function(){if(contenedorPromo)contenedorPromo.classList.toggle("zoom-activo")};
+if(imagenPromo)imagenPromo.onclick=function(){if(!contenedorPromo)return;if(contenedorPromo.classList.contains("zoom-activo")){contenedorPromo.classList.remove("zoom-activo");reanudarPromoDespuesDeZoom()}else{pausarPromoPorZoom();contenedorPromo.classList.add("zoom-activo")}};
 if(modalPromo)modalPromo.addEventListener("click",function(e){if(e.target===modalPromo){ocultarPromo();programarSiguientePromo()}});
 
 function abrirVideo(){
