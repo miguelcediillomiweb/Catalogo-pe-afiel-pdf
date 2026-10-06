@@ -659,45 +659,6 @@ body{
 @media(max-width:600px){.pe-loading-marco{border-width:9px}.pe-video-contenedor{border-radius:12px}.pe-cerrar-campana,.pe-promo-cerrar{width:40px;height:40px;font-size:22px}.pe-promo-contenedor{width:94vw;max-height:90vh}.pe-promo-contenedor img{max-height:70vh}}
 
 
-/* =====================================================
-   IMAGEN FLOTANTE ALEATORIA — PEÑAFIEL
-   Se mueve entre zona superior, media e inferior
-===================================================== */
-.pe-imagen-flotante{
-    position:fixed;
-    z-index:9994;
-    left:50%;
-    top:12%;
-    width:clamp(105px,18vw,190px);
-    max-width:34vw;
-    height:auto;
-    display:block;
-    object-fit:contain;
-    pointer-events:none;
-    user-select:none;
-    /* Ayuda a integrar fondos blancos sin tapar la página */
-    mix-blend-mode:multiply;
-    filter:drop-shadow(0 5px 9px rgba(0,0,0,.25));
-    opacity:0;
-    transform:translate3d(-50%,0,0) scale(.78) rotate(-4deg);
-    transition:
-        left 2.2s cubic-bezier(.22,.61,.36,1),
-        top 2.2s cubic-bezier(.22,.61,.36,1),
-        transform 2.2s cubic-bezier(.22,.61,.36,1),
-        opacity .7s ease;
-}
-.pe-imagen-flotante.visible{
-    opacity:1;
-    transform:translate3d(-50%,0,0) scale(1) rotate(0deg);
-}
-@media(max-width:600px){
-    .pe-imagen-flotante{
-        width:clamp(90px,27vw,145px);
-        max-width:38vw;
-    }
-}
-
-
 /* IMAGEN EXCLUSIVA AL FINAL DE LA PÁGINA */
 .pe-imagen-final{
     display:block;
@@ -756,6 +717,10 @@ body{
 <span class="pe-deco-halloween p1">🎃</span><span class="pe-deco-halloween p2">🕷️</span><span class="pe-deco-halloween p3">🧙‍♀️</span><span class="pe-deco-halloween p4">🦇</span>
 <span class="pe-deco-halloween p5">🎃</span><span class="pe-deco-halloween p6">🕷️</span>
 </div>
+
+<div class="pe-arana a1"></div><div class="pe-arana a2"></div><div class="pe-arana a3"></div><div class="pe-arana a4"></div><div class="pe-arana a5"></div>
+<div class="pe-arana a6"></div><div class="pe-arana a7"></div><div class="pe-arana a8"></div><div class="pe-arana a9"></div><div class="pe-arana a10"></div>
+<div class="pe-arana-colgante" aria-hidden="true"></div>
 
 
 
