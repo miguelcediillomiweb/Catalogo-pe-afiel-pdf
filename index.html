@@ -552,38 +552,50 @@ body{
 .pe-arana{
     position:fixed;
     z-index:9996;
-    width:18px;
-    height:18px;
-    pointer-events:none;
-    color:#000;
+    width:20px;
+    height:20px;
+    pointer-events:auto;
+    touch-action:none;
+    cursor:pointer;
+    user-select:none;
     filter:drop-shadow(0 2px 2px rgba(255,255,255,.25));
-    animation:peAranaRecorre 12s linear infinite;
 }
 .pe-arana::before{
     content:"🕷";
     display:block;
-    font-size:18px;
-    line-height:18px;
+    font-size:20px;
+    line-height:20px;
 }
-.pe-arana.a1{top:18%;left:-25px;animation-duration:15s;animation-delay:0s}
-.pe-arana.a2{top:31%;left:-25px;animation-duration:18s;animation-delay:4s}
-.pe-arana.a3{top:46%;left:-25px;animation-duration:14s;animation-delay:7s}
-.pe-arana.a4{top:61%;left:-25px;animation-duration:20s;animation-delay:2s}
-.pe-arana.a5{top:76%;left:-25px;animation-duration:16s;animation-delay:9s}
-.pe-arana.a6{top:24%;right:-25px;left:auto;animation-duration:17s;animation-delay:5s;animation-direction:reverse}
-.pe-arana.a7{top:40%;right:-25px;left:auto;animation-duration:19s;animation-delay:1s;animation-direction:reverse}
-.pe-arana.a8{top:55%;right:-25px;left:auto;animation-duration:15s;animation-delay:8s;animation-direction:reverse}
-.pe-arana.a9{top:70%;right:-25px;left:auto;animation-duration:21s;animation-delay:3s;animation-direction:reverse}
-.pe-arana.a10{top:86%;right:-25px;left:auto;animation-duration:18s;animation-delay:11s;animation-direction:reverse}
+.pe-arana.aplastada{
+    animation:peAranaAplasta .22s ease forwards !important;
+}
+@keyframes peAranaAplasta{
+    0%{transform:scale(1)}
+    45%{transform:scale(1.65,.32) rotate(10deg)}
+    100%{transform:scale(.1);opacity:0}
+}
 
-@keyframes peAranaRecorre{
-    0%{transform:translateX(0) translateY(0) rotate(0deg);opacity:0}
-    8%{opacity:.95}
-    35%{transform:translateX(38vw) translateY(-18px) rotate(12deg)}
-    68%{transform:translateX(72vw) translateY(14px) rotate(-10deg)}
-    92%{opacity:.95}
-    100%{transform:translateX(112vw) translateY(-8px) rotate(8deg);opacity:0}
-}
+/* Movimiento orgánico: cada araña recibe una trayectoria distinta por JS */
+.pe-arana.a1{animation:peAranaRuta1 13s ease-in-out infinite alternate}
+.pe-arana.a2{animation:peAranaRuta2 17s ease-in-out infinite alternate}
+.pe-arana.a3{animation:peAranaRuta3 15s ease-in-out infinite alternate}
+.pe-arana.a4{animation:peAranaRuta4 19s ease-in-out infinite alternate}
+.pe-arana.a5{animation:peAranaRuta5 14s ease-in-out infinite alternate}
+.pe-arana.a6{animation:peAranaRuta6 18s ease-in-out infinite alternate}
+.pe-arana.a7{animation:peAranaRuta7 16s ease-in-out infinite alternate}
+.pe-arana.a8{animation:peAranaRuta8 20s ease-in-out infinite alternate}
+.pe-arana.a9{animation:peAranaRuta9 15s ease-in-out infinite alternate}
+.pe-arana.a10{animation:peAranaRuta10 21s ease-in-out infinite alternate}
+@keyframes peAranaRuta1{to{left:82vw;top:72vh;transform:rotate(140deg)}}
+@keyframes peAranaRuta2{to{left:12vw;top:84vh;transform:rotate(-110deg)}}
+@keyframes peAranaRuta3{to{left:88vw;top:18vh;transform:rotate(210deg)}}
+@keyframes peAranaRuta4{to{left:30vw;top:65vh;transform:rotate(-170deg)}}
+@keyframes peAranaRuta5{to{left:72vw;top:35vh;transform:rotate(95deg)}}
+@keyframes peAranaRuta6{to{left:18vw;top:22vh;transform:rotate(-80deg)}}
+@keyframes peAranaRuta7{to{left:78vw;top:88vh;transform:rotate(160deg)}}
+@keyframes peAranaRuta8{to{left:42vw;top:12vh;transform:rotate(-140deg)}}
+@keyframes peAranaRuta9{to{left:8vw;top:58vh;transform:rotate(120deg)}}
+@keyframes peAranaRuta10{to{left:92vw;top:48vh;transform:rotate(-200deg)}}
 
 /* ARAÑA COLGANTE — DESCIENDE DESDE EL CENTRO */
 .pe-arana-colgante{
@@ -603,11 +615,11 @@ body{
     content:"🕷";
     position:absolute;
     left:50%;
-    bottom:-10px;
+    bottom:-12px;
     transform:translateX(-50%);
     color:#000;
-    font-size:24px;
-    line-height:24px;
+    font-size:31px;
+    line-height:31px;
     filter:drop-shadow(0 2px 2px rgba(255,255,255,.3));
 }
 @keyframes peAranaBaja{
@@ -1296,5 +1308,25 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape"){if(modalCam
 })();
 </script>
 
+<script>
+(function(){
+    const arañas=document.querySelectorAll('.pe-arana');
+    function regenerar(a){
+        a.classList.remove('aplastada');
+        a.style.left=(5+Math.random()*88)+'vw';
+        a.style.top=(8+Math.random()*84)+'vh';
+        a.style.animationDelay=(-Math.random()*8)+'s';
+        a.style.animationDuration=(12+Math.random()*10)+'s';
+    }
+    arañas.forEach(a=>{
+        a.addEventListener('pointerdown',function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            a.classList.add('aplastada');
+            setTimeout(()=>regenerar(a),700);
+        },{passive:false});
+    });
+})();
+</script>
 </body>
 </html>
