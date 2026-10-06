@@ -866,19 +866,51 @@ body{
     border-radius:8px;
     box-shadow:0 0 28px rgba(255,212,0,.28);
 }
-.pe-visor-cerrar{
+.pe-visor-controles{
     position:fixed;
     top:10px;
-    right:12px;
+    left:50%;
+    transform:translateX(-50%);
     z-index:10022;
-    width:44px;height:44px;
-    border:1px solid rgba(255,255,255,.6);
-    border-radius:50%;
-    background:rgba(0,0,0,.65);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    width:max-content;
+    max-width:calc(100vw - 24px);
+}
+.pe-visor-control{
+    min-height:44px;
+    padding:9px 15px;
+    border:1px solid rgba(255,255,255,.72);
+    border-radius:24px;
+    background:rgba(0,0,0,.72);
     color:#fff;
-    font-size:28px;
-    line-height:40px;
+    font-size:15px;
+    font-weight:800;
+    line-height:1;
     cursor:pointer;
+    box-shadow:0 3px 10px rgba(0,0,0,.35);
+    backdrop-filter:blur(4px);
+}
+.pe-visor-control.cerrar{
+    font-size:17px;
+}
+.pe-visor-control:hover{
+    background:rgba(0,87,184,.9);
+    border-color:#ffd400;
+}
+@media(max-width:600px){
+    .pe-visor-controles{
+        top:8px;
+        gap:6px;
+        width:calc(100vw - 16px);
+    }
+    .pe-visor-control{
+        flex:1;
+        padding:10px 9px;
+        font-size:14px;
+    }
 }
 .pe-visor-ayuda{
     position:fixed;
@@ -1559,7 +1591,10 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape"){if(modalCam
 
 <!-- VISOR AMPLIADO DEL CATALOGO -->
 <div id="pe-visor-zoom" class="pe-visor-zoom" aria-hidden="true">
-<button id="pe-visor-cerrar" class="pe-visor-cerrar" type="button" aria-label="Cerrar ampliación">×</button>
+<div class="pe-visor-controles">
+<button id="pe-visor-cerrar" class="pe-visor-control cerrar" type="button" aria-label="Cerrar ampliación">✕ Cerrar</button>
+<button id="pe-visor-inicio" class="pe-visor-control" type="button" aria-label="Volver al inicio">⌂ Volver al inicio</button>
+</div>
 <img id="pe-visor-imagen" alt="Catálogo ampliado">
 <div class="pe-visor-ayuda">🤏 Usa dos dedos para acercar o alejar · Desliza para recorrer</div>
 </div>
@@ -1568,7 +1603,9 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape"){if(modalCam
   var visor=document.getElementById('pe-visor-zoom');
   var imagen=document.getElementById('pe-visor-imagen');
   var cerrar=document.getElementById('pe-visor-cerrar');
+  var inicio=document.getElementById('pe-visor-inicio');
   if(!visor||!imagen)return;
+
   function abrir(el){
     var img=el.querySelector('img');
     if(!img)return;
@@ -1577,19 +1614,28 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape"){if(modalCam
     visor.setAttribute('aria-hidden','false');
     document.body.style.overflow='hidden';
   }
+
   function cerrarVisor(){
     visor.classList.remove('activo');
     visor.setAttribute('aria-hidden','true');
     document.body.style.overflow='';
     imagen.removeAttribute('src');
   }
+
+  function volverAlInicio(){
+    cerrarVisor();
+    window.scrollTo({top:0,left:0,behavior:'smooth'});
+  }
+
   document.querySelectorAll('.pe-zoomable').forEach(function(el){
     el.addEventListener('click',function(){abrir(el);});
     el.addEventListener('keydown',function(e){
       if(e.key==='Enter'||e.key===' '){e.preventDefault();abrir(el);}
     });
   });
+
   cerrar.addEventListener('click',cerrarVisor);
+  inicio.addEventListener('click',volverAlInicio);
   visor.addEventListener('click',function(e){if(e.target===visor)cerrarVisor();});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')cerrarVisor();});
 })();
