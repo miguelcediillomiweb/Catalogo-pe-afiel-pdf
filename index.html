@@ -83,6 +83,45 @@ body{
     z-index:10;
 }
 
+
+/* ESCENA PEÑAFIEL — V2 VISIBLE */
+.pe-catalogo{
+    background:
+        radial-gradient(circle at 50% 12%,rgba(255,212,0,.20),transparent 20%),
+        radial-gradient(circle at 15% 35%,rgba(76,34,125,.48),transparent 32%),
+        radial-gradient(circle at 85% 68%,rgba(255,212,0,.12),transparent 30%),
+        linear-gradient(180deg,#0075d9 0%,#0057b8 30%,#23408f 57%,#32105c 82%,#19072f 100%) !important;
+}
+.pe-catalogo::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+    background:
+        radial-gradient(circle at 50% 22%,rgba(255,255,255,.10),transparent 17%),
+        radial-gradient(circle at 50% 78%,rgba(255,212,0,.07),transparent 24%);
+}
+.pe-catalogo > *{position:relative;}
+.pe-catalogo .pe-contenido{position:relative;z-index:10;}
+.pe-arana{
+    filter:drop-shadow(0 2px 3px rgba(0,0,0,.65)) drop-shadow(0 0 7px rgba(255,212,0,.65)) !important;
+}
+.pe-arana-colgante::after{
+    filter:drop-shadow(0 2px 3px rgba(0,0,0,.65)) drop-shadow(0 0 9px rgba(255,212,0,.75)) !important;
+}
+.pe-hilo-tejido,.pe-rayos-tejido{
+    stroke:rgba(255,235,145,.98) !important;
+    filter:drop-shadow(0 1px 3px rgba(255,212,0,.45)) !important;
+}
+.pe-palabra-telaraña{
+    stroke:#ffd400 !important;
+    filter:drop-shadow(0 2px 4px rgba(0,0,0,.75)) drop-shadow(0 0 10px rgba(255,212,0,.65)) !important;
+}
+.pe-telarana-palabra{
+    filter:drop-shadow(0 0 7px rgba(255,212,0,.28));
+}
+
 /* MARCO — DESACTIVADO */
 .pe-marco{display:none}
 
