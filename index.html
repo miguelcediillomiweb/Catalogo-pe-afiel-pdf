@@ -1433,12 +1433,24 @@ function ocultarCarga(){
   loading.classList.add("oculto");
   iniciarPromos();
 }
-/* PANTALLA DE CARGA — DURACIÓN MÍNIMA FIJA DE 4 SEGUNDOS
-   La pantalla no depende del video, GIF ni de otra animación. */
+/* PANTALLA DE CARGA — 4 SEGUNDOS CON PROGRESO REALMENTE VISIBLE
+   El porcentaje avanza de 1% a 100% por tiempo.
+   El video/GIF son decorativos y NO controlan la salida. */
 var videoCarga=document.getElementById("pe-loading-zombie-video");
 var inicioCarga=Date.now();
 var cargaMinimaMs=4000;
 var cargaOcultaProgramada=false;
+var progresoCargaTimer=null;
+
+function animarProgresoCarga(){
+  var transcurrido=Date.now()-inicioCarga;
+  var porcentaje=Math.min(100,Math.max(1,Math.floor((transcurrido/cargaMinimaMs)*100)));
+  actualizarProgreso(porcentaje);
+
+  if(porcentaje<100){
+    progresoCargaTimer=setTimeout(animarProgresoCarga,40);
+  }
+}
 
 function sincronizarCargaConVideo(){
   /* El video puede reproducirse como decoración, pero NO controla la salida. */
@@ -1449,10 +1461,14 @@ function sincronizarCargaConVideo(){
     }
   }
 
-  /* La pantalla permanece visible al menos 4 segundos. */
+  /* Empieza en 1% y avanza continuamente hasta 100% en 4 segundos. */
+  actualizarProgreso(1);
+  animarProgresoCarga();
+
   setTimeout(function(){
     if(cargaOcultaProgramada)return;
     cargaOcultaProgramada=true;
+    if(progresoCargaTimer)clearTimeout(progresoCargaTimer);
     actualizarProgreso(100);
     ocultarCarga();
   },cargaMinimaMs);
@@ -1464,6 +1480,7 @@ sincronizarCargaConVideo();
 setTimeout(function(){
   if(cargaOcultaProgramada)return;
   cargaOcultaProgramada=true;
+  if(progresoCargaTimer)clearTimeout(progresoCargaTimer);
   actualizarProgreso(100);
   ocultarCarga();
 },cargaMinimaMs+500);
