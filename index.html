@@ -1433,47 +1433,40 @@ function ocultarCarga(){
   loading.classList.add("oculto");
   iniciarPromos();
 }
+/* PANTALLA DE CARGA — DURACIÓN MÍNIMA FIJA DE 4 SEGUNDOS
+   La pantalla no depende del video, GIF ni de otra animación. */
 var videoCarga=document.getElementById("pe-loading-zombie-video");
+var inicioCarga=Date.now();
+var cargaMinimaMs=4000;
+var cargaOcultaProgramada=false;
 
 function sincronizarCargaConVideo(){
-  if(!videoCarga){ ocultarCarga(); return; }
-
-  /* SEGURIDAD DE CARGA: ningún video puede bloquear el catálogo indefinidamente. */
-  var respaldoCarga=setTimeout(function(){
-    actualizarProgreso(100);
-    ocultarCarga();
-  },3500);
-
-  function actualizarDesdeVideo(){
-    if(!isFinite(videoCarga.duration)||videoCarga.duration<=0)return;
-    actualizarProgreso((videoCarga.currentTime/videoCarga.duration)*100);
+  /* El video puede reproducirse como decoración, pero NO controla la salida. */
+  if(videoCarga){
+    var reproduccion=videoCarga.play();
+    if(reproduccion&&typeof reproduccion.catch==="function"){
+      reproduccion.catch(function(){});
+    }
   }
 
-  videoCarga.addEventListener("loadedmetadata",actualizarDesdeVideo);
-  videoCarga.addEventListener("timeupdate",actualizarDesdeVideo);
-  videoCarga.addEventListener("ended",function(){
-    clearTimeout(respaldoCarga);
+  /* La pantalla permanece visible al menos 4 segundos. */
+  setTimeout(function(){
+    if(cargaOcultaProgramada)return;
+    cargaOcultaProgramada=true;
     actualizarProgreso(100);
     ocultarCarga();
-  });
-  videoCarga.addEventListener("error",function(){
-    clearTimeout(respaldoCarga);
-    actualizarProgreso(100);
-    ocultarCarga();
-  });
-
-  if(videoCarga.readyState>=1)actualizarDesdeVideo();
-
-  var reproduccion=videoCarga.play();
-  if(reproduccion&&typeof reproduccion.catch==="function"){
-    reproduccion.catch(function(){});
-  }
+  },cargaMinimaMs);
 }
 
 sincronizarCargaConVideo();
 
-/* Respaldo adicional: mostrar el catálogo aunque el navegador bloquee el video. */
-setTimeout(function(){ ocultarCarga(); }, 4200);
+/* Respaldo: garantizar que nunca quede bloqueada por una animación externa. */
+setTimeout(function(){
+  if(cargaOcultaProgramada)return;
+  cargaOcultaProgramada=true;
+  actualizarProgreso(100);
+  ocultarCarga();
+},cargaMinimaMs+500);
 
 function elegirPromo(){var i;if(promoData.length<=1)return 0;do{i=Math.floor(Math.random()*promoData.length)}while(i===ultimoPromo);ultimoPromo=i;return i}
 function ocultarAlertaTendencia(){if(!alertaTendencia)return;alertaTendencia.classList.remove("activo");alertaTendencia.setAttribute("aria-hidden","true")}
