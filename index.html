@@ -3,6 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0057b8">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Catálogo Peñafiel">
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="./icon.svg">
 
 <meta name="author" content="Miguel Ángel C.">
 <meta name="description" content="Catálogo Digital Peñafiel. Autoría y diseño web: Miguel Ángel C.">
@@ -918,6 +926,19 @@ body{
 /* Burbujeo de refresco: las burbujas suben y vuelven a aparecer desde abajo */
 
 8%{opacity:.7}100%{transform:translateY(-120vh) scale(1.1);opacity:0}}
+
+/* INSTALACION COMO APLICACION */
+.pe-instalar-app{
+    display:flex;justify-content:center;align-items:center;gap:9px;
+    width:calc(100% - 28px);max-width:430px;margin:16px auto 20px;
+    padding:13px 18px;border:2px solid #ffe36a;border-radius:999px;
+    background:linear-gradient(135deg,#ffd400,#ffef9a);color:#173a91;
+    font-weight:800;font-size:16px;line-height:1.25;text-align:center;
+    box-shadow:0 5px 18px rgba(0,0,0,.22);cursor:pointer;
+}
+.pe-instalar-app:active{transform:scale(.98)}
+.pe-instalar-ayuda{display:none;max-width:430px;margin:-10px auto 18px;padding:0 18px;color:#fff;text-align:center;font-size:13px;line-height:1.45}
+
 </style>
 </head>
 
@@ -1028,6 +1049,9 @@ body{
 <div class="pe-titulo">CATÁLOGO DIGITAL</div>
 <div class="pe-actualizado">Actualizado septiembre 2026</div>
 <div class="pe-instruccion-zoom">🔎 <strong>Conoce nuestros productos</strong><br><span>Toca cualquier página del catálogo para ampliarla y usa dos dedos para acercar o alejar los precios y detalles.</span></div>
+
+<button id="pe-instalar-app" class="pe-instalar-app" type="button">📲 Instalar catálogo en mi celular</button>
+<div id="pe-instalar-ayuda" class="pe-instalar-ayuda" aria-live="polite"></div>
 
 <!-- CATALOGO -->
 <div class="pe-catalogo-paginas">
@@ -1584,6 +1608,53 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape"){if(modalCam
   inicio.addEventListener('click',volverAlInicio);
   visor.addEventListener('click',function(e){if(e.target===visor)cerrarVisor();});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')cerrarVisor();});
+})();
+</script>
+
+ 
+<script>
+/* PWA: registro y boton de instalacion */
+(function(){
+  var boton=document.getElementById('pe-instalar-app');
+  var ayuda=document.getElementById('pe-instalar-ayuda');
+  var eventoInstalacion=null;
+  if('serviceWorker' in navigator){
+    window.addEventListener('load',function(){
+      navigator.serviceWorker.register('./service-worker.js').catch(function(error){
+        console.warn('No se pudo activar el modo instalable:',error);
+      });
+    });
+  }
+  window.addEventListener('beforeinstallprompt',function(evento){
+    evento.preventDefault();
+    eventoInstalacion=evento;
+    if(boton)boton.style.display='flex';
+  });
+  window.addEventListener('appinstalled',function(){
+    eventoInstalacion=null;
+    if(boton){boton.textContent='✅ Catálogo instalado';boton.disabled=true;}
+    if(ayuda){ayuda.style.display='block';ayuda.textContent='¡Listo! Ya puedes abrir el catálogo desde el icono de tu pantalla de inicio.';}
+  });
+  if(boton)boton.addEventListener('click',async function(){
+    if(eventoInstalacion){
+      eventoInstalacion.prompt();
+      var resultado=await eventoInstalacion.userChoice;
+      if(resultado&&resultado.outcome==='accepted'){
+        boton.textContent='✅ Instalación aceptada';
+      }
+      eventoInstalacion=null;
+      return;
+    }
+    if(ayuda){
+      ayuda.style.display='block';
+      var esIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
+      if(esIOS){
+        ayuda.textContent='En Safari: toca Compartir y después “Agregar a pantalla de inicio”.';
+      }else{
+        ayuda.textContent='Si no aparece la ventana de instalación, abre el menú ⋮ de Chrome y elige “Instalar aplicación” o “Agregar a pantalla principal”. Si la opción aún no aparece, espera a que el sitio termine de actualizarse y vuelve a intentarlo.';
+      }
+    }
+  });
 })();
 </script>
 
