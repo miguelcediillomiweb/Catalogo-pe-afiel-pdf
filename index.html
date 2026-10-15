@@ -617,7 +617,7 @@ body{
 .pe-fantasma-sorpresa.f2{top:60%;animation-delay:9s}.pe-fantasma-sorpresa.f3{top:25%;animation-delay:14s}
 @keyframes peFantasmaCruza{0%,62%{left:-110px;opacity:0;transform:translateY(0) rotate(-7deg) scale(.8)}68%{opacity:1}78%{transform:translateY(-35px) rotate(8deg) scale(1.08)}88%{opacity:1;transform:translateY(25px) rotate(-6deg) scale(1)}100%{left:112vw;opacity:0;transform:translateY(-10px) rotate(5deg) scale(.9)}}
 .pe-telaraña{position:absolute;width:95px;height:95px;opacity:.24;border:2px solid #111;border-radius:50%}.pe-telaraña::before{content:"";position:absolute;inset:13px;border:1px solid #111;border-radius:50%}.pe-telaraña::after{content:"";position:absolute;inset:28px;border:1px solid #111;border-radius:50%}.pe-telaraña-1{top:-12px;left:-12px}.pe-telaraña-2{bottom:-12px;right:-12px;transform:rotate(180deg)}
-.pe-titulo::after{content:" 🎃";font-size:.72em}
+/* Se retira únicamente el emoji de calabaza del título */
 
 /* =====================================================
    ARAÑAS NEGRAS — MOVIMIENTO SUTIL
@@ -669,6 +669,16 @@ body{
 @keyframes peAranaRuta8{to{left:42vw;top:12vh;transform:rotate(-140deg)}}
 @keyframes peAranaRuta9{to{left:8vw;top:58vh;transform:rotate(120deg)}}
 @keyframes peAranaRuta10{to{left:92vw;top:48vh;transform:rotate(-200deg)}}
+
+
+/* Arañas adicionales: recorren distintas zonas de la pantalla */
+.pe-arana.extra{animation:peAranaExtra linear infinite alternate}
+@keyframes peAranaExtra{
+  0%{left:var(--inicio-x,5vw);top:var(--inicio-y,10vh);transform:rotate(0deg)}
+  25%{left:var(--medio-x,80vw);top:var(--medio-y,75vh);transform:rotate(95deg)}
+  55%{left:var(--fin-x,15vw);top:var(--fin-y,30vh);transform:rotate(210deg)}
+  100%{left:var(--inicio-x,5vw);top:var(--inicio-y,10vh);transform:rotate(360deg)}
+}
 
 /* ARAÑA COLGANTE — DESCIENDE DESDE EL CENTRO */
 .pe-arana-colgante{
@@ -952,7 +962,7 @@ body{
 <div class="pe-loading-burbuja lc15"></div>
 <div class="pe-loading-burbuja lc16"></div>
 <div class="pe-loading-burbuja lc17"></div>
-<div class="pe-loading-murcielagos" aria-hidden="true"><span>🦇</span><span>🦇</span><span>🦇</span><span>🦇</span><span>🦇</span><span>🦇</span><span>🦇</span><span>🦇</span><span>🦇</span><span>🦇</span><span>🦇</span><span>🦇</span></div><div class="pe-loading-fantasma" aria-hidden="true">👻</div><video class="pe-loading-zombie" src="zombie%201.mp4" autoplay muted playsinline preload="metadata" aria-hidden="true" id="pe-loading-zombie-video"></video>
+<video class="pe-loading-zombie" src="zombie%201.mp4" autoplay muted playsinline preload="metadata" aria-hidden="true" id="pe-loading-zombie-video"></video>
 <div class="pe-loading-contenido">
 <div class="pe-loading-bienvenidos">BIENVENIDOS</div>
 <div class="pe-loading-titulo">Catálogo Peñafiel</div>
@@ -969,6 +979,7 @@ body{
 
 <div class="pe-arana a1"></div><div class="pe-arana a2"></div><div class="pe-arana a3"></div><div class="pe-arana a4"></div><div class="pe-arana a5"></div>
 <div class="pe-arana a6"></div><div class="pe-arana a7"></div><div class="pe-arana a8"></div><div class="pe-arana a9"></div><div class="pe-arana a10"></div>
+<div class="pe-arana extra e1" aria-hidden="true"></div><div class="pe-arana extra e2" aria-hidden="true"></div><div class="pe-arana extra e3" aria-hidden="true"></div><div class="pe-arana extra e4" aria-hidden="true"></div><div class="pe-arana extra e5" aria-hidden="true"></div><div class="pe-arana extra e6" aria-hidden="true"></div><div class="pe-arana extra e7" aria-hidden="true"></div><div class="pe-arana extra e8" aria-hidden="true"></div><div class="pe-arana extra e9" aria-hidden="true"></div><div class="pe-arana extra e10" aria-hidden="true"></div><div class="pe-arana extra e11" aria-hidden="true"></div><div class="pe-arana extra e12" aria-hidden="true"></div><div class="pe-arana extra e13" aria-hidden="true"></div><div class="pe-arana extra e14" aria-hidden="true"></div>
 <div class="pe-arana-colgante" aria-hidden="true"></div>
 <div class="pe-telarana-palabra" aria-hidden="true">
 <svg viewBox="0 0 900 190" preserveAspectRatio="xMidYMid meet">
@@ -1587,8 +1598,17 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape"){if(modalCam
         a.style.top=(8+Math.random()*84)+'vh';
         a.style.animationDelay=(-Math.random()*8)+'s';
         a.style.animationDuration=(12+Math.random()*10)+'s';
+        if(a.classList.contains('extra')){
+            a.style.setProperty('--inicio-x',(3+Math.random()*90)+'vw');
+            a.style.setProperty('--inicio-y',(5+Math.random()*88)+'vh');
+            a.style.setProperty('--medio-x',(3+Math.random()*90)+'vw');
+            a.style.setProperty('--medio-y',(5+Math.random()*88)+'vh');
+            a.style.setProperty('--fin-x',(3+Math.random()*90)+'vw');
+            a.style.setProperty('--fin-y',(5+Math.random()*88)+'vh');
+        }
     }
     arañas.forEach(a=>{
+        if(a.classList.contains('extra'))regenerar(a);
         a.addEventListener('pointerdown',function(e){
             e.preventDefault();
             e.stopPropagation();
