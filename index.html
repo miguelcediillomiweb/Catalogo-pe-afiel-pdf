@@ -927,17 +927,25 @@ body{
 
 8%{opacity:.7}100%{transform:translateY(-120vh) scale(1.1);opacity:0}}
 
-/* INSTALACION COMO APLICACION */
+/* INVITACION PARA AGREGAR EL CATALOGO A LA PANTALLA DE INICIO */
+.pe-instalar-panel{
+    width:100%;max-width:650px;margin:12px auto 18px;padding:15px 14px;
+    border:1px solid rgba(255,212,0,.85);border-radius:16px;
+    background:linear-gradient(145deg,rgba(0,35,105,.92),rgba(49,16,92,.94));
+    box-shadow:0 5px 18px rgba(0,0,0,.25);text-align:center;
+}
+.pe-instalar-titulo{margin:0 0 7px;color:#ffe36a;font-size:clamp(18px,4.6vw,23px);font-weight:900;line-height:1.25}
+.pe-instalar-texto{margin:0 auto 12px;max-width:540px;color:#fff;font-size:clamp(14px,3.7vw,17px);line-height:1.45}
 .pe-instalar-app{
     display:flex;justify-content:center;align-items:center;gap:9px;
-    width:calc(100% - 28px);max-width:430px;margin:16px auto 20px;
-    padding:13px 18px;border:2px solid #ffe36a;border-radius:999px;
+    width:100%;max-width:430px;margin:0 auto;padding:13px 18px;
+    border:2px solid #ffe36a;border-radius:999px;
     background:linear-gradient(135deg,#ffd400,#ffef9a);color:#173a91;
-    font-weight:800;font-size:16px;line-height:1.25;text-align:center;
+    font-weight:900;font-size:clamp(15px,4vw,18px);line-height:1.25;text-align:center;
     box-shadow:0 5px 18px rgba(0,0,0,.22);cursor:pointer;
 }
 .pe-instalar-app:active{transform:scale(.98)}
-.pe-instalar-ayuda{display:none;max-width:430px;margin:-10px auto 18px;padding:0 18px;color:#fff;text-align:center;font-size:13px;line-height:1.45}
+.pe-instalar-ayuda{display:none;max-width:540px;margin:10px auto 0;padding:0 8px;color:#fff;text-align:center;font-size:13px;line-height:1.45}
 
 </style>
 </head>
@@ -1000,6 +1008,14 @@ body{
 <video src="zombie%203.mp4" autoplay muted loop playsinline preload="none" aria-hidden="true"></video>
 </div>
 
+<!-- INVITACION PARA TENER EL CATALOGO SIEMPRE A LA MANO: DEBAJO DEL RELOJ -->
+<section class="pe-instalar-panel" aria-label="Agregar catálogo al celular">
+  <h2 class="pe-instalar-titulo">📲 ¡Ten tu catálogo siempre a la mano!</h2>
+  <p class="pe-instalar-texto">Agrégalo a la pantalla de inicio de tu celular y consúltalo cuando quieras, como si fuera una aplicación. Es práctico y no necesitas descargar una app tradicional.</p>
+  <button id="pe-instalar-app" class="pe-instalar-app" type="button">📱 AGREGAR A MI CELULAR</button>
+  <div id="pe-instalar-ayuda" class="pe-instalar-ayuda" aria-live="polite"></div>
+</section>
+
 <!-- CARRUSEL -->
 <div class="pe-carrusel">
 
@@ -1049,9 +1065,6 @@ body{
 <div class="pe-titulo">CATÁLOGO DIGITAL</div>
 <div class="pe-actualizado">Actualizado septiembre 2026</div>
 <div class="pe-instruccion-zoom">🔎 <strong>Conoce nuestros productos</strong><br><span>Toca cualquier página del catálogo para ampliarla y usa dos dedos para acercar o alejar los precios y detalles.</span></div>
-
-<button id="pe-instalar-app" class="pe-instalar-app" type="button">📲 Instalar catálogo en mi celular</button>
-<div id="pe-instalar-ayuda" class="pe-instalar-ayuda" aria-live="polite"></div>
 
 <!-- CATALOGO -->
 <div class="pe-catalogo-paginas">
