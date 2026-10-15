@@ -1628,9 +1628,22 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape"){if(modalCam
 <script>
 /* PWA: registro y boton de instalacion */
 (function(){
+  var panel=document.querySelector('.pe-instalar-panel');
   var boton=document.getElementById('pe-instalar-app');
   var ayuda=document.getElementById('pe-instalar-ayuda');
   var eventoInstalacion=null;
+  var modoApp=window.matchMedia && window.matchMedia('(display-mode: standalone)');
+  function estaInstaladoEnEsteModo(){
+    return !!((modoApp && modoApp.matches) || navigator.standalone === true);
+  }
+  function ocultarPanelSiEsApp(){
+    if(panel && estaInstaladoEnEsteModo()) panel.style.display='none';
+  }
+  // Oculta la invitación cuando el catálogo se abre desde su icono instalado.
+  ocultarPanelSiEsApp();
+  if(modoApp && modoApp.addEventListener){
+    modoApp.addEventListener('change',ocultarPanelSiEsApp);
+  }
   if('serviceWorker' in navigator){
     window.addEventListener('load',function(){
       navigator.serviceWorker.register('./service-worker.js').catch(function(error){
@@ -1639,32 +1652,42 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape"){if(modalCam
     });
   }
   window.addEventListener('beforeinstallprompt',function(evento){
+    if(estaInstaladoEnEsteModo()) return;
     evento.preventDefault();
     eventoInstalacion=evento;
     if(boton)boton.style.display='flex';
   });
   window.addEventListener('appinstalled',function(){
     eventoInstalacion=null;
-    if(boton){boton.textContent='✅ Catálogo instalado';boton.disabled=true;}
-    if(ayuda){ayuda.style.display='block';ayuda.textContent='¡Listo! Ya puedes abrir el catálogo desde el icono de tu pantalla de inicio.';}
+    // Oculta el panel tras la instalación en navegadores que notifican este evento.
+    if(panel)panel.style.display='none';
   });
   if(boton)boton.addEventListener('click',async function(){
+    if(estaInstaladoEnEsteModo()){
+      if(panel)panel.style.display='none';
+      return;
+    }
     if(eventoInstalacion){
-      eventoInstalacion.prompt();
-      var resultado=await eventoInstalacion.userChoice;
-      if(resultado&&resultado.outcome==='accepted'){
-        boton.textContent='✅ Instalación aceptada';
-      }
+      var eventoActual=eventoInstalacion;
       eventoInstalacion=null;
+      eventoActual.prompt();
+      var resultado=await eventoActual.userChoice;
+      if(resultado && resultado.outcome==='accepted'){
+        boton.textContent='⏳ Instalación en proceso…';
+        if(ayuda){
+          ayuda.style.display='block';
+          ayuda.textContent='Cuando termine, abre el catálogo desde el nuevo icono de tu pantalla de inicio.';
+        }
+      }
       return;
     }
     if(ayuda){
       ayuda.style.display='block';
       var esIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
       if(esIOS){
-        ayuda.textContent='En Safari: toca Compartir y después “Agregar a pantalla de inicio”.';
+        ayuda.textContent='En Safari: toca Compartir y después “Agregar a pantalla de inicio”. Al abrirlo desde ese icono, este aviso ya no aparecerá.';
       }else{
-        ayuda.textContent='Si no aparece la ventana de instalación, abre el menú ⋮ de Chrome y elige “Instalar aplicación” o “Agregar a pantalla principal”. Si la opción aún no aparece, espera a que el sitio termine de actualizarse y vuelve a intentarlo.';
+        ayuda.textContent='Si no aparece la ventana de instalación, abre el menú ⋮ de Chrome y elige “Instalar aplicación” o “Agregar a pantalla principal”. Al abrirlo desde el icono instalado, este aviso ya no aparecerá.';
       }
     }
   });
