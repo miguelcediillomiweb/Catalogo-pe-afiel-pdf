@@ -941,7 +941,12 @@ body{
 
 
 /* Se eliminan las burbujas y decoraciones de fantasmas/murciélagos. */
-.pe-burbuja,.pe-loading-burbuja,.pe-loading-fantasma,.pe-fantasma-sorpresa,.pe-murcielago,.pe-loading-murcielagos{display:none!important}
+.pe-loading-fantasma,.pe-fantasma-sorpresa,.pe-murcielago,.pe-loading-murcielagos{display:none!important}
+/* Burbujeo de refresco: las burbujas suben y vuelven a aparecer desde abajo */
+.pe-burbuja{animation:flotarBurbuja linear infinite!important}
+@keyframes flotarBurbuja{0%{transform:translate3d(0,35vh,0) scale(.7);opacity:0}8%{opacity:.72}55%{transform:translate3d(8px,-35vh,0) scale(1);opacity:.75}100%{transform:translate3d(-6px,-110vh,0) scale(.82);opacity:0}}
+.pe-loading-burbuja{animation:peBurbujaCarga linear infinite!important}
+@keyframes peBurbujaCarga{0%{transform:translateY(0) scale(.7);opacity:0}8%{opacity:.7}100%{transform:translateY(-120vh) scale(1.1);opacity:0}}
 </style>
 </head>
 
@@ -949,6 +954,23 @@ body{
 <!-- CARGA DE OCTUBRE -->
 <div id="pe-loading" aria-label="Cargando Catálogo Peñafiel">
 <div class="pe-loading-marco"></div>
+<div class="pe-loading-burbuja lc1" aria-hidden="true"></div>
+<div class="pe-loading-burbuja lc2" aria-hidden="true"></div>
+<div class="pe-loading-burbuja lc3" aria-hidden="true"></div>
+<div class="pe-loading-burbuja lc4" aria-hidden="true"></div>
+<div class="pe-loading-burbuja lc5" aria-hidden="true"></div>
+<div class="pe-loading-burbuja lc6" aria-hidden="true"></div>
+<div class="pe-loading-burbuja lc7" aria-hidden="true"></div>
+<div class="pe-loading-burbuja lc8" aria-hidden="true"></div>
+<div class="pe-loading-burbuja lc9" aria-hidden="true"></div>
+<div class="pe-loading-burbuja lc10" aria-hidden="true"></div>
+<div class="pe-loading-burbuja lc11" aria-hidden="true"></div>
+<div class="pe-loading-burbuja lc12" aria-hidden="true"></div>
+<div class="pe-loading-burbuja lc13" aria-hidden="true"></div>
+<div class="pe-loading-burbuja lc14" aria-hidden="true"></div>
+<div class="pe-loading-burbuja lc15" aria-hidden="true"></div>
+<div class="pe-loading-burbuja lc16" aria-hidden="true"></div>
+<div class="pe-loading-burbuja lc17" aria-hidden="true"></div>
 <video class="pe-loading-zombie" src="zombie%201.mp4" autoplay muted playsinline preload="metadata" aria-hidden="true" id="pe-loading-zombie-video"></video>
 <div class="pe-loading-contenido">
 <div class="pe-loading-bienvenidos">BIENVENIDOS</div>
@@ -981,6 +1003,53 @@ body{
 <div class="pe-catalogo">
 
 <div class="pe-marco"></div>
+<!-- BURBUJAS DE AGUA MINERAL: burbujeo continuo hacia arriba -->
+<div class="pe-burbuja b1" aria-hidden="true"></div>
+<div class="pe-burbuja b2" aria-hidden="true"></div>
+<div class="pe-burbuja b3" aria-hidden="true"></div>
+<div class="pe-burbuja b4" aria-hidden="true"></div>
+<div class="pe-burbuja b5" aria-hidden="true"></div>
+<div class="pe-burbuja b6" aria-hidden="true"></div>
+<div class="pe-burbuja b7" aria-hidden="true"></div>
+<div class="pe-burbuja b8" aria-hidden="true"></div>
+<div class="pe-burbuja b9" aria-hidden="true"></div>
+<div class="pe-burbuja b10" aria-hidden="true"></div>
+<div class="pe-burbuja b11" aria-hidden="true"></div>
+<div class="pe-burbuja b12" aria-hidden="true"></div>
+<div class="pe-burbuja b13" aria-hidden="true"></div>
+<div class="pe-burbuja b14" aria-hidden="true"></div>
+<div class="pe-burbuja b15" aria-hidden="true"></div>
+<div class="pe-burbuja b16" aria-hidden="true"></div>
+<div class="pe-burbuja b17" aria-hidden="true"></div>
+<div class="pe-burbuja b18" aria-hidden="true"></div>
+<div class="pe-burbuja b19" aria-hidden="true"></div>
+<div class="pe-burbuja b20" aria-hidden="true"></div>
+<div class="pe-burbuja b21" aria-hidden="true"></div>
+<div class="pe-burbuja b22" aria-hidden="true"></div>
+<div class="pe-burbuja b23" aria-hidden="true"></div>
+<div class="pe-burbuja b24" aria-hidden="true"></div>
+<div class="pe-burbuja b25" aria-hidden="true"></div>
+<div class="pe-burbuja b26" aria-hidden="true"></div>
+<div class="pe-burbuja b27" aria-hidden="true"></div>
+<div class="pe-burbuja b28" aria-hidden="true"></div>
+<div class="pe-burbuja b29" aria-hidden="true"></div>
+<div class="pe-burbuja b30" aria-hidden="true"></div>
+<div class="pe-burbuja b31" aria-hidden="true"></div>
+<div class="pe-burbuja b32" aria-hidden="true"></div>
+<div class="pe-burbuja b33" aria-hidden="true"></div>
+<div class="pe-burbuja b34" aria-hidden="true"></div>
+<div class="pe-burbuja b35" aria-hidden="true"></div>
+<div class="pe-burbuja b36" aria-hidden="true"></div>
+<div class="pe-burbuja b37" aria-hidden="true"></div>
+<div class="pe-burbuja b38" aria-hidden="true"></div>
+<div class="pe-burbuja b39" aria-hidden="true"></div>
+<div class="pe-burbuja b40" aria-hidden="true"></div>
+<div class="pe-burbuja b41" aria-hidden="true"></div>
+<div class="pe-burbuja b42" aria-hidden="true"></div>
+<div class="pe-burbuja b43" aria-hidden="true"></div>
+<div class="pe-burbuja b44" aria-hidden="true"></div>
+<div class="pe-burbuja b45" aria-hidden="true"></div>
+<div class="pe-burbuja b46" aria-hidden="true"></div>
 
 <div class="pe-contenido">
 
