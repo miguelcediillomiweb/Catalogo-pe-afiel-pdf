@@ -927,25 +927,45 @@ body{
 
 8%{opacity:.7}100%{transform:translateY(-120vh) scale(1.1);opacity:0}}
 
-/* INVITACION PARA AGREGAR EL CATALOGO A LA PANTALLA DE INICIO */
+/* BANNER ANIMADO PARA TENER EL CATÁLOGO SIEMPRE A LA MANO */
 .pe-instalar-panel{
-    width:100%;max-width:650px;margin:12px auto 18px;padding:15px 14px;
-    border:1px solid rgba(255,212,0,.85);border-radius:16px;
-    background:linear-gradient(145deg,rgba(0,35,105,.92),rgba(49,16,92,.94));
-    box-shadow:0 5px 18px rgba(0,0,0,.25);text-align:center;
+    position:relative;isolation:isolate;overflow:hidden;
+    width:100%;max-width:650px;margin:14px auto 20px;padding:18px 14px;
+    border:2px solid #ffe36a;border-radius:20px;
+    background:radial-gradient(circle at 10% 0%,rgba(255,212,0,.22),transparent 36%),linear-gradient(145deg,#003b83 0%,#0057b8 48%,#32105c 100%);
+    box-shadow:0 8px 24px rgba(0,0,0,.34),inset 0 0 18px rgba(255,255,255,.08);
+    text-align:center;animation:peBannerEntrada .65s ease-out both;
 }
-.pe-instalar-titulo{margin:0 0 7px;color:#ffe36a;font-size:clamp(18px,4.6vw,23px);font-weight:900;line-height:1.25}
-.pe-instalar-texto{margin:0 auto 12px;max-width:540px;color:#fff;font-size:clamp(14px,3.7vw,17px);line-height:1.45}
+.pe-instalar-panel::before{
+    content:"";position:absolute;inset:-60% -30%;z-index:-1;pointer-events:none;
+    background:linear-gradient(110deg,transparent 40%,rgba(255,255,255,.14) 50%,transparent 60%);
+    transform:translateX(-65%);animation:peBannerBrillo 5s ease-in-out infinite;
+}
+.pe-instalar-decoracion{display:flex;justify-content:center;align-items:center;gap:17px;margin:0 auto 7px;font-size:clamp(23px,6vw,32px)}
+.pe-instalar-movil{display:inline-block;animation:peTelefonoBaila 1.7s ease-in-out infinite;filter:drop-shadow(0 3px 5px rgba(0,0,0,.3))}
+.pe-instalar-estrella{display:inline-block;animation:peEstrellaSalta 1.5s ease-in-out infinite}
+.pe-instalar-estrella:last-child{animation-delay:.45s}
+.pe-instalar-titulo{margin:0 0 8px;color:#ffe36a;font-size:clamp(19px,4.8vw,25px);font-weight:900;line-height:1.25;text-shadow:0 2px 8px rgba(0,0,0,.35)}
+.pe-instalar-texto{margin:0 auto 14px;max-width:540px;color:#fff;font-size:clamp(14px,3.7vw,17px);line-height:1.5}
 .pe-instalar-app{
-    display:flex;justify-content:center;align-items:center;gap:9px;
-    width:100%;max-width:430px;margin:0 auto;padding:13px 18px;
-    border:2px solid #ffe36a;border-radius:999px;
-    background:linear-gradient(135deg,#ffd400,#ffef9a);color:#173a91;
-    font-weight:900;font-size:clamp(15px,4vw,18px);line-height:1.25;text-align:center;
-    box-shadow:0 5px 18px rgba(0,0,0,.22);cursor:pointer;
+    display:flex;justify-content:center;align-items:center;gap:10px;
+    width:100%;max-width:430px;margin:0 auto;padding:14px 18px;
+    border:2px solid #fff;border-radius:999px;
+    background:linear-gradient(110deg,#ffd400,#fff1a8,#ffd400);background-size:200% 100%;
+    color:#173a91;font-weight:900;font-size:clamp(15px,4vw,18px);line-height:1.25;text-align:center;
+    box-shadow:0 5px 18px rgba(0,0,0,.3),0 0 0 3px rgba(255,212,0,.15);
+    cursor:pointer;animation:peBotonBrillo 3s linear infinite,peBotonPulso 2.4s ease-in-out infinite;
 }
-.pe-instalar-app:active{transform:scale(.98)}
-.pe-instalar-ayuda{display:none;max-width:540px;margin:10px auto 0;padding:0 8px;color:#fff;text-align:center;font-size:13px;line-height:1.45}
+.pe-instalar-app:active{transform:scale(.97)}
+.pe-instalar-app-icono{display:inline-block;font-size:1.3em;animation:peTelefonoBaila 1.5s ease-in-out infinite}
+.pe-instalar-ayuda{display:none;max-width:540px;margin:10px auto 0;padding:10px 12px;border-radius:12px;background:rgba(0,0,0,.25);color:#fff;text-align:center;font-size:13px;line-height:1.45}
+@keyframes peBannerEntrada{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes peBannerBrillo{0%,35%{transform:translateX(-65%)}70%,100%{transform:translateX(65%)}}
+@keyframes peTelefonoBaila{0%,100%{transform:translateY(0) rotate(-7deg)}50%{transform:translateY(-5px) rotate(7deg)}}
+@keyframes peEstrellaSalta{0%,100%{transform:translateY(0) scale(1);opacity:.8}50%{transform:translateY(-5px) scale(1.15);opacity:1}}
+@keyframes peBotonBrillo{0%{background-position:0 50%}100%{background-position:200% 50%}}
+@keyframes peBotonPulso{0%,100%{box-shadow:0 5px 18px rgba(0,0,0,.3),0 0 0 3px rgba(255,212,0,.15)}50%{box-shadow:0 7px 22px rgba(0,0,0,.35),0 0 0 6px rgba(255,212,0,.23)}}
+@media(prefers-reduced-motion:reduce){.pe-instalar-panel,.pe-instalar-panel::before,.pe-instalar-movil,.pe-instalar-estrella,.pe-instalar-app,.pe-instalar-app-icono{animation:none!important}}
 
 </style>
 </head>
@@ -1010,9 +1030,10 @@ body{
 
 <!-- INVITACION PARA TENER EL CATALOGO SIEMPRE A LA MANO: DEBAJO DEL RELOJ -->
 <section class="pe-instalar-panel" aria-label="Agregar catálogo al celular">
-  <h2 class="pe-instalar-titulo">📲 ¡Ten tu catálogo siempre a la mano!</h2>
-  <p class="pe-instalar-texto">Agrégalo a la pantalla de inicio de tu celular y consúltalo cuando quieras, como si fuera una aplicación. Es práctico y no necesitas descargar una app tradicional.</p>
-  <button id="pe-instalar-app" class="pe-instalar-app" type="button">📱 AGREGAR A MI CELULAR</button>
+  <div class="pe-instalar-decoracion" aria-hidden="true"><span class="pe-instalar-estrella">✨</span><span class="pe-instalar-movil">📱</span><span class="pe-instalar-estrella">💧</span></div>
+  <h2 class="pe-instalar-titulo">¡Ten tu catálogo siempre a la mano!</h2>
+  <p class="pe-instalar-texto">Agrégalo a la pantalla de inicio de tu celular y consúltalo cuando quieras. Es práctico y no necesitas descargar una app tradicional.</p>
+  <button id="pe-instalar-app" class="pe-instalar-app" type="button"><span class="pe-instalar-app-icono" aria-hidden="true">📱</span> AGREGAR A MI CELULAR <span aria-hidden="true">✨</span></button>
   <div id="pe-instalar-ayuda" class="pe-instalar-ayuda" aria-live="polite"></div>
 </section>
 
