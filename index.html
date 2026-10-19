@@ -822,7 +822,7 @@ body{
 }
 .pe-instruccion-zoom strong{color:#ffd400;}
 .pe-instruccion-zoom span{font-size:.92em;}
-.pe-zoomable{cursor:zoom-in;touch-action:pan-y;transition:transform .2s ease,filter .2s ease;}
+.pe-zoomable{cursor:zoom-in;touch-action:manipulation;transition:filter .2s ease;}
 .pe-zoomable:hover{filter:drop-shadow(0 0 9px rgba(255,212,0,.35));}
 .pe-visor-zoom{
     position:fixed;
@@ -831,25 +831,34 @@ body{
     display:none;
     align-items:center;
     justify-content:center;
-    padding:14px;
-    background:rgba(0,0,0,.92);
+    padding:76px 12px 58px;
+    background:rgba(0,0,0,.94);
     overflow:auto;
+    overscroll-behavior:contain;
+    -webkit-overflow-scrolling:touch;
 }
 .pe-visor-zoom.activo{display:flex;}
 .pe-visor-zoom img{
     display:block;
     width:auto;
-    max-width:none;
-    max-height:none;
-    min-width:92vw;
     height:auto;
-    cursor:zoom-out;
+    max-width:100%;
+    max-height:calc(100vh - 140px);
+    max-height:calc(100dvh - 140px);
+    min-width:0;
+    object-fit:contain;
+    cursor:zoom-in;
     transform-origin:center center;
     user-select:none;
     -webkit-user-drag:none;
-    touch-action:pinch-zoom;
+    touch-action:pan-x pan-y pinch-zoom;
     border-radius:8px;
     box-shadow:0 0 28px rgba(255,212,0,.28);
+}
+body.pe-visor-abierto{overflow:hidden!important;overscroll-behavior:none;}
+@media(max-width:600px){
+  .pe-visor-zoom{padding:68px 8px 54px;}
+  .pe-visor-zoom img{max-width:100%;max-height:calc(100vh - 126px);max-height:calc(100dvh - 126px);}
 }
 .pe-visor-controles{
     position:fixed;
@@ -1616,21 +1625,37 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape"){if(modalCam
   var cerrar=document.getElementById('pe-visor-cerrar');
   var inicio=document.getElementById('pe-visor-inicio');
   if(!visor||!imagen)return;
+  var scrollAnterior=0;
+  var overflowAnterior='';
 
   function abrir(el){
     var img=el.querySelector('img');
     if(!img)return;
+    scrollAnterior=window.scrollY||window.pageYOffset||0;
+    overflowAnterior=document.body.style.overflow;
+    imagen.style.width='';
+    imagen.style.height='';
+    imagen.style.maxWidth='';
+    imagen.style.maxHeight='';
     imagen.src=img.currentSrc||img.src;
+    visor.scrollTop=0;
     visor.classList.add('activo');
     visor.setAttribute('aria-hidden','false');
+    document.body.classList.add('pe-visor-abierto');
     document.body.style.overflow='hidden';
+    if(cerrar)cerrar.focus({preventScroll:true});
   }
 
   function cerrarVisor(){
     visor.classList.remove('activo');
     visor.setAttribute('aria-hidden','true');
-    document.body.style.overflow='';
+    document.body.classList.remove('pe-visor-abierto');
+    document.body.style.overflow=overflowAnterior;
     imagen.removeAttribute('src');
+    imagen.style.transform='';
+    imagen.style.width='';
+    imagen.style.height='';
+    window.scrollTo(0,scrollAnterior);
   }
 
   function volverAlInicio(){
@@ -1645,10 +1670,16 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape"){if(modalCam
     });
   });
 
-  cerrar.addEventListener('click',cerrarVisor);
-  inicio.addEventListener('click',volverAlInicio);
+  if(cerrar)cerrar.addEventListener('click',cerrarVisor);
+  if(inicio)inicio.addEventListener('click',volverAlInicio);
   visor.addEventListener('click',function(e){if(e.target===visor)cerrarVisor();});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape')cerrarVisor();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&visor.classList.contains('activo'))cerrarVisor();});
+  window.addEventListener('orientationchange',function(){
+    if(visor.classList.contains('activo')){
+      imagen.style.maxWidth='100%';
+      imagen.style.maxHeight='calc(100dvh - 140px)';
+    }
+  });
 })();
 </script>
 
