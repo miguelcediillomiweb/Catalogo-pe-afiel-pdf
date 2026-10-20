@@ -1763,144 +1763,124 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape"){if(modalCam
   });
 </script>
 
-<!-- ===== INICIO MEJORAS HALLOWEEN ===== -->
-<style id="hw-mejoras">
+<!-- ===== MEJORAS VISUALES PEÑAFIEL: ANIMACIONES LIGERAS ===== -->
+<style id="pe-mejoras-animadas">
   :root{
-    --hw-naranja:#ff7a00;
-    --hw-morado:#a64dff;
-    --hw-azul:#2f8cff;
+    --pe-neon-naranja:#ff7a00;
+    --pe-neon-morado:#a64dff;
+    --pe-neon-azul:#2f8cff;
+    --pe-neon-dorado:#ffd400;
   }
 
-  /* FONDO OSCURO CON RESPLANDOR */
-  html, body, .pe-catalogo{
-    background:
-      radial-gradient(ellipse at 20% 0%, rgba(166,77,255,.28), transparent 55%),
-      radial-gradient(ellipse at 85% 100%, rgba(255,122,0,.18), transparent 55%),
-      linear-gradient(180deg,#07040f 0%,#0d0720 50%,#05030b 100%) !important;
-    background-attachment: fixed !important;
+  /* Resplandor decorativo sin sustituir el fondo ni el contenido existente */
+  .pe-catalogo{
+    background-image:
+      radial-gradient(ellipse at 12% 8%,rgba(166,77,255,.16),transparent 32%),
+      radial-gradient(ellipse at 88% 32%,rgba(255,122,0,.10),transparent 30%),
+      linear-gradient(180deg,rgba(0,87,184,.06),rgba(20,5,38,.10));
+    background-blend-mode:screen,screen,normal;
   }
 
-  /* ARAÑAS CON RESPLANDOR */
-  [class*="spider" i], [id*="spider" i],
-  [class*="araña" i], [id*="araña" i],
-  [class*="arana" i], [id*="arana" i]{
-    filter: drop-shadow(0 0 6px rgba(255,255,255,.9))
-            drop-shadow(0 0 14px rgba(166,77,255,.9)) !important;
+  /* Banner principal: marco iluminado y reflejo que pasa suavemente */
+  .pe-banner{
+    position:relative;
+    isolation:isolate;
+    border:1px solid rgba(255,212,0,.72);
+    box-shadow:0 8px 24px rgba(0,0,0,.32),0 0 13px rgba(255,122,0,.22);
+  }
+  .pe-banner::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    background:linear-gradient(112deg,transparent 25%,rgba(255,255,255,.24) 45%,transparent 62%);
+    transform:translateX(-120%);
+    animation:peBannerDestello 8s ease-in-out infinite;
+  }
+  @keyframes peBannerDestello{
+    0%,62%{transform:translateX(-120%)}
+    84%,100%{transform:translateX(120%)}
   }
 
-  /* NEÓN EN BANNERS */
-  .hw-neon{
-    border: 2px solid var(--hw-naranja) !important;
-    box-shadow:
-      0 0 6px var(--hw-naranja),
-      0 0 14px var(--hw-naranja),
-      0 0 28px var(--hw-morado),
-      inset 0 0 10px rgba(166,77,255,.45) !important;
-    animation: hwNeon 3s ease-in-out infinite alternate;
+  /* Reloj con halo dorado sutil */
+  .pe-reloj{
+    border:1px solid rgba(255,212,0,.38);
+    box-shadow:0 7px 22px rgba(0,0,0,.22),inset 0 0 22px rgba(166,77,255,.12);
+    animation:peRelojHalo 5s ease-in-out infinite;
   }
-  .hw-neon:nth-of-type(3n+2){ --hw-naranja: var(--hw-morado); --hw-morado: var(--hw-azul); }
-  .hw-neon:nth-of-type(3n+3){ --hw-naranja: var(--hw-azul);   --hw-morado: var(--hw-naranja); }
-  @keyframes hwNeon{
-    from{ filter: brightness(.9); }
-    to  { filter: brightness(1.25); }
+  @keyframes peRelojHalo{
+    0%,100%{box-shadow:0 7px 22px rgba(0,0,0,.22),inset 0 0 18px rgba(166,77,255,.10)}
+    50%{box-shadow:0 7px 24px rgba(0,0,0,.25),0 0 15px rgba(166,77,255,.22),inset 0 0 22px rgba(255,122,0,.10)}
   }
 
-  /* EMOJIS ANIMADOS */
-  .hw-emo{ display:inline-block; transform-origin:center bottom; will-change:transform; }
-  .hw-emo.a1{ animation: hwFlota 2.2s ease-in-out infinite; }
-  .hw-emo.a2{ animation: hwLate 1.1s ease-in-out infinite; }
-  .hw-emo.a3{ animation: hwBalanceo 1.8s ease-in-out infinite; }
-  .hw-emo.a4{ animation: hwGira 3.5s linear infinite; }
-  @keyframes hwFlota{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
-  @keyframes hwLate{ 0%,100%{transform:scale(1)} 50%{transform:scale(1.25)} }
-  @keyframes hwBalanceo{ 0%,100%{transform:rotate(-12deg)} 50%{transform:rotate(12deg)} }
-  @keyframes hwGira{ from{transform:rotate(0)} to{transform:rotate(360deg)} }
+  /* Banners y acciones: alternancia de acentos, sin arcoíris ni saturación */
+  .pe-instalar-panel,.pe-campana button,.pe-descarga-pdf a{
+    position:relative;
+    overflow:hidden;
+    isolation:isolate;
+  }
+  .pe-instalar-panel{
+    border-color:rgba(255,122,0,.72)!important;
+    box-shadow:0 8px 24px rgba(0,0,0,.26),0 0 13px rgba(166,77,255,.18);
+  }
+  .pe-campana button{
+    box-shadow:0 6px 18px rgba(0,0,0,.24),0 0 12px rgba(166,77,255,.22);
+    transition:transform .22s ease,box-shadow .22s ease,filter .22s ease;
+  }
+  .pe-campana button:hover{
+    transform:translateY(-2px);
+    filter:brightness(1.08);
+    box-shadow:0 9px 22px rgba(0,0,0,.28),0 0 18px rgba(255,122,0,.28);
+  }
+  .pe-descarga-pdf a{
+    border-color:rgba(255,255,255,.92);
+    box-shadow:0 7px 20px rgba(0,0,0,.28),0 0 13px rgba(255,122,0,.20);
+    transition:transform .22s ease,box-shadow .22s ease;
+  }
+  .pe-descarga-pdf a:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(0,0,0,.32),0 0 20px rgba(166,77,255,.28);
+  }
 
-  @media (prefers-reduced-motion: reduce){
-    .hw-neon, .hw-emo{ animation:none !important; }
+  /* Carrusel y páginas: profundidad al tocar o pasar el puntero */
+  .pe-carrusel-ventana,.pe-pagina-catalogo{
+    box-shadow:0 7px 20px rgba(0,0,0,.30),0 0 0 1px rgba(255,255,255,.14);
+    transition:box-shadow .24s ease,transform .24s ease;
+  }
+  .pe-pagina-catalogo{transform-origin:center top}
+  @media(hover:hover) and (pointer:fine){
+    .pe-carrusel-ventana:hover,.pe-pagina-catalogo:hover{
+      transform:translateY(-2px);
+      box-shadow:0 12px 28px rgba(0,0,0,.34),0 0 16px rgba(166,77,255,.16);
+    }
+    .pe-logos-finales img{
+      transition:transform .25s ease,filter .25s ease;
+    }
+    .pe-logos-finales img:hover{
+      transform:translateY(-3px) scale(1.025);
+      filter:drop-shadow(0 5px 8px rgba(0,0,0,.28));
+    }
+  }
+
+  /* Contacto más táctil, sin alterar el enlace ni su destino */
+  .pe-whatsapp a{
+    transition:transform .22s ease,box-shadow .22s ease,filter .22s ease;
+  }
+  .pe-whatsapp a:active,.pe-campana button:active,.pe-descarga-pdf a:active{
+    transform:scale(.985);
+    filter:brightness(1.04);
+  }
+
+  /* Animaciones respetuosas con accesibilidad y ahorro de batería */
+  @media(prefers-reduced-motion:reduce){
+    .pe-banner::after,.pe-reloj,.pe-campana button,.pe-descarga-pdf a,
+    .pe-carrusel-ventana,.pe-pagina-catalogo,.pe-whatsapp a,.pe-logos-finales img{
+      animation:none!important;
+      transition:none!important;
+      transform:none!important;
+    }
   }
 </style>
-
-<script id="hw-mejoras-js">
-(function(){
-  function marcarBanners(){
-    var ancho = window.innerWidth;
-    document.querySelectorAll('body *').forEach(function(el){
-      if (el.classList.contains('hw-neon') || el.classList.contains('hw-no')) return;
-      if (/^(SCRIPT|STYLE|IMG|VIDEO|CANVAS|A|BUTTON|SPAN|P|H1|H2|H3|H4|LI|UL|svg|path)$/i.test(el.tagName)) return;
-      var cs = getComputedStyle(el);
-      var r = parseFloat(cs.borderTopLeftRadius) || 0;
-      var rect = el.getBoundingClientRect();
-      var fondo = cs.backgroundColor !== 'rgba(0, 0, 0, 0)' || cs.backgroundImage !== 'none';
-      if (cs.position === 'fixed' || cs.position === 'absolute') {
-        if (rect.width > ancho*0.9 && rect.height > window.innerHeight*0.8) return;
-      }
-      if (r >= 12 && rect.width >= ancho*0.6 && rect.height >= 50 && rect.height < window.innerHeight*0.8 && fondo){
-        el.classList.add('hw-neon');
-      }
-    });
-  }
-
-  var reEmoji = /(\p{Extended_Pictographic}(?:\uFE0F|\u200D\p{Extended_Pictographic})*)/gu;
-  var animaciones = ['a1','a2','a3','a1','a2','a3','a4'];
-  var contador = 0;
-
-  function claseParaEmoji(e){
-    if (/[☀🌞⚙🌀💫⭐✨]/u.test(e)) return 'a4';
-    if (/[❤💖💗💓🎃💧]/u.test(e)) return 'a2';
-    if (/[🕷🕸👻🦇💀🧟]/u.test(e)) return 'a3';
-    return animaciones[contador++ % animaciones.length];
-  }
-
-  function animarEmojis(raiz){
-    var walker = document.createTreeWalker(raiz, NodeFilter.SHOW_TEXT, {
-      acceptNode: function(n){
-        var p = n.parentNode;
-        if (!p) return NodeFilter.FILTER_REJECT;
-        if (/^(SCRIPT|STYLE|TEXTAREA|INPUT|TITLE|NOSCRIPT)$/i.test(p.tagName)) return NodeFilter.FILTER_REJECT;
-        if (p.classList && p.classList.contains('hw-emo')) return NodeFilter.FILTER_REJECT;
-        reEmoji.lastIndex = 0;
-        return reEmoji.test(n.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
-      }
-    });
-    var nodos = [];
-    while (walker.nextNode()) nodos.push(walker.currentNode);
-    nodos.forEach(function(n){
-      var partes = n.nodeValue.split(reEmoji);
-      var frag = document.createDocumentFragment();
-      partes.forEach(function(t, i){
-        if (i % 2 === 1){
-          var s = document.createElement('span');
-          s.className = 'hw-emo ' + claseParaEmoji(t);
-          s.textContent = t;
-          frag.appendChild(s);
-        } else if (t){
-          frag.appendChild(document.createTextNode(t));
-        }
-      });
-      n.parentNode.replaceChild(frag, n);
-    });
-  }
-
-  function iniciar(){
-    animarEmojis(document.body);
-    marcarBanners();
-    var pendiente = false;
-    new MutationObserver(function(){
-      if (pendiente) return;
-      pendiente = true;
-      requestAnimationFrame(function(){
-        pendiente = false;
-        animarEmojis(document.body);
-      });
-    }).observe(document.body, {childList:true, subtree:true, characterData:true});
-    window.addEventListener('load', function(){ setTimeout(marcarBanners, 800); });
-  }
-
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', iniciar);
-  else iniciar();
-})();
-</script>
-<!-- ===== FIN MEJORAS HALLOWEEN ===== -->
+<!-- ===== FIN MEJORAS VISUALES PEÑAFIEL ===== -->
 </body>
 </html>
