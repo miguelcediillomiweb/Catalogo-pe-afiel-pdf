@@ -978,6 +978,17 @@ body.pe-visor-abierto{overflow:hidden!important;overscroll-behavior:none;}
 .pe-instalar-listo{margin:8px auto 0;padding:11px 26px;border:2px solid #fff;border-radius:999px;background:#25D366;color:#fff;font-size:16px;font-weight:900;cursor:pointer;animation:peBotonPulso 2.4s ease-in-out infinite}
 @media(prefers-reduced-motion:reduce){.pe-instalar-paso-icono,.pe-instalar-listo{animation:none!important}}
 </style>
+<style id="acabado-luminoso-penafiel">
+/* Brillo de marca visible en teléfono, sin tocar carrusel ni navegación */
+.pe-banner{border:1px solid rgba(255,230,90,.85)!important;box-shadow:0 12px 32px rgba(0,0,0,.28),0 0 22px rgba(255,212,0,.45)!important;animation:peBannerGlow 3s ease-in-out infinite}
+.pe-titulo{filter:drop-shadow(0 0 10px rgba(255,212,0,.48));text-shadow:0 0 18px rgba(255,255,255,.28)}
+.pe-instalar-panel{box-shadow:0 12px 28px rgba(0,0,0,.28),0 0 22px rgba(255,212,0,.22)!important}
+.pe-boton-carrusel{border:1px solid rgba(255,230,100,.85)!important;box-shadow:0 0 14px rgba(255,212,0,.42),0 6px 16px rgba(0,0,0,.28)!important;transition:transform .2s,filter .2s,box-shadow .2s}
+.pe-whatsapp a,.pe-descarga-pdf a,.pe-campana button{box-shadow:0 8px 22px rgba(0,0,0,.25),0 0 18px rgba(255,212,0,.2)!important;transition:transform .2s,filter .2s,box-shadow .2s}
+.pe-whatsapp a:active,.pe-descarga-pdf a:active,.pe-campana button:active,.pe-boton-carrusel:active{transform:scale(.97);filter:brightness(1.16)}
+@keyframes peBannerGlow{50%{box-shadow:0 12px 32px rgba(0,0,0,.28),0 0 36px rgba(255,212,0,.68)}}
+@media(prefers-reduced-motion:reduce){.pe-banner{animation:none!important}.pe-boton-carrusel,.pe-whatsapp a,.pe-descarga-pdf a,.pe-campana button{transition:none!important}}
+</style>
 </head>
 
 <body>
