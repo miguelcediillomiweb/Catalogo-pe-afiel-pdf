@@ -1893,5 +1893,97 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape"){if(modalCam
   }
 </style>
 <!-- ===== FIN MEJORAS VISUALES PEÑAFIEL ===== -->
+
+<!-- ===== TARJETAS CON PROFUNDIDAD Y RESPUESTA TÁCTIL ===== -->
+<style id="pe-tarjetas-profundidad-tactil">
+  .pe-pagina-catalogo{
+    position:relative;
+    isolation:isolate;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,.9);
+    box-shadow:
+      0 3px 0 rgba(8,24,65,.5),
+      0 9px 0 rgba(5,20,55,.22),
+      0 15px 28px rgba(0,0,0,.38),
+      0 0 0 1px rgba(255,212,0,.35);
+    transform:perspective(900px) translateZ(0);
+    transition:transform .22s cubic-bezier(.2,.8,.2,1),box-shadow .22s ease,filter .22s ease;
+    animation:peTarjetaEntrada .65s cubic-bezier(.2,.8,.2,1) both;
+  }
+  .pe-pagina-catalogo:nth-child(2){animation-delay:.09s}
+  .pe-pagina-catalogo::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:inherit;
+    pointer-events:none;
+    z-index:2;
+    background:linear-gradient(112deg,transparent 0%,rgba(255,255,255,0) 36%,rgba(255,255,255,.34) 48%,rgba(255,255,255,0) 60%,transparent 100%);
+    background-size:220% 100%;
+    background-position:130% 0;
+    opacity:.75;
+    transition:background-position .65s ease,opacity .25s ease;
+  }
+  .pe-pagina-catalogo:active,
+  .pe-pagina-catalogo.pe-tocada{
+    transform:perspective(900px) translateY(4px) scale(.985);
+    box-shadow:0 1px 0 rgba(8,24,65,.6),0 4px 0 rgba(5,20,55,.25),0 7px 15px rgba(0,0,0,.34),0 0 22px rgba(255,212,0,.58);
+    filter:brightness(1.045) saturate(1.04);
+  }
+  .pe-pagina-catalogo:active::after,
+  .pe-pagina-catalogo.pe-tocada::after{
+    background-position:-30% 0;
+    opacity:1;
+  }
+  .pe-carrusel-ventana{
+    border:2px solid rgba(255,212,0,.72);
+    box-shadow:0 4px 0 rgba(5,20,55,.35),0 12px 25px rgba(0,0,0,.38),0 0 15px rgba(255,212,0,.16);
+    transition:box-shadow .22s ease,transform .22s ease;
+  }
+  .pe-boton-carrusel,.pe-instalar-app,.pe-instalar-listo,.pe-campana button,
+  .pe-descarga-pdf a,.pe-whatsapp a{
+    -webkit-tap-highlight-color:transparent;
+    touch-action:manipulation;
+    transition:transform .16s ease,filter .16s ease,box-shadow .16s ease;
+  }
+  .pe-boton-carrusel{
+    box-shadow:0 4px 0 #c5a400,0 7px 12px rgba(0,0,0,.28),0 0 12px rgba(255,212,0,.32);
+    border:1px solid rgba(255,212,0,.8);
+  }
+  .pe-boton-carrusel:active,.pe-instalar-app:active,.pe-instalar-listo:active,
+  .pe-campana button:active,.pe-descarga-pdf a:active,.pe-whatsapp a:active{
+    transform:translateY(3px) scale(.975);
+    filter:brightness(1.12);
+    box-shadow:0 1px 0 rgba(0,0,0,.35),0 0 20px rgba(255,212,0,.48);
+  }
+  .pe-instalar-panel,.pe-reloj,.pe-carrusel-ventana{
+    animation:peHaloTarjetas 4.8s ease-in-out infinite;
+  }
+  @keyframes peTarjetaEntrada{
+    from{opacity:.55;transform:perspective(900px) translateY(14px) scale(.985)}
+    to{opacity:1;transform:perspective(900px) translateY(0) scale(1)}
+  }
+  @keyframes peHaloTarjetas{
+    0%,100%{filter:brightness(1)}
+    50%{filter:brightness(1.055)}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .pe-pagina-catalogo,.pe-instalar-panel,.pe-reloj,.pe-carrusel-ventana{animation:none!important}
+    .pe-pagina-catalogo,.pe-carrusel-ventana,.pe-boton-carrusel,.pe-instalar-app,.pe-instalar-listo,.pe-campana button,.pe-descarga-pdf a,.pe-whatsapp a{transition:none!important}
+  }
+</style>
+<script>
+(function(){
+  document.querySelectorAll('.pe-pagina-catalogo,.pe-carrusel-ventana,.pe-boton-carrusel,.pe-instalar-app,.pe-instalar-listo,.pe-campana button,.pe-descarga-pdf a,.pe-whatsapp a').forEach(function(el){
+    el.addEventListener('pointerdown',function(){
+      el.classList.add('pe-tocada');
+      window.setTimeout(function(){el.classList.remove('pe-tocada')},420);
+    },{passive:true});
+    el.addEventListener('pointercancel',function(){el.classList.remove('pe-tocada')},{passive:true});
+  });
+})();
+</script>
+<!-- ===== FIN TARJETAS CON PROFUNDIDAD Y RESPUESTA TÁCTIL ===== -->
+
 </body>
 </html>
