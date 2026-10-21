@@ -1,0 +1,61 @@
+/* Efectos Catálogo Peñafiel
+   Se cargan ENCIMA del diseño actual: no reemplazan nada del index.html.
+   Para quitarlos basta con borrar las dos líneas que los llaman. */
+
+@property --fxp-ang{syntax:"<angle>";initial-value:0deg;inherits:false}
+
+/* ===== Capa de fondo: burbujas y luces ===== */
+.fxp-fondo{position:fixed;inset:0;z-index:2;overflow:hidden;pointer-events:none}
+.fxp-luz{position:absolute;width:75vmax;height:75vmax;border-radius:50%;opacity:.26;will-change:transform}
+.fxp-luz.l1{left:-30vmax;top:-18vmax;background:radial-gradient(circle,#ffd400 0,transparent 62%);animation:fxpDeriva 22s ease-in-out infinite alternate}
+.fxp-luz.l2{right:-35vmax;bottom:-25vmax;background:radial-gradient(circle,#8a4dff 0,transparent 62%);animation:fxpDeriva 28s ease-in-out infinite alternate-reverse}
+@keyframes fxpDeriva{to{transform:translate3d(10vmax,8vmax,0) scale(1.12)}}
+.fxp-burbuja{position:absolute;bottom:-60px;border-radius:50%;opacity:0;will-change:transform,opacity;background:radial-gradient(circle at 30% 28%,rgba(255,255,255,.9) 0 8%,rgba(255,255,255,.18) 30%,rgba(120,200,255,.10) 62%,rgba(255,255,255,.24) 100%);border:1px solid rgba(255,255,255,.38);animation:fxpSube linear infinite}
+@keyframes fxpSube{0%{opacity:0;transform:translate3d(0,0,0) scale(.7)}10%{opacity:.9}50%{transform:translate3d(var(--fxp-dx,18px),-55vh,0) scale(1)}100%{opacity:0;transform:translate3d(calc(var(--fxp-dx,18px) * -1),-115vh,0) scale(1.1)}}
+
+/* ===== Banner: luz que recorre el borde + brillo que lo barre ===== */
+.pe-banner{position:relative}
+.pe-banner:before{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;z-index:3;pointer-events:none;background:linear-gradient(100deg,transparent,rgba(255,255,255,.28),transparent);transform:skewX(-20deg);animation:fxpBarrido 6s ease-in-out infinite}
+.pe-banner:after{content:"";position:absolute;inset:0;padding:2px;border-radius:inherit;pointer-events:none;z-index:4;background:conic-gradient(from var(--fxp-ang),transparent 0 70%,#ffd400 84%,#fff 90%,transparent 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:fxpGira 4.5s linear infinite}
+@keyframes fxpGira{to{--fxp-ang:360deg}}
+@keyframes fxpBarrido{0%,55%{transform:skewX(-20deg) translateX(0)}100%{transform:skewX(-20deg) translateX(520%)}}
+
+/* ===== Reloj y saludo ===== */
+.pe-reloj{border:1px solid rgba(255,212,0,.4);animation:fxpReloj 3.6s ease-in-out infinite}
+@keyframes fxpReloj{0%,100%{box-shadow:0 0 0 rgba(255,212,0,0)}50%{box-shadow:0 0 18px rgba(255,212,0,.35)}}
+#pe-hora{text-shadow:0 0 14px rgba(255,212,0,.6)}
+#pe-saludo{text-shadow:0 0 16px rgba(255,255,255,.35)}
+
+/* ===== Carrusel ===== */
+.pe-carrusel-ventana{box-shadow:0 5px 15px rgba(0,0,0,.3),0 0 18px rgba(255,212,0,.28)}
+.pe-boton-carrusel{box-shadow:0 0 12px rgba(255,212,0,.5);animation:fxpBoton 2.2s ease-in-out infinite}
+@keyframes fxpBoton{50%{transform:scale(1.1)}}
+
+/* ===== Títulos ===== */
+.pe-titulo{text-shadow:0 0 18px rgba(255,212,0,.5),0 2px 6px rgba(0,0,0,.35)}
+.pe-actualizado{text-shadow:0 0 10px rgba(255,255,255,.3)}
+
+/* ===== Páginas del catálogo: entran suavemente al verlas ===== */
+.pe-pagina-catalogo{border:1px solid rgba(255,255,255,.35)}
+.fxp-anim .pe-pagina-catalogo{transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+.fxp-anim .pe-pagina-catalogo:not(.fxp-visto){opacity:0;transform:translateY(26px)}
+
+/* ===== Botón del PDF ===== */
+.pe-descarga-pdf a{position:relative;overflow:hidden;animation:brillo 3s linear infinite,fxpPulso 2.4s ease-in-out infinite}
+.pe-descarga-pdf a:before{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;pointer-events:none;background:linear-gradient(100deg,transparent,rgba(255,255,255,.4),transparent);transform:skewX(-20deg);animation:fxpBarrido 4s ease-in-out infinite}
+@keyframes fxpPulso{0%,100%{box-shadow:0 5px 15px rgba(0,0,0,.35),0 0 0 0 rgba(255,255,255,.55)}50%{box-shadow:0 5px 15px rgba(0,0,0,.35),0 0 0 10px rgba(255,255,255,0)}}
+
+/* ===== WhatsApp ===== */
+.pe-whatsapp a{animation:fxpWa 2.4s ease-out infinite}
+@keyframes fxpWa{0%{box-shadow:0 5px 14px rgba(0,0,0,.3),0 0 0 0 rgba(37,211,102,.6)}70%,100%{box-shadow:0 5px 14px rgba(0,0,0,.3),0 0 0 16px rgba(37,211,102,0)}}
+.pe-whatsapp img{animation:fxpIcono 2.2s ease-in-out infinite}
+@keyframes fxpIcono{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg) scale(1.06)}}
+
+/* ===== Logos de marcas: luz neón del color de cada marca ===== */
+.pe-logos-finales img{filter:drop-shadow(0 0 5px var(--marca,#ffd400)) drop-shadow(0 0 14px var(--marca,#ffd400));animation:fxpRespira 3.2s ease-in-out infinite}
+.pe-logos-finales img:nth-child(2n){animation-delay:.6s}
+.pe-logos-finales img:nth-child(3n){animation-delay:1.2s}
+@keyframes fxpRespira{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+
+/* ===== Emojis al tocar botones ===== */
+.fxp-chispa{position:fixed;z-index:9990;pointer-events:none;font-size:1.3rem;will-change:transform,opacity}
