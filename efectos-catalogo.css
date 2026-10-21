@@ -1,61 +1,173 @@
-/* Efectos Catálogo Peñafiel
+/* Efectos Catálogo Peñafiel — VERSIÓN 2
    Se cargan ENCIMA del diseño actual: no reemplazan nada del index.html.
    Para quitarlos basta con borrar las dos líneas que los llaman. */
 
 @property --fxp-ang{syntax:"<angle>";initial-value:0deg;inherits:false}
 
-/* ===== Capa de fondo: burbujas y luces ===== */
-.fxp-fondo{position:fixed;inset:0;z-index:2;overflow:hidden;pointer-events:none}
-.fxp-luz{position:absolute;width:75vmax;height:75vmax;border-radius:50%;opacity:.26;will-change:transform}
-.fxp-luz.l1{left:-30vmax;top:-18vmax;background:radial-gradient(circle,#ffd400 0,transparent 62%);animation:fxpDeriva 22s ease-in-out infinite alternate}
-.fxp-luz.l2{right:-35vmax;bottom:-25vmax;background:radial-gradient(circle,#8a4dff 0,transparent 62%);animation:fxpDeriva 28s ease-in-out infinite alternate-reverse}
-@keyframes fxpDeriva{to{transform:translate3d(10vmax,8vmax,0) scale(1.12)}}
-.fxp-burbuja{position:absolute;bottom:-60px;border-radius:50%;opacity:0;will-change:transform,opacity;background:radial-gradient(circle at 30% 28%,rgba(255,255,255,.9) 0 8%,rgba(255,255,255,.18) 30%,rgba(120,200,255,.10) 62%,rgba(255,255,255,.24) 100%);border:1px solid rgba(255,255,255,.38);animation:fxpSube linear infinite}
-@keyframes fxpSube{0%{opacity:0;transform:translate3d(0,0,0) scale(.7)}10%{opacity:.9}50%{transform:translate3d(var(--fxp-dx,18px),-55vh,0) scale(1)}100%{opacity:0;transform:translate3d(calc(var(--fxp-dx,18px) * -1),-115vh,0) scale(1.1)}}
+/* ===== Barra de avance neón (arriba) ===== */
+.fxp-progreso{position:fixed;top:0;left:0;right:0;height:5px;z-index:9996;pointer-events:none}
+.fxp-progreso i{display:block;height:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,#ffd400,#fff,#38e1ff,#b66bff);box-shadow:0 0 12px #ffd400,0 0 22px #38e1ff}
 
-/* ===== Banner: luz que recorre el borde + brillo que lo barre ===== */
-.pe-banner{position:relative}
-.pe-banner:before{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;z-index:3;pointer-events:none;background:linear-gradient(100deg,transparent,rgba(255,255,255,.28),transparent);transform:skewX(-20deg);animation:fxpBarrido 6s ease-in-out infinite}
-.pe-banner:after{content:"";position:absolute;inset:0;padding:2px;border-radius:inherit;pointer-events:none;z-index:4;background:conic-gradient(from var(--fxp-ang),transparent 0 70%,#ffd400 84%,#fff 90%,transparent 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:fxpGira 4.5s linear infinite}
+/* ===== Capas de burbujas y luces ===== */
+.fxp-fondo,.fxp-frente{position:fixed;inset:0;overflow:hidden;pointer-events:none}
+.fxp-fondo{z-index:2}
+.fxp-frente{z-index:20}
+
+.fxp-luz{position:absolute;width:80vmax;height:80vmax;border-radius:50%;opacity:.34;will-change:transform}
+.fxp-luz.l1{left:-30vmax;top:-18vmax;background:radial-gradient(circle,#ffd400 0,transparent 62%);animation:fxpDeriva 20s ease-in-out infinite alternate}
+.fxp-luz.l2{right:-35vmax;bottom:-25vmax;background:radial-gradient(circle,#8a4dff 0,transparent 62%);animation:fxpDeriva 26s ease-in-out infinite alternate-reverse}
+.fxp-luz.l3{left:10vmax;top:35vh;background:radial-gradient(circle,#38e1ff 0,transparent 62%);opacity:.22;animation:fxpDeriva 32s ease-in-out infinite alternate}
+@keyframes fxpDeriva{to{transform:translate3d(10vmax,8vmax,0) scale(1.14)}}
+
+.fxp-burbuja{
+  position:absolute;bottom:-80px;border-radius:50%;opacity:0;will-change:transform,opacity;
+  background:radial-gradient(circle at 30% 26%,rgba(255,255,255,.95) 0 7%,rgba(255,255,255,.22) 28%,rgba(120,210,255,.12) 62%,rgba(255,255,255,.3) 100%);
+  border:1.5px solid rgba(255,255,255,.6);
+  box-shadow:inset 0 0 12px rgba(255,255,255,.35),0 0 12px rgba(130,210,255,.5);
+  animation:fxpSube linear infinite
+}
+.fxp-frente .fxp-burbuja{border-width:1px}
+@keyframes fxpSube{
+  0%{opacity:0;transform:translate3d(0,0,0) scale(.6)}
+  8%{opacity:.95}
+  25%{transform:translate3d(var(--fxp-dx,18px),-28vh,0) scale(.95)}
+  50%{transform:translate3d(calc(var(--fxp-dx,18px) * -.6),-56vh,0) scale(1)}
+  75%{transform:translate3d(calc(var(--fxp-dx,18px) * .8),-84vh,0) scale(1.05)}
+  100%{opacity:0;transform:translate3d(0,-118vh,0) scale(1.12)}
+}
+
+/* ===== Título de sección con línea neón ===== */
+.pe-titulo{text-shadow:0 0 18px rgba(255,212,0,.6),0 2px 6px rgba(0,0,0,.35)}
+.pe-titulo:after{
+  content:"";display:block;width:min(240px,62%);height:4px;margin:9px auto 0;border-radius:4px;
+  background:linear-gradient(90deg,transparent,#ffd400,#38e1ff,#b66bff,transparent);background-size:200% 100%;
+  box-shadow:0 0 12px #ffd400;animation:fxpLinea 3s linear infinite
+}
+@keyframes fxpLinea{to{background-position:200% 0}}
+.pe-actualizado{text-shadow:0 0 10px rgba(255,255,255,.35)}
+
+/* ===== Banner: borde neón que gira + brillo que lo barre ===== */
+.pe-banner{
+  position:relative;border:3px solid transparent;border-radius:14px;
+  background:
+    linear-gradient(#0a2a70,#0a2a70) padding-box,
+    conic-gradient(from var(--fxp-ang),rgba(255,212,0,.3) 0,#ffd400 12%,#fff 18%,#ffd400 24%,rgba(255,212,0,.3) 40%,rgba(56,225,255,.3) 60%,#38e1ff 72%,rgba(56,225,255,.3) 86%,rgba(255,212,0,.3) 100%) border-box;
+  box-shadow:0 5px 18px rgba(0,0,0,.35),0 0 16px rgba(255,212,0,.55),0 0 34px rgba(255,212,0,.25);
+  animation:fxpGira 4s linear infinite,fxpFlota 5s ease-in-out infinite,fxpGlowOro 2.6s ease-in-out infinite
+}
+.pe-banner img{border-radius:10px}
+.pe-banner:before{
+  content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;z-index:3;pointer-events:none;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.32),transparent);
+  transform:skewX(-20deg);animation:fxpBarrido 5s ease-in-out infinite
+}
 @keyframes fxpGira{to{--fxp-ang:360deg}}
-@keyframes fxpBarrido{0%,55%{transform:skewX(-20deg) translateX(0)}100%{transform:skewX(-20deg) translateX(520%)}}
+@keyframes fxpFlota{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@keyframes fxpGlowOro{
+  0%,100%{box-shadow:0 5px 18px rgba(0,0,0,.35),0 0 14px rgba(255,212,0,.5),0 0 30px rgba(255,212,0,.2)}
+  50%{box-shadow:0 5px 18px rgba(0,0,0,.35),0 0 24px rgba(255,212,0,.9),0 0 52px rgba(255,212,0,.4)}
+}
+@keyframes fxpBarrido{
+  0%,55%{transform:skewX(-20deg) translateX(0)}
+  100%{transform:skewX(-20deg) translateX(520%)}
+}
 
-/* ===== Reloj y saludo ===== */
-.pe-reloj{border:1px solid rgba(255,212,0,.4);animation:fxpReloj 3.6s ease-in-out infinite}
-@keyframes fxpReloj{0%,100%{box-shadow:0 0 0 rgba(255,212,0,0)}50%{box-shadow:0 0 18px rgba(255,212,0,.35)}}
-#pe-hora{text-shadow:0 0 14px rgba(255,212,0,.6)}
-#pe-saludo{text-shadow:0 0 16px rgba(255,255,255,.35)}
+/* ===== Reloj: borde neón cian ===== */
+.pe-reloj{
+  border:3px solid transparent;
+  background:
+    linear-gradient(#0a1c5a,#0a1c5a) padding-box,
+    conic-gradient(from var(--fxp-ang),rgba(56,225,255,.3) 0,#38e1ff 14%,#fff 20%,#38e1ff 26%,rgba(56,225,255,.3) 45%,rgba(182,107,255,.3) 65%,#b66bff 78%,rgba(182,107,255,.3) 100%) border-box;
+  box-shadow:0 0 14px rgba(56,225,255,.55),0 0 30px rgba(56,225,255,.22);
+  animation:fxpGira 5s linear infinite reverse,fxpGlowCian 3s ease-in-out infinite
+}
+@keyframes fxpGlowCian{
+  0%,100%{box-shadow:0 0 12px rgba(56,225,255,.5),0 0 26px rgba(56,225,255,.2)}
+  50%{box-shadow:0 0 22px rgba(56,225,255,.9),0 0 46px rgba(56,225,255,.4)}
+}
+#pe-hora{text-shadow:0 0 14px rgba(255,212,0,.7),0 0 26px rgba(255,212,0,.35)}
+#pe-saludo{text-shadow:0 0 16px rgba(255,255,255,.4)}
 
-/* ===== Carrusel ===== */
-.pe-carrusel-ventana{box-shadow:0 5px 15px rgba(0,0,0,.3),0 0 18px rgba(255,212,0,.28)}
-.pe-boton-carrusel{box-shadow:0 0 12px rgba(255,212,0,.5);animation:fxpBoton 2.2s ease-in-out infinite}
-@keyframes fxpBoton{50%{transform:scale(1.1)}}
+/* ===== Carrusel: borde neón violeta ===== */
+.pe-carrusel-ventana{
+  border:3px solid transparent;
+  background:
+    linear-gradient(#fff,#fff) padding-box,
+    conic-gradient(from var(--fxp-ang),rgba(182,107,255,.35) 0,#b66bff 14%,#fff 20%,#ff5fa8 28%,rgba(182,107,255,.35) 48%,rgba(255,212,0,.35) 68%,#ffd400 80%,rgba(182,107,255,.35) 100%) border-box;
+  box-shadow:0 0 14px rgba(182,107,255,.6),0 0 30px rgba(182,107,255,.25);
+  animation:fxpGira 6s linear infinite
+}
+.pe-boton-carrusel{box-shadow:0 0 14px rgba(255,212,0,.7);animation:fxpBoton 2s ease-in-out infinite}
+@keyframes fxpBoton{50%{transform:scale(1.14)}}
 
-/* ===== Títulos ===== */
-.pe-titulo{text-shadow:0 0 18px rgba(255,212,0,.5),0 2px 6px rgba(0,0,0,.35)}
-.pe-actualizado{text-shadow:0 0 10px rgba(255,255,255,.3)}
-
-/* ===== Páginas del catálogo: entran suavemente al verlas ===== */
-.pe-pagina-catalogo{border:1px solid rgba(255,255,255,.35)}
+/* ===== Páginas del catálogo: borde neón de colores + entrada suave ===== */
+.pe-pagina-catalogo{
+  border:3px solid transparent;
+  background:linear-gradient(#fff,#fff) padding-box,linear-gradient(135deg,#ffd400,#38e1ff,#b66bff,#ffd400) border-box;
+  box-shadow:0 5px 16px rgba(0,0,0,.3),0 0 16px rgba(255,212,0,.45)
+}
+.pe-pagina-catalogo:nth-child(3n+2){
+  background:linear-gradient(#fff,#fff) padding-box,linear-gradient(135deg,#38e1ff,#b66bff,#ff5fa8,#38e1ff) border-box;
+  box-shadow:0 5px 16px rgba(0,0,0,.3),0 0 16px rgba(56,225,255,.5)
+}
+.pe-pagina-catalogo:nth-child(3n){
+  background:linear-gradient(#fff,#fff) padding-box,linear-gradient(135deg,#b66bff,#ff5fa8,#ffd400,#b66bff) border-box;
+  box-shadow:0 5px 16px rgba(0,0,0,.3),0 0 16px rgba(182,107,255,.5)
+}
 .fxp-anim .pe-pagina-catalogo{transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
-.fxp-anim .pe-pagina-catalogo:not(.fxp-visto){opacity:0;transform:translateY(26px)}
+.fxp-anim .pe-pagina-catalogo:not(.fxp-visto){opacity:0;transform:translateY(30px) scale(.98)}
 
-/* ===== Botón del PDF ===== */
-.pe-descarga-pdf a{position:relative;overflow:hidden;animation:brillo 3s linear infinite,fxpPulso 2.4s ease-in-out infinite}
-.pe-descarga-pdf a:before{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;pointer-events:none;background:linear-gradient(100deg,transparent,rgba(255,255,255,.4),transparent);transform:skewX(-20deg);animation:fxpBarrido 4s ease-in-out infinite}
-@keyframes fxpPulso{0%,100%{box-shadow:0 5px 15px rgba(0,0,0,.35),0 0 0 0 rgba(255,255,255,.55)}50%{box-shadow:0 5px 15px rgba(0,0,0,.35),0 0 0 10px rgba(255,255,255,0)}}
+/* ===== Botón del PDF: brillo + neón que cambia de color ===== */
+.pe-descarga-pdf a{position:relative;overflow:hidden;animation:brillo 3s linear infinite,fxpNeonPdf 4s ease-in-out infinite}
+.pe-descarga-pdf a:before{
+  content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;pointer-events:none;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);
+  transform:skewX(-20deg);animation:fxpBarrido 3.6s ease-in-out infinite
+}
+@keyframes fxpNeonPdf{
+  0%,100%{box-shadow:0 5px 15px rgba(0,0,0,.35),0 0 14px #ffd400,0 0 30px rgba(255,212,0,.5)}
+  33%{box-shadow:0 5px 15px rgba(0,0,0,.35),0 0 14px #38e1ff,0 0 30px rgba(56,225,255,.5)}
+  66%{box-shadow:0 5px 15px rgba(0,0,0,.35),0 0 14px #b66bff,0 0 30px rgba(182,107,255,.5)}
+}
 
-/* ===== WhatsApp ===== */
-.pe-whatsapp a{animation:fxpWa 2.4s ease-out infinite}
-@keyframes fxpWa{0%{box-shadow:0 5px 14px rgba(0,0,0,.3),0 0 0 0 rgba(37,211,102,.6)}70%,100%{box-shadow:0 5px 14px rgba(0,0,0,.3),0 0 0 16px rgba(37,211,102,0)}}
+/* ===== WhatsApp: borde neón verde + ondas ===== */
+.pe-whatsapp a{border:3px solid #9dffc3;animation:fxpWa 2.4s ease-out infinite}
+@keyframes fxpWa{
+  0%{box-shadow:0 5px 14px rgba(0,0,0,.3),0 0 14px rgba(37,211,102,.8),0 0 0 0 rgba(37,211,102,.6)}
+  70%,100%{box-shadow:0 5px 14px rgba(0,0,0,.3),0 0 14px rgba(37,211,102,.8),0 0 0 18px rgba(37,211,102,0)}
+}
 .pe-whatsapp img{animation:fxpIcono 2.2s ease-in-out infinite}
-@keyframes fxpIcono{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg) scale(1.06)}}
+@keyframes fxpIcono{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg) scale(1.08)}}
 
-/* ===== Logos de marcas: luz neón del color de cada marca ===== */
-.pe-logos-finales img{filter:drop-shadow(0 0 5px var(--marca,#ffd400)) drop-shadow(0 0 14px var(--marca,#ffd400));animation:fxpRespira 3.2s ease-in-out infinite}
-.pe-logos-finales img:nth-child(2n){animation-delay:.6s}
-.pe-logos-finales img:nth-child(3n){animation-delay:1.2s}
-@keyframes fxpRespira{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+/* ===== Logos de marcas: aro neón giratorio del color de cada marca =====
+   El color lo calcula efectos-catalogo.js a partir de cada logo (--marca). */
+.fxp-aro{
+  display:flex;align-items:center;justify-content:center;flex:0 0 auto;
+  width:clamp(96px,27vw,132px);height:clamp(96px,27vw,132px);padding:16px;border-radius:50%;
+  border:3px solid transparent;
+  background:
+    radial-gradient(circle at 35% 30%,#1f5fc9,#0a2a70) padding-box,
+    conic-gradient(from var(--fxp-ang),var(--marca,#ffd400),transparent 25%,var(--marca,#ffd400) 50%,transparent 75%,var(--marca,#ffd400)) border-box;
+  box-shadow:0 0 16px var(--marca,#ffd400);
+  animation:fxpGira 5s linear infinite,fxpAroLuz 2.8s ease-in-out infinite
+}
+.fxp-aro:nth-child(2n){animation-delay:-1.2s,-.6s}
+.fxp-aro:nth-child(3n){animation-delay:-2.4s,-1.2s}
+@keyframes fxpAroLuz{0%,100%{box-shadow:0 0 10px var(--marca,#ffd400)}50%{box-shadow:0 0 26px var(--marca,#ffd400),0 0 44px var(--marca,#ffd400)}}
+.pe-logos-finales .fxp-aro img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;filter:none;animation:none}
+.pe-logos-finales img{filter:drop-shadow(0 0 5px var(--marca,#ffd400)) drop-shadow(0 0 14px var(--marca,#ffd400))}
+.pe-logos-finales .fxp-aro img{filter:none}
+
+/* ===== Emojis con movimiento (el script los envuelve solos) ===== */
+.fxp-emoji{display:inline-block;transform-origin:50% 80%;animation:fxpEmojiA 1.8s ease-in-out infinite}
+.fxp-emoji.b{animation-name:fxpEmojiB;animation-duration:1.4s}
+.fxp-emoji.c{animation-name:fxpEmojiC;animation-duration:1.2s}
+@keyframes fxpEmojiA{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-6px) rotate(6deg) scale(1.1)}}
+@keyframes fxpEmojiB{0%,100%{transform:rotate(-14deg)}50%{transform:rotate(14deg) scale(1.12)}}
+@keyframes fxpEmojiC{0%,100%{transform:scale(1)}50%{transform:scale(1.28)}}
+
+/* Decoraciones de octubre: por si su movimiento no estaba definido */
+@keyframes peDecoFlota{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-12px) rotate(7deg)}}
 
 /* ===== Emojis al tocar botones ===== */
-.fxp-chispa{position:fixed;z-index:9990;pointer-events:none;font-size:1.3rem;will-change:transform,opacity}
+.fxp-chispa{position:fixed;z-index:9990;pointer-events:none;font-size:1.4rem;will-change:transform,opacity}
