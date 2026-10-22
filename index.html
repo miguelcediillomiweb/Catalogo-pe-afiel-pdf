@@ -541,19 +541,15 @@ body{
 .pe-loading-bienvenidos{margin:0;font-size:clamp(34px,8vw,70px);font-weight:900;line-height:1.05;text-shadow:0 4px 14px rgba(0,0,0,.35)}
 .pe-loading-titulo{margin:10px 0 28px;font-size:clamp(24px,5.5vw,42px);font-weight:900;text-shadow:0 3px 10px rgba(0,0,0,.3)}
 .pe-loading-halloween-frase{margin:16px auto 0;max-width:95%;font-size:clamp(17px,4.2vw,27px);font-weight:900;line-height:1.35;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.8),0 0 10px rgba(255,212,0,.65)}
-.pe-loading-recarga{position:relative;width:100%;margin:76px auto 0;padding-top:2px}
-.pe-loading-botella{position:absolute;right:-2%;bottom:11px;width:124px;height:94px;z-index:4;object-fit:contain;transform:rotate(-90deg);transform-origin:50% 50%;animation:peBotellaColaSirve 1.7s ease-in-out infinite;mix-blend-mode:multiply;filter:contrast(1.22) drop-shadow(0 4px 5px rgba(0,0,0,.48));pointer-events:none}
-.pe-loading-chorro{position:absolute;right:calc(12% + 6px);bottom:17px;width:7px;height:30px;border-radius:45%;z-index:3;background:linear-gradient(90deg,#2a0e05,#7b3518,#3b1608);transform:rotate(-18deg);transform-origin:top;animation:peChorroCola .42s ease-in-out infinite alternate;box-shadow:0 0 6px rgba(120,52,24,.85);pointer-events:none}
-@keyframes peBotellaColaSirve{0%,100%{transform:rotate(-87deg) translateY(0)}50%{transform:rotate(-94deg) translateY(3px)}}
-@keyframes peChorroCola{from{height:19px;opacity:.68}to{height:31px;opacity:1}}
+.pe-loading-recarga{position:relative;width:100%;margin:76px auto 0;padding-top:2px}50%{transform:rotate(-94deg) translateY(3px)}}to{height:31px;opacity:1}}
 .pe-loading-barra{position:relative;width:100%;height:25px;padding:3px;overflow:hidden;border:2px solid rgba(255,255,255,.96);border-radius:50px;background:rgba(16,7,4,.8);box-shadow:0 5px 18px rgba(0,0,0,.38),0 0 12px rgba(120,52,24,.42)}
 #pe-loading-progreso{position:relative;overflow:hidden;width:0%;height:100%;border-radius:50px;background:linear-gradient(180deg,#d79b62 0%,#7b3a1d 23%,#3c160b 68%,#170804 100%);transition:width .08s linear;box-shadow:0 0 9px rgba(151,75,36,.9),inset 0 2px 3px rgba(255,224,180,.3)}
 #pe-loading-progreso::before{content:"";position:absolute;inset:0;background:repeating-radial-gradient(circle at 12px 8px,rgba(255,226,180,.9) 0 1px,rgba(255,226,180,.12) 2px 4px,transparent 5px 14px);background-size:42px 24px;animation:peBurbujasCola 1.4s linear infinite;opacity:.85}
 #pe-loading-progreso::after{content:"";position:absolute;top:2px;left:-35%;width:30%;height:4px;border-radius:50%;background:rgba(255,222,181,.75);filter:blur(1px);animation:peEspumaCola 1.2s linear infinite}
 @keyframes peBurbujasCola{from{background-position:0 24px}to{background-position:42px -24px}}
 @keyframes peEspumaCola{from{left:-35%}to{left:110%}}
-@media(max-width:600px){.pe-loading-recarga{margin-top:70px}.pe-loading-botella{width:105px;height:80px;right:-4%;bottom:11px}.pe-loading-chorro{right:calc(12% + 2px);bottom:16px}}
-@media(prefers-reduced-motion:reduce){.pe-loading-botella,.pe-loading-chorro,#pe-loading-progreso::before,#pe-loading-progreso::after{animation:none}}
+@media(max-width:600px){.pe-loading-recarga{margin-top:70px}}
+@media(prefers-reduced-motion:reduce){#pe-loading-progreso::before,#pe-loading-progreso::after{animation:none}}
 #pe-loading-porcentaje{display:block;margin-top:10px;font-size:clamp(18px,4vw,25px);font-weight:900}
 
 /* HALLOWEEN SUTIL — PANTALLA DE CARGA */
@@ -1008,8 +1004,6 @@ body.pe-visor-abierto{overflow:hidden!important;overscroll-behavior:none;}
 <div class="pe-loading-bienvenidos">BIENVENIDOS</div>
 <div class="pe-loading-titulo">Catálogo Peñafiel</div>
 <div class="pe-loading-recarga">
-<img class="pe-loading-botella" src="./00750119835581L.jpg" alt="" aria-hidden="true">
-<div class="pe-loading-chorro" aria-hidden="true"></div>
 <div class="pe-loading-barra" role="progressbar" aria-label="Carga del video de bienvenida" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="pe-loading-progreso"></div></div>
 </div>
 <span id="pe-loading-porcentaje">0%</span>
