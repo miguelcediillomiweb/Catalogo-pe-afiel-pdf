@@ -541,9 +541,16 @@ body{
 .pe-loading-bienvenidos{margin:0;font-size:clamp(34px,8vw,70px);font-weight:900;line-height:1.05;text-shadow:0 4px 14px rgba(0,0,0,.35)}
 .pe-loading-titulo{margin:10px 0 28px;font-size:clamp(24px,5.5vw,42px);font-weight:900;text-shadow:0 3px 10px rgba(0,0,0,.3)}
 .pe-loading-halloween-frase{margin:16px auto 0;max-width:95%;font-size:clamp(17px,4.2vw,27px);font-weight:900;line-height:1.35;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.8),0 0 10px rgba(255,212,0,.65)}
+.pe-loading-recarga{position:relative;width:100%;margin:58px auto 0}
+.pe-loading-botella{position:absolute;right:12%;bottom:26px;width:43px;height:61px;z-index:3;transform:rotate(48deg);transform-origin:50% 80%;animation:peBotellaSirve 1.4s ease-in-out infinite;filter:drop-shadow(0 3px 4px rgba(0,0,0,.35));pointer-events:none}
+.pe-loading-chorro{position:absolute;right:calc(12% - 3px);bottom:19px;width:4px;height:23px;border-radius:50%;z-index:2;background:linear-gradient(180deg,#b9f3ff,#168bff);transform:rotate(-10deg);transform-origin:top;animation:peChorroAgua .45s ease-in-out infinite alternate;box-shadow:0 0 7px #42c5ff;pointer-events:none}
+@keyframes peBotellaSirve{0%,100%{transform:rotate(43deg) translateY(0)}50%{transform:rotate(52deg) translateY(2px)}}
+@keyframes peChorroAgua{from{height:17px;opacity:.65}to{height:25px;opacity:1}}
 .pe-loading-barra{width:100%;height:22px;padding:3px;overflow:hidden;border:2px solid #fff;border-radius:50px;background:rgba(0,0,0,.28);box-shadow:0 5px 18px rgba(0,0,0,.3)}
-#pe-loading-progreso{width:0%;height:100%;border-radius:50px;background:linear-gradient(90deg,#111,#ffd400,#fff0a3,#111);background-size:300% 100%;animation:peProgresoBrillo 2s linear infinite;transition:width .08s linear}
-@keyframes peProgresoBrillo{0%{background-position:0 50%}100%{background-position:300% 50%}}
+#pe-loading-progreso{width:0%;height:100%;border-radius:50px;background:linear-gradient(90deg,#0753a6,#16a8ff,#b8f5ff,#0876d1);background-size:220% 100%;animation:peAguaBrillo 1.8s linear infinite;transition:width .08s linear;box-shadow:0 0 8px rgba(48,177,255,.9)}
+@keyframes peAguaBrillo{0%{background-position:0 50%}100%{background-position:220% 50%}}
+@media(max-width:600px){.pe-loading-recarga{margin-top:52px}.pe-loading-botella{width:37px;height:53px;right:10%;bottom:25px}.pe-loading-chorro{right:calc(10% - 3px)}}
+@media(prefers-reduced-motion:reduce){.pe-loading-botella,.pe-loading-chorro,#pe-loading-progreso{animation:none}}
 #pe-loading-porcentaje{display:block;margin-top:10px;font-size:clamp(18px,4vw,25px);font-weight:900}
 
 /* HALLOWEEN SUTIL — PANTALLA DE CARGA */
@@ -997,7 +1004,20 @@ body.pe-visor-abierto{overflow:hidden!important;overscroll-behavior:none;}
 <div class="pe-loading-contenido">
 <div class="pe-loading-bienvenidos">BIENVENIDOS</div>
 <div class="pe-loading-titulo">Catálogo Peñafiel</div>
+<div class="pe-loading-recarga">
+<svg class="pe-loading-botella" viewBox="0 0 64 100" role="img" aria-label="Botella de agua mineral Peñafiel vertiendo agua">
+  <defs><linearGradient id="peBotellaCristal" x1="0" x2="1"><stop offset="0" stop-color="#d8f7ff" stop-opacity=".95"/><stop offset=".45" stop-color="#fff" stop-opacity=".65"/><stop offset="1" stop-color="#69bfff" stop-opacity=".9"/></linearGradient></defs>
+  <rect x="24" y="2" width="17" height="10" rx="2" fill="#0878c9"/>
+  <path d="M25 11 L40 11 L41 23 Q53 31 53 43 L53 83 Q53 94 43 95 L19 95 Q9 94 9 83 L9 43 Q9 31 22 23 Z" fill="url(#peBotellaCristal)" stroke="#e9fbff" stroke-width="2"/>
+  <path d="M12 48 Q31 43 50 48 L50 81 Q50 91 41 91 L20 91 Q12 91 12 81 Z" fill="#1498ed" opacity=".28"/>
+  <rect x="11" y="49" width="40" height="25" rx="3" fill="#0876bd" stroke="#fff" stroke-width="1.5"/>
+  <text x="31" y="60" font-size="7" font-weight="bold" text-anchor="middle" fill="#fff">PEÑAFIEL</text>
+  <text x="31" y="68" font-size="4.5" text-anchor="middle" fill="#e4f8ff">AGUA MINERAL</text>
+  <path d="M17 36 Q19 28 24 27" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".85"/>
+</svg>
+<div class="pe-loading-chorro" aria-hidden="true"></div>
 <div class="pe-loading-barra"><div id="pe-loading-progreso"></div></div>
+</div>
 <span id="pe-loading-porcentaje">0%</span>
 <div class="pe-loading-halloween-frase">Y tú, ¿ya tienes todo para celebrar este Halloween?</div>
 </div>
