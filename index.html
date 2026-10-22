@@ -541,7 +541,7 @@ body{
 .pe-loading-bienvenidos{margin:0;font-size:clamp(34px,8vw,70px);font-weight:900;line-height:1.05;text-shadow:0 4px 14px rgba(0,0,0,.35)}
 .pe-loading-titulo{margin:10px 0 28px;font-size:clamp(24px,5.5vw,42px);font-weight:900;text-shadow:0 3px 10px rgba(0,0,0,.3)}
 .pe-loading-halloween-frase{margin:16px auto 0;max-width:95%;font-size:clamp(17px,4.2vw,27px);font-weight:900;line-height:1.35;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.8),0 0 10px rgba(255,212,0,.65)}
-.pe-loading-recarga{position:relative;width:100%;margin:76px auto 0;padding-top:2px}50%{transform:rotate(-94deg) translateY(3px)}}to{height:31px;opacity:1}}
+.pe-loading-recarga{position:relative;width:100%;margin:76px auto 0;padding-top:2px}
 .pe-loading-barra{position:relative;width:100%;height:25px;padding:3px;overflow:hidden;border:2px solid rgba(255,255,255,.96);border-radius:50px;background:rgba(16,7,4,.8);box-shadow:0 5px 18px rgba(0,0,0,.38),0 0 12px rgba(120,52,24,.42)}
 #pe-loading-progreso{position:relative;overflow:hidden;width:0%;height:100%;border-radius:50px;background:linear-gradient(180deg,#d79b62 0%,#7b3a1d 23%,#3c160b 68%,#170804 100%);transition:width .08s linear;box-shadow:0 0 9px rgba(151,75,36,.9),inset 0 2px 3px rgba(255,224,180,.3)}
 #pe-loading-progreso::before{content:"";position:absolute;inset:0;background:repeating-radial-gradient(circle at 12px 8px,rgba(255,226,180,.9) 0 1px,rgba(255,226,180,.12) 2px 4px,transparent 5px 14px);background-size:42px 24px;animation:peBurbujasCola 1.4s linear infinite;opacity:.85}
@@ -1029,7 +1029,26 @@ body.pe-visor-abierto{overflow:hidden!important;overscroll-behavior:none;}
   color:#fff!important;text-shadow:0 2px 8px rgba(0,0,0,.85),0 0 12px rgba(56,225,255,.7)
 }
 </style>
-\n</head>
+\n
+<style id="barra-azul">
+#pe-loading .pe-loading-barra{
+  background:rgba(2,18,60,.82)!important;
+  border-color:#fff!important;
+  box-shadow:0 5px 18px rgba(0,0,0,.38),0 0 14px rgba(56,225,255,.5)!important
+}
+#pe-loading-progreso{
+  background:linear-gradient(180deg,#9be7ff 0%,#1ea1ff 28%,#0057b8 68%,#032a73 100%)!important;
+  box-shadow:0 0 10px rgba(56,225,255,.9),inset 0 2px 3px rgba(255,255,255,.45)!important
+}
+#pe-loading-progreso::before{
+  background:repeating-radial-gradient(circle at 12px 8px,rgba(225,247,255,.95) 0 1px,rgba(225,247,255,.14) 2px 4px,transparent 5px 14px)!important;
+  background-size:42px 24px!important
+}
+#pe-loading-progreso::after{background:rgba(225,247,255,.8)!important}
+#pe-loading-porcentaje{text-shadow:0 2px 8px rgba(0,0,0,.85),0 0 12px rgba(56,225,255,.7)}
+</style>
+
+</head>
 
 <body>
 <!-- CARGA DE OCTUBRE -->
