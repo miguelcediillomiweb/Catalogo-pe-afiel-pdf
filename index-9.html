@@ -1,0 +1,1918 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0057b8">
+<meta name="apple-mobile-web-app-title" content="Catálogo Peñafiel">
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" href="./icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+
+<meta name="author" content="Miguel Ángel C.">
+<meta name="description" content="Catálogo Digital Peñafiel. Autoría y diseño web: Miguel Ángel C.">
+<meta name="creator" content="Miguel Ángel C.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Catálogo Digital Peñafiel">
+<meta property="og:description" content="Catálogo Digital Peñafiel — Autoría y diseño web: Miguel Ángel C.">
+<meta property="og:url" content="https://miguelcediillomiweb.github.io/Catalogo-pe-afiel-pdf/">
+<meta property="og:site_name" content="Catálogo Digital Peñafiel">
+<!-- AUTORÍA: Este sitio fue creado y diseñado por Miguel Ángel C. — 2026 -->
+
+<title>Catálogo Digital Peñafiel</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+html,body{
+    margin:0;
+    padding:0;
+    width:100%;
+    min-height:100%;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#0057b8;
+    overflow-x:hidden;
+}
+
+.pe-catalogo{
+    position:relative;
+    width:100%;
+    min-height:100vh;
+    padding:18px 12px 0;
+    overflow-x:hidden;
+    overflow-y:visible;
+    padding-bottom:70px;
+    background:
+        radial-gradient(circle at 50% 18%,rgba(255,212,0,.13),transparent 24%),
+        radial-gradient(circle at 14% 48%,rgba(93,44,145,.34),transparent 30%),
+        radial-gradient(circle at 88% 72%,rgba(255,212,0,.09),transparent 28%),
+        linear-gradient(180deg,#0075d9 0%,#0057b8 34%,#173a91 62%,#32105c 100%);
+    color:#fff;
+}
+
+
+/* ESCENA PEÑAFIEL — AZUL + ÍNDIGO + MORADO PROFUNDO + ORO */
+.pe-catalogo::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+    background:
+        radial-gradient(circle at 50% 24%,rgba(255,255,255,.08),transparent 18%),
+        linear-gradient(90deg,rgba(0,87,184,.18),transparent 28%,transparent 72%,rgba(50,16,92,.20));
+}
+.pe-catalogo::after{
+    content:"";
+    position:absolute;
+    left:4%;
+    right:4%;
+    top:8px;
+    height:2px;
+    z-index:1;
+    pointer-events:none;
+    background:linear-gradient(90deg,transparent,#ffd400,#fff, #ffd400,transparent);
+    opacity:.72;
+    box-shadow:0 0 10px rgba(255,212,0,.55);
+}
+.pe-catalogo > *{
+    position:relative;
+}
+.pe-catalogo .pe-contenido{
+    position:relative;
+    z-index:10;
+}
+
+
+/* ESCENA PEÑAFIEL — V2 VISIBLE */
+.pe-catalogo{
+    background:
+        radial-gradient(circle at 50% 12%,rgba(255,212,0,.20),transparent 20%),
+        radial-gradient(circle at 15% 35%,rgba(76,34,125,.48),transparent 32%),
+        radial-gradient(circle at 85% 68%,rgba(255,212,0,.12),transparent 30%),
+        linear-gradient(180deg,#0075d9 0%,#0057b8 30%,#23408f 57%,#32105c 82%,#19072f 100%) !important;
+}
+.pe-catalogo::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+    background:
+        radial-gradient(circle at 50% 22%,rgba(255,255,255,.10),transparent 17%),
+        radial-gradient(circle at 50% 78%,rgba(255,212,0,.07),transparent 24%);
+}
+.pe-catalogo > *{position:relative;}
+.pe-catalogo .pe-contenido{position:relative;z-index:10;}
+.pe-arana{
+    filter:drop-shadow(0 2px 3px rgba(0,0,0,.65)) drop-shadow(0 0 7px rgba(255,212,0,.65)) !important;
+}
+.pe-arana-colgante::after{
+    filter:drop-shadow(0 2px 3px rgba(0,0,0,.65)) drop-shadow(0 0 9px rgba(255,212,0,.75)) !important;
+}
+.pe-hilo-tejido,.pe-rayos-tejido{
+    stroke:rgba(255,235,145,.98) !important;
+    filter:drop-shadow(0 1px 3px rgba(255,212,0,.45)) !important;
+}
+.pe-palabra-telaraña{
+    stroke:#ffd400 !important;
+    filter:drop-shadow(0 2px 4px rgba(0,0,0,.75)) drop-shadow(0 0 10px rgba(255,212,0,.65)) !important;
+}
+.pe-telarana-palabra{
+    filter:drop-shadow(0 0 7px rgba(255,212,0,.28));
+}
+
+/* MARCO — DESACTIVADO */
+.pe-marco{display:none}
+
+
+.pe-contenido{
+    position:relative;
+    z-index:10;
+    width:100%;
+    max-width:1050px;
+    margin:0 auto;
+}
+
+/* BANNER */
+
+.pe-banner{
+    width:100%;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 5px 18px rgba(0,0,0,.3);
+}
+
+.pe-banner img{
+    display:block;
+    width:100%;
+    height:auto;
+}
+
+/* RELOJ */
+
+.pe-reloj{
+    width:100%;
+    text-align:center;
+    margin:8px auto 12px;
+    padding:10px 5px;
+    background:rgba(0,0,0,.30);
+    border-radius:12px;
+}
+
+#pe-saludo{
+    display:block;
+    font-size:clamp(23px,5vw,36px);
+    font-weight:900;
+}
+
+#pe-hora{
+    display:block;
+    min-height:42px;
+    margin-top:6px;
+    font-size:clamp(28px,7vw,44px);
+    font-weight:900;
+    letter-spacing:2px;
+}
+
+#pe-fecha{
+    display:block;
+    min-height:24px;
+    margin-top:5px;
+    font-size:clamp(15px,3.5vw,21px);
+    font-weight:700;
+}
+
+/* CARRUSEL */
+
+.pe-carrusel{
+    width:100%;
+    max-width:480px;
+    margin:10px auto 18px;
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+
+.pe-carrusel-ventana{
+    flex:1;
+    min-width:0;
+    overflow:hidden;
+    background:#fff;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,.3);
+}
+
+.pe-carrusel-pista{
+    display:flex;
+    width:100%;
+    transform:translateX(0);
+    transition:transform .4s ease;
+}
+
+.pe-slide{
+    flex:0 0 100%;
+    width:100%;
+    height:145px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#fff;
+}
+
+.pe-slide img{
+    width:100%;
+    height:145px;
+    display:block;
+    object-fit:contain;
+}
+
+.pe-boton-carrusel{
+    flex:0 0 38px;
+    width:38px;
+    height:38px;
+    padding:0;
+    border:0;
+    border-radius:50%;
+    background:#fff;
+    color:#0057b8;
+    font-size:28px;
+    font-weight:bold;
+    line-height:38px;
+    text-align:center;
+    cursor:pointer;
+}
+
+/* TITULOS */
+
+.pe-titulo{
+    text-align:center;
+    font-size:clamp(22px,5vw,32px);
+    font-weight:900;
+    margin:12px 0 6px;
+}
+
+.pe-actualizado{
+    text-align:center;
+    font-size:clamp(14px,3.5vw,19px);
+    font-weight:bold;
+    margin-bottom:14px;
+}
+
+/* CATALOGO */
+
+.pe-catalogo-paginas{
+    width:100%;
+    margin:0 auto;
+}
+
+.pe-pagina-catalogo{
+    width:100%;
+    margin:0 0 14px;
+    background:#fff;
+    border-radius:8px;
+    overflow:visible;
+    box-shadow:0 5px 16px rgba(0,0,0,.3);
+}
+
+.pe-pagina-catalogo img{
+    width:100%;
+    height:auto;
+    min-height:0;
+    max-height:none;
+    display:block;
+    object-fit:contain;
+    object-position:center top;
+}
+
+/* PDF */
+
+.pe-descarga-pdf{
+    width:100%;
+    margin:8px 0 18px;
+}
+
+.pe-descarga-pdf a{
+    display:block;
+    width:100%;
+    padding:15px 6px;
+    text-align:center;
+    text-decoration:none;
+    color:#fff;
+    background:linear-gradient(
+        90deg,
+        #006847,
+        #008f5a,
+        #0057b8,
+        #ce1126
+    );
+    background-size:200% 100%;
+    animation:brillo 3s linear infinite;
+    border:3px solid #fff;
+    border-radius:14px;
+    box-shadow:0 5px 15px rgba(0,0,0,.35);
+    font-size:clamp(19px,5vw,30px);
+    font-weight:900;
+}
+
+.pe-flecha{
+    display:inline-block;
+    animation:moverFlecha 1s infinite;
+}
+
+.pe-flecha.derecha{
+    animation-delay:.25s;
+}
+
+@keyframes moverFlecha{
+    0%,100%{transform:translateX(0);}
+    50%{transform:translateX(7px);}
+}
+
+@keyframes brillo{
+    0%{background-position:0 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0 50%;}
+}
+
+/* WHATSAPP */
+
+.pe-whatsapp{
+    width:100%;
+    max-width:600px;
+    margin:18px auto 16px;
+    text-align:center;
+}
+
+.pe-whatsapp a{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+    text-decoration:none;
+    color:#fff;
+    background:#25D366;
+    padding:10px 18px;
+    border-radius:50px;
+    font-size:clamp(17px,4vw,22px);
+    font-weight:900;
+    box-shadow:0 5px 14px rgba(0,0,0,.3);
+}
+
+.pe-whatsapp img{
+    width:75px;
+    height:75px;
+    object-fit:contain;
+}
+
+/* LOGOS */
+
+.pe-contenido{
+    padding-bottom:40px;
+}
+.pe-logos-finales{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:15px;
+    width:100%;
+    margin:14px auto 28px;
+}
+
+.pe-logos-finales img{
+    display:block;
+    width:auto;
+    max-width:45%;
+    max-height:100px;
+    object-fit:contain;
+}
+
+/* FOOTER */
+
+.pe-footer{
+    width:100%;
+    text-align:center;
+    padding:18px 12px 80px;
+    margin-bottom:20px;
+    font-size:clamp(13px,3vw,17px);
+    font-weight:bold;
+    line-height:1.5;
+}
+
+/* MOVIL */
+
+@media(max-width:600px){
+
+    .pe-catalogo{
+        padding:14px 6px 0;
+    }
+
+    .pe-marco::before{
+        padding:6px;
+    }
+
+    .pe-slide{
+        height:115px;
+    }
+
+    .pe-slide img{
+        height:115px;
+    }
+
+    .pe-boton-carrusel{
+        flex-basis:33px;
+        width:33px;
+        height:33px;
+        line-height:33px;
+        font-size:23px;
+    }
+
+    .pe-logos-finales img{
+        max-height:80px;
+    }
+}
+/* ZOMBIES — VIDEOS LOCALES DEL REPOSITORIO */
+.pe-zombie-reloj{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    width:100%;
+    margin:0 auto 8px;
+}
+.pe-zombie-reloj video{
+    display:block;
+    width:clamp(82px,14vw,150px);
+    height:clamp(70px,12vw,120px);
+    object-fit:contain;
+    border-radius:12px;
+    background:transparent;
+    pointer-events:none;
+}
+.pe-zombie-reloj .pe-reloj-centro{
+    flex:1;
+    min-width:0;
+}
+@media(max-width:600px){
+    .pe-zombie-reloj{gap:4px;}
+    .pe-zombie-reloj video{
+        width:24vw;
+        height:21vw;
+        max-width:105px;
+        max-height:92px;
+    }
+}
+
+/* =====================================================
+   PANTALLA DE CARGA: VIDEO + BARRA AZUL
+   La barra avanza con el video (lo controla el script de la carga)
+===================================================== */
+#pe-loading{position:fixed;inset:0;z-index:100000;display:flex;align-items:flex-end;justify-content:center;overflow:hidden;background:#000;transition:opacity .6s ease,visibility .6s ease}
+#pe-loading.oculto{opacity:0;visibility:hidden;pointer-events:none}
+#pe-loading::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.8) 100%)}
+.pe-loading-zombie{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;background:#000;z-index:0;pointer-events:none}
+.pe-loading-marco{position:absolute;inset:0;z-index:2;border:12px solid #ffd400;box-shadow:inset 0 0 0 5px #111,inset 0 0 0 10px #ffd400,inset 0 0 0 15px #111;pointer-events:none;animation:peMarcoCarga 3s linear infinite}
+@keyframes peMarcoCarga{0%,100%{box-shadow:inset 0 0 0 5px #111,inset 0 0 0 10px #ffd400,inset 0 0 0 15px #111}50%{box-shadow:inset 0 0 0 5px #ffd400,inset 0 0 0 10px #111,inset 0 0 0 15px #ffd400}}
+.pe-loading-contenido{position:relative;z-index:3;width:min(88vw,620px);padding-bottom:calc(7vh + env(safe-area-inset-bottom,0px));text-align:center;color:#fff}
+.pe-loading-recarga{position:relative;width:100%}
+.pe-loading-barra{position:relative;width:100%;height:25px;padding:3px;overflow:hidden;border:2px solid rgba(255,255,255,.96);border-radius:50px;background:rgba(2,18,60,.82);box-shadow:0 5px 18px rgba(0,0,0,.38),0 0 14px rgba(56,225,255,.5)}
+#pe-loading-progreso{position:relative;overflow:hidden;width:0%;height:100%;border-radius:50px;background:linear-gradient(180deg,#9be7ff 0%,#1ea1ff 28%,#0057b8 68%,#032a73 100%);transition:width .3s linear;box-shadow:0 0 10px rgba(56,225,255,.9),inset 0 2px 3px rgba(255,255,255,.45)}
+#pe-loading-progreso::before{content:"";position:absolute;inset:0;background:repeating-radial-gradient(circle at 12px 8px,rgba(225,247,255,.95) 0 1px,rgba(225,247,255,.14) 2px 4px,transparent 5px 14px);background-size:42px 24px;animation:peBurbujasCola 1.4s linear infinite;opacity:.85}
+#pe-loading-progreso::after{content:"";position:absolute;top:2px;left:-35%;width:30%;height:4px;border-radius:50%;background:rgba(225,247,255,.8);filter:blur(1px);animation:peEspumaCola 1.2s linear infinite}
+@keyframes peBurbujasCola{from{background-position:0 24px}to{background-position:42px -24px}}
+@keyframes peEspumaCola{from{left:-35%}to{left:110%}}
+@media(prefers-reduced-motion:reduce){#pe-loading-progreso::before,#pe-loading-progreso::after{animation:none}}
+#pe-loading-porcentaje{display:block;margin-top:10px;font-size:clamp(18px,4vw,25px);font-weight:900;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.85),0 0 12px rgba(56,225,255,.7)}
+
+/* =====================================================
+   OCTUBRE — HALLOWEEN SUTIL PERO VISIBLE
+===================================================== */
+.pe-octubre-marco{position:fixed;inset:5px;z-index:9995;pointer-events:none;overflow:hidden}
+.pe-deco-halloween{position:absolute;display:block;font-size:clamp(24px,4vw,44px);filter:drop-shadow(0 3px 4px rgba(0,0,0,.45));animation:peDecoFlota ease-in-out infinite}
+.pe-deco-halloween.p1{top:2%;left:2%;animation-duration:4.5s}.pe-deco-halloween.p2{top:7%;left:18%;animation-duration:5.5s;animation-delay:1s}.pe-deco-halloween.p3{top:3%;right:18%;animation-duration:4.8s;animation-delay:.5s}.pe-deco-halloween.p4{top:8%;right:2%;animation-duration:6s;animation-delay:2s}
+.pe-deco-halloween.p5{top:28%;left:1%;animation-duration:5s;animation-delay:1.5s}.pe-deco-halloween.p6{top:44%;right:1%;animation-duration:5.8s}.pe-deco-halloween.p7{bottom:28%;left:1%;animation-duration:4.8s;animation-delay:2s}.pe-deco-halloween.p8{bottom:8%;right:2%;animation-duration:5.5s}
+.pe-deco-halloween.p9{bottom:3%;left:18%;animation-duration:6s}.pe-deco-halloween.p10{bottom:7%;right:18%;animation-duration:4.7s;animation-delay:1s}
+.pe-deco-halloween.p11{top:20%;left:8%;animation-duration:5.3s}.pe-deco-halloween.p12{top:62%;right:7%;animation-duration:6.2s;animation-delay:1s}
+@keyframes peDecoFlota{0%,100%{transform:translateY(0) rotate(-4deg) scale(1)}50%{transform:translateY(-9px) rotate(5deg) scale(1.08)}}
+.pe-telaraña{position:absolute;width:95px;height:95px;opacity:.24;border:2px solid #111;border-radius:50%}.pe-telaraña::before{content:"";position:absolute;inset:13px;border:1px solid #111;border-radius:50%}.pe-telaraña::after{content:"";position:absolute;inset:28px;border:1px solid #111;border-radius:50%}.pe-telaraña-1{top:-12px;left:-12px}.pe-telaraña-2{bottom:-12px;right:-12px;transform:rotate(180deg)}
+/* Se retira únicamente el emoji de calabaza del título */
+
+/* =====================================================
+   ARAÑAS NEGRAS — MOVIMIENTO SUTIL
+===================================================== */
+.pe-arana{
+    position:fixed;
+    z-index:9996;
+    width:20px;
+    height:20px;
+    pointer-events:auto;
+    touch-action:none;
+    cursor:pointer;
+    user-select:none;
+    filter:drop-shadow(0 2px 2px rgba(255,255,255,.25)) drop-shadow(0 0 5px rgba(255,212,0,.28));
+}
+.pe-arana::before{
+    content:"🕷";
+    display:block;
+    font-size:20px;
+    line-height:20px;
+}
+.pe-arana.aplastada{
+    animation:peAranaAplasta .22s ease forwards !important;
+}
+@keyframes peAranaAplasta{
+    0%{transform:scale(1)}
+    45%{transform:scale(1.65,.32) rotate(10deg)}
+    100%{transform:scale(.1);opacity:0}
+}
+
+/* Movimiento orgánico: cada araña recibe una trayectoria distinta por JS */
+.pe-arana.a1{animation:peAranaRuta1 13s ease-in-out infinite alternate}
+.pe-arana.a2{animation:peAranaRuta2 17s ease-in-out infinite alternate}
+.pe-arana.a3{animation:peAranaRuta3 15s ease-in-out infinite alternate}
+.pe-arana.a4{animation:peAranaRuta4 19s ease-in-out infinite alternate}
+.pe-arana.a5{animation:peAranaRuta5 14s ease-in-out infinite alternate}
+.pe-arana.a6{animation:peAranaRuta6 18s ease-in-out infinite alternate}
+.pe-arana.a7{animation:peAranaRuta7 16s ease-in-out infinite alternate}
+.pe-arana.a8{animation:peAranaRuta8 20s ease-in-out infinite alternate}
+.pe-arana.a9{animation:peAranaRuta9 15s ease-in-out infinite alternate}
+.pe-arana.a10{animation:peAranaRuta10 21s ease-in-out infinite alternate}
+@keyframes peAranaRuta1{to{left:82vw;top:72vh;transform:rotate(140deg)}}
+@keyframes peAranaRuta2{to{left:12vw;top:84vh;transform:rotate(-110deg)}}
+@keyframes peAranaRuta3{to{left:88vw;top:18vh;transform:rotate(210deg)}}
+@keyframes peAranaRuta4{to{left:30vw;top:65vh;transform:rotate(-170deg)}}
+@keyframes peAranaRuta5{to{left:72vw;top:35vh;transform:rotate(95deg)}}
+@keyframes peAranaRuta6{to{left:18vw;top:22vh;transform:rotate(-80deg)}}
+@keyframes peAranaRuta7{to{left:78vw;top:88vh;transform:rotate(160deg)}}
+@keyframes peAranaRuta8{to{left:42vw;top:12vh;transform:rotate(-140deg)}}
+@keyframes peAranaRuta9{to{left:8vw;top:58vh;transform:rotate(120deg)}}
+@keyframes peAranaRuta10{to{left:92vw;top:48vh;transform:rotate(-200deg)}}
+
+
+/* Arañas adicionales: recorren distintas zonas de la pantalla */
+.pe-arana.extra{animation:peAranaExtra linear infinite alternate}
+@keyframes peAranaExtra{
+  0%{left:var(--inicio-x,5vw);top:var(--inicio-y,10vh);transform:rotate(0deg)}
+  25%{left:var(--medio-x,80vw);top:var(--medio-y,75vh);transform:rotate(95deg)}
+  55%{left:var(--fin-x,15vw);top:var(--fin-y,30vh);transform:rotate(210deg)}
+  100%{left:var(--inicio-x,5vw);top:var(--inicio-y,10vh);transform:rotate(360deg)}
+}
+
+/* ARAÑA COLGANTE — DESCIENDE DESDE EL CENTRO */
+.pe-arana-colgante{
+    position:fixed;
+    z-index:9997;
+    top:0;
+    left:50%;
+    width:2px;
+    height:0;
+    background:#111;
+    transform:translateX(-50%);
+    pointer-events:none;
+    opacity:0;
+    animation:peAranaBaja 18s ease-in-out infinite;
+}
+.pe-arana-colgante::after{
+    content:"🕷";
+    position:absolute;
+    left:50%;
+    bottom:-12px;
+    transform:translateX(-50%);
+    color:#000;
+    font-size:31px;
+    line-height:31px;
+    filter:drop-shadow(0 2px 2px rgba(255,255,255,.3));
+}
+@keyframes peAranaBaja{
+    0%,58%{height:0;opacity:0}
+    63%{height:18vh;opacity:1}
+    69%{height:42vh;opacity:1}
+    75%{height:58vh;opacity:1}
+    82%{height:72vh;opacity:1}
+    88%{height:72vh;opacity:.95}
+    94%,100%{height:0;opacity:0}
+}
+/* TELARAÑA QUE TEJE "PEÑAFIEL" AL FINAL DE LA BAJADA */
+.pe-telarana-palabra{
+    position:fixed;
+    z-index:9997;
+    left:50%;
+    top:72vh;
+    width:min(92vw,680px);
+    height:150px;
+    transform:translate(-50%,0);
+    pointer-events:none;
+    opacity:0;
+    animation:peTejePenafiel 18s ease-in-out infinite;
+}
+.pe-telarana-palabra svg{
+    display:block;
+    width:100%;
+    height:100%;
+    overflow:visible;
+}
+.pe-hilo-tejido,
+.pe-rayos-tejido{
+    fill:none;
+    stroke:rgba(255,235,150,.90);
+    stroke-width:2;
+    stroke-linecap:round;
+    stroke-dasharray:7 6;
+    filter:drop-shadow(0 1px 2px rgba(0,0,0,.55));
+}
+.pe-palabra-telaraña{
+    fill:rgba(255,255,255,.04);
+    stroke:rgba(255,212,0,.98);
+    stroke-width:3;
+    stroke-linejoin:round;
+    stroke-dasharray:14 8;
+    paint-order:stroke fill;
+    font-family:Arial,Helvetica,sans-serif;
+    font-size:108px;
+    font-weight:900;
+    letter-spacing:4px;
+    filter:drop-shadow(0 2px 3px rgba(0,0,0,.65));
+    stroke-dashoffset:900;
+    animation:peDibujaPalabra 18s linear infinite;
+}
+@keyframes peTejePenafiel{
+    0%,82%{opacity:0;transform:translate(-50%,12px) scale(.86)}
+    84%{opacity:1;transform:translate(-50%,0) scale(.92)}
+    88%{opacity:1;transform:translate(-50%,0) scale(1)}
+    96%{opacity:1;transform:translate(-50%,0) scale(1)}
+    100%{opacity:0;transform:translate(-50%,8px) scale(.9)}
+}
+@keyframes peDibujaPalabra{
+    0%,82%{stroke-dashoffset:900}
+    88%{stroke-dashoffset:0}
+    96%{stroke-dashoffset:0}
+    100%{stroke-dashoffset:900}
+}
+@media(max-width:600px){
+    .pe-arana{width:15px;height:15px}
+    .pe-arana::before{font-size:15px;line-height:15px}
+    .pe-arana-colgante::after{font-size:25px}
+}
+ 
+/* =====================================================
+   CAMPAÑA Y POPUPS
+===================================================== */
+/* =====================================================
+   CAMPAÑA Y POPUPS
+===================================================== */
+.pe-campana{width:100%;max-width:850px;margin:18px auto 20px;text-align:center}
+.pe-campana button{width:100%;padding:17px 8px;border:3px solid #fff;border-radius:18px;background:linear-gradient(90deg,#006847,#009b63,#0057b8,#ce1126);background-size:300% 100%;animation:peCampanaBrillo 4s linear infinite;color:#fff;font-size:clamp(21px,5.5vw,32px);font-weight:900;box-shadow:0 6px 18px rgba(0,0,0,.35);cursor:pointer}
+.pe-campana button span{display:inline-block;animation:peCampanaFlecha 1s infinite}
+@keyframes peCampanaFlecha{0%,100%{transform:translateX(0)}50%{transform:translateX(8px)}}
+@keyframes peCampanaBrillo{0%{background-position:0 50%}100%{background-position:300% 50%}}
+
+.pe-modal-campana,.pe-modal-promo{display:none;position:fixed;z-index:99999;inset:0;width:100%;height:100%;align-items:center;justify-content:center;padding:12px}
+.pe-modal-campana{background:rgba(0,0,0,.86)}
+.pe-modal-promo{z-index:99998;background:rgba(0,0,0,.78)}
+.pe-alerta-tendencia{position:fixed;z-index:100001;inset:0;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,.55)}
+.pe-alerta-tendencia.activo{display:flex}
+.pe-alerta-tendencia-contenido{background:linear-gradient(135deg,#0057b8,#009b63);color:#fff;border:3px solid #fff;border-radius:20px;padding:22px 28px;text-align:center;font-size:clamp(24px,6vw,38px);font-weight:900;box-shadow:0 10px 35px rgba(0,0,0,.55);animation:peAlertaEntrada .25s ease}
+@keyframes peAlertaEntrada{from{transform:scale(.75);opacity:0}to{transform:scale(1);opacity:1}}
+/* Los pop-ups se cierran al tocarlos; no deben ampliarse con zoom. */
+.pe-promo-contenedor img{cursor:pointer}
+.pe-modal-campana.activo,.pe-modal-promo.activo{display:flex}
+ .pe-video-contenedor{position:relative;width:100%;max-width:1050px;background:#000;border:3px solid #fff;border-radius:16px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.7)}
+.pe-video-contenedor iframe{display:block;width:100%;aspect-ratio:16/9;border:0}
+.pe-cerrar-campana,.pe-promo-cerrar{position:absolute;z-index:10;top:7px;right:7px;width:43px;height:43px;border:2px solid #fff;border-radius:50%;background:#ce1126;color:#fff;font-size:24px;font-weight:900;cursor:pointer;box-shadow:0 3px 8px rgba(0,0,0,.4)}
+.pe-promo-contenedor{position:relative;width:min(92vw,560px);max-height:92vh;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.65);animation:pePromoEntrada .35s ease}
+@keyframes pePromoEntrada{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
+.pe-promo-contenedor img{display:block;width:100%;max-height:75vh;object-fit:contain;background:#fff}
+.pe-promo-texto{padding:12px 10px 16px;text-align:center;color:#0057b8;font-size:clamp(19px,4.8vw,27px);font-weight:900;line-height:1.25}
+.pe-promo-cerrar{top:8px;right:8px}
+@media(max-width:600px){.pe-loading-marco{border-width:9px}.pe-video-contenedor{border-radius:12px}.pe-cerrar-campana,.pe-promo-cerrar{width:40px;height:40px;font-size:22px}.pe-promo-contenedor{width:94vw;max-height:90vh}.pe-promo-contenedor img{max-height:70vh}}
+
+
+/* IMAGEN EXCLUSIVA AL FINAL DE LA PÁGINA */
+.pe-imagen-final{
+    display:block;
+    width:100%;
+    height:auto;
+    max-height:none;
+    margin:8px 0 18px;
+    object-fit:cover;
+    object-position:center;
+    border-radius:0;
+    filter:none;
+}
+@media(max-width:600px){
+    .pe-imagen-final{
+        width:100%;
+        max-height:none;
+        margin:8px 0 12px;
+    }
+}
+
+ 
+/* LECTOR DE CATÁLOGO: ampliar precios y detalles en móvil */
+.pe-instruccion-zoom{
+    margin:10px auto 16px;
+    max-width:760px;
+    padding:11px 15px;
+    border:1px solid rgba(255,212,0,.65);
+    border-radius:14px;
+    background:rgba(0,34,105,.55);
+    box-shadow:0 0 16px rgba(255,212,0,.14);
+    color:#fff;
+    text-align:center;
+    font-size:clamp(14px,3.8vw,17px);
+    line-height:1.4;
+}
+.pe-instruccion-zoom strong{color:#ffd400;}
+.pe-instruccion-zoom span{font-size:.92em;}
+.pe-zoomable{cursor:zoom-in;touch-action:manipulation;transition:filter .2s ease;}
+.pe-zoomable:hover{filter:drop-shadow(0 0 9px rgba(255,212,0,.35));}
+.pe-visor-zoom{
+    position:fixed;
+    inset:0;
+    z-index:10020;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:76px 12px 58px;
+    background:rgba(0,0,0,.94);
+    overflow:auto;
+    overscroll-behavior:contain;
+    -webkit-overflow-scrolling:touch;
+}
+.pe-visor-zoom.activo{display:flex;}
+.pe-visor-zoom img{
+    display:block;
+    width:auto;
+    height:auto;
+    max-width:100%;
+    max-height:calc(100vh - 140px);
+    max-height:calc(100dvh - 140px);
+    min-width:0;
+    object-fit:contain;
+    cursor:zoom-in;
+    transform-origin:center center;
+    user-select:none;
+    -webkit-user-drag:none;
+    touch-action:pan-x pan-y pinch-zoom;
+    border-radius:8px;
+    box-shadow:0 0 28px rgba(255,212,0,.28);
+}
+body.pe-visor-abierto{overflow:hidden!important;overscroll-behavior:none;}
+@media(max-width:600px){
+  .pe-visor-zoom{padding:68px 8px 54px;}
+  .pe-visor-zoom img{max-width:100%;max-height:calc(100vh - 126px);max-height:calc(100dvh - 126px);}
+}
+.pe-visor-controles{
+    position:fixed;
+    top:10px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:10022;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    width:max-content;
+    max-width:calc(100vw - 24px);
+}
+.pe-visor-control{
+    min-height:44px;
+    padding:9px 15px;
+    border:1px solid rgba(255,255,255,.72);
+    border-radius:24px;
+    background:rgba(0,0,0,.72);
+    color:#fff;
+    font-size:15px;
+    font-weight:800;
+    line-height:1;
+    cursor:pointer;
+    box-shadow:0 3px 10px rgba(0,0,0,.35);
+    backdrop-filter:blur(4px);
+}
+.pe-visor-control.cerrar{
+    font-size:17px;
+}
+.pe-visor-control:hover{
+    background:rgba(0,87,184,.9);
+    border-color:#ffd400;
+}
+@media(max-width:600px){
+    .pe-visor-controles{
+        top:8px;
+        gap:6px;
+        width:calc(100vw - 16px);
+    }
+    .pe-visor-control{
+        flex:1;
+        padding:10px 9px;
+        font-size:14px;
+    }
+}
+.pe-visor-ayuda{
+    position:fixed;
+    left:50%;
+    bottom:14px;
+    transform:translateX(-50%);
+    z-index:10022;
+    width:max-content;
+    max-width:92vw;
+    padding:8px 13px;
+    border-radius:20px;
+    background:rgba(0,0,0,.72);
+    color:#fff;
+    font-size:13px;
+    text-align:center;
+}
+
+
+/* BANNER ANIMADO PARA TENER EL CATÁLOGO SIEMPRE A LA MANO */
+.pe-instalar-panel{
+    position:relative;isolation:isolate;overflow:hidden;
+    width:100%;max-width:650px;margin:14px auto 20px;padding:18px 14px;
+    border:2px solid #ffe36a;border-radius:20px;
+    background:radial-gradient(circle at 10% 0%,rgba(255,212,0,.22),transparent 36%),linear-gradient(145deg,#003b83 0%,#0057b8 48%,#32105c 100%);
+    box-shadow:0 8px 24px rgba(0,0,0,.34),inset 0 0 18px rgba(255,255,255,.08);
+    text-align:center;animation:peBannerEntrada .65s ease-out both;
+}
+.pe-instalar-panel::before{
+    content:"";position:absolute;inset:-60% -30%;z-index:-1;pointer-events:none;
+    background:linear-gradient(110deg,transparent 40%,rgba(255,255,255,.14) 50%,transparent 60%);
+    transform:translateX(-65%);animation:peBannerBrillo 5s ease-in-out infinite;
+}
+.pe-instalar-decoracion{display:flex;justify-content:center;align-items:center;gap:17px;margin:0 auto 7px;font-size:clamp(23px,6vw,32px)}
+.pe-instalar-movil{display:inline-block;animation:peTelefonoBaila 1.7s ease-in-out infinite;filter:drop-shadow(0 3px 5px rgba(0,0,0,.3))}
+.pe-instalar-estrella{display:inline-block;animation:peEstrellaSalta 1.5s ease-in-out infinite}
+.pe-instalar-estrella:last-child{animation-delay:.45s}
+.pe-instalar-titulo{margin:0 0 8px;color:#ffe36a;font-size:clamp(19px,4.8vw,25px);font-weight:900;line-height:1.25;text-shadow:0 2px 8px rgba(0,0,0,.35)}
+.pe-instalar-texto{margin:0 auto 14px;max-width:540px;color:#fff;font-size:clamp(14px,3.7vw,17px);line-height:1.5}
+.pe-instalar-app{
+    display:flex;justify-content:center;align-items:center;gap:10px;
+    width:100%;max-width:430px;margin:0 auto;padding:14px 18px;
+    border:2px solid #fff;border-radius:999px;
+    background:linear-gradient(110deg,#ffd400,#fff1a8,#ffd400);background-size:200% 100%;
+    color:#173a91;font-weight:900;font-size:clamp(15px,4vw,18px);line-height:1.25;text-align:center;
+    box-shadow:0 5px 18px rgba(0,0,0,.3),0 0 0 3px rgba(255,212,0,.15);
+    cursor:pointer;animation:peBotonBrillo 3s linear infinite,peBotonPulso 2.4s ease-in-out infinite;
+}
+.pe-instalar-app:active{transform:scale(.97)}
+.pe-instalar-app-icono{display:inline-block;font-size:1.3em;animation:peTelefonoBaila 1.5s ease-in-out infinite}
+.pe-instalar-ayuda{display:none;max-width:540px;margin:10px auto 0;padding:10px 12px;border-radius:12px;background:rgba(0,0,0,.25);color:#fff;text-align:center;font-size:13px;line-height:1.45}
+@keyframes peBannerEntrada{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes peBannerBrillo{0%,35%{transform:translateX(-65%)}70%,100%{transform:translateX(65%)}}
+@keyframes peTelefonoBaila{0%,100%{transform:translateY(0) rotate(-7deg)}50%{transform:translateY(-5px) rotate(7deg)}}
+@keyframes peEstrellaSalta{0%,100%{transform:translateY(0) scale(1);opacity:.8}50%{transform:translateY(-5px) scale(1.15);opacity:1}}
+@keyframes peBotonBrillo{0%{background-position:0 50%}100%{background-position:200% 50%}}
+@keyframes peBotonPulso{0%,100%{box-shadow:0 5px 18px rgba(0,0,0,.3),0 0 0 3px rgba(255,212,0,.15)}50%{box-shadow:0 7px 22px rgba(0,0,0,.35),0 0 0 6px rgba(255,212,0,.23)}}
+@media(prefers-reduced-motion:reduce){.pe-instalar-panel,.pe-instalar-panel::before,.pe-instalar-movil,.pe-instalar-estrella,.pe-instalar-app,.pe-instalar-app-icono{animation:none!important}}
+
+
+/* PASOS PARA AGREGAR A LA PANTALLA DE INICIO */
+.pe-instalar-ayuda.visible{display:block;animation:peBannerEntrada .4s ease-out both}
+.pe-instalar-paso-titulo{margin:0 0 6px;color:#ffe36a;font-size:clamp(17px,4.4vw,21px);font-weight:900}
+.pe-instalar-paso{display:flex;align-items:center;gap:12px;margin:9px auto;max-width:440px;padding:9px 12px;border-radius:14px;background:rgba(255,255,255,.12);text-align:left;font-size:clamp(14px,3.8vw,16px);line-height:1.4}
+.pe-instalar-paso-icono{flex:0 0 38px;text-align:center;font-size:28px;animation:peEstrellaSalta 1.4s ease-in-out infinite}
+.pe-instalar-paso:nth-child(2) .pe-instalar-paso-icono{animation-delay:.4s}
+.pe-instalar-listo{margin:8px auto 0;padding:11px 26px;border:2px solid #fff;border-radius:999px;background:#25D366;color:#fff;font-size:16px;font-weight:900;cursor:pointer;animation:peBotonPulso 2.4s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){.pe-instalar-paso-icono,.pe-instalar-listo{animation:none!important}}
+</style>
+<style id="acabado-luminoso-penafiel">
+/* Brillo de marca visible en teléfono, sin tocar carrusel ni navegación */
+.pe-banner{border:1px solid rgba(255,230,90,.85)!important;box-shadow:0 12px 32px rgba(0,0,0,.28),0 0 22px rgba(255,212,0,.45)!important;animation:peBannerGlow 3s ease-in-out infinite}
+.pe-titulo{filter:drop-shadow(0 0 10px rgba(255,212,0,.48));text-shadow:0 0 18px rgba(255,255,255,.28)}
+.pe-instalar-panel{box-shadow:0 12px 28px rgba(0,0,0,.28),0 0 22px rgba(255,212,0,.22)!important}
+.pe-boton-carrusel{border:1px solid rgba(255,230,100,.85)!important;box-shadow:0 0 14px rgba(255,212,0,.42),0 6px 16px rgba(0,0,0,.28)!important;transition:transform .2s,filter .2s,box-shadow .2s}
+.pe-whatsapp a,.pe-descarga-pdf a,.pe-campana button{box-shadow:0 8px 22px rgba(0,0,0,.25),0 0 18px rgba(255,212,0,.2)!important;transition:transform .2s,filter .2s,box-shadow .2s}
+.pe-whatsapp a:active,.pe-descarga-pdf a:active,.pe-campana button:active,.pe-boton-carrusel:active{transform:scale(.97);filter:brightness(1.16)}
+@keyframes peBannerGlow{50%{box-shadow:0 12px 32px rgba(0,0,0,.28),0 0 36px rgba(255,212,0,.68)}}
+@media(prefers-reduced-motion:reduce){.pe-banner{animation:none!important}.pe-boton-carrusel,.pe-whatsapp a,.pe-descarga-pdf a,.pe-campana button{transition:none!important}}
+</style>
+<link rel="stylesheet" href="efectos-catalogo.css?v=2">
+
+
+</head>
+
+<body>
+<!-- PANTALLA DE CARGA: video + barra azul que dura lo que dura el video -->
+<div id="pe-loading" aria-label="Cargando Catálogo Peñafiel">
+<div class="pe-loading-marco"></div>
+<video class="pe-loading-zombie" id="pe-loading-zombie-video" src="orange%20crush.mp4" autoplay muted playsinline preload="auto" aria-label="Video de bienvenida del Catálogo Peñafiel"></video>
+<div class="pe-loading-contenido">
+<div class="pe-loading-recarga">
+<div class="pe-loading-barra" role="progressbar" aria-label="Carga del video de bienvenida" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="pe-loading-progreso"></div></div>
+</div>
+<span id="pe-loading-porcentaje">0%</span>
+</div>
+</div>
+
+<div id="pe-octubre-decoracion" class="pe-octubre-marco" aria-hidden="true">
+<div class="pe-telaraña pe-telaraña-1"></div><div class="pe-telaraña pe-telaraña-2"></div>
+<span class="pe-deco-halloween p2">🕷️</span><span class="pe-deco-halloween p6">🕷️</span>
+</div>
+
+<div class="pe-arana a1"></div><div class="pe-arana a2"></div><div class="pe-arana a3"></div><div class="pe-arana a4"></div><div class="pe-arana a5"></div>
+<div class="pe-arana a6"></div><div class="pe-arana a7"></div><div class="pe-arana a8"></div><div class="pe-arana a9"></div><div class="pe-arana a10"></div>
+<div class="pe-arana extra e1" aria-hidden="true"></div><div class="pe-arana extra e2" aria-hidden="true"></div><div class="pe-arana extra e3" aria-hidden="true"></div><div class="pe-arana extra e4" aria-hidden="true"></div><div class="pe-arana extra e5" aria-hidden="true"></div><div class="pe-arana extra e6" aria-hidden="true"></div><div class="pe-arana extra e7" aria-hidden="true"></div><div class="pe-arana extra e8" aria-hidden="true"></div><div class="pe-arana extra e9" aria-hidden="true"></div><div class="pe-arana extra e10" aria-hidden="true"></div><div class="pe-arana extra e11" aria-hidden="true"></div><div class="pe-arana extra e12" aria-hidden="true"></div><div class="pe-arana extra e13" aria-hidden="true"></div><div class="pe-arana extra e14" aria-hidden="true"></div>
+<div class="pe-arana-colgante" aria-hidden="true"></div>
+<div class="pe-telarana-palabra" aria-hidden="true">
+<svg viewBox="0 0 900 190" preserveAspectRatio="xMidYMid meet">
+<path class="pe-hilo-tejido" d="M450 0 C450 22 450 34 450 48" />
+<text x="450" y="128" text-anchor="middle" class="pe-palabra-telaraña">PEÑAFIEL</text>
+<path class="pe-rayos-tejido" d="M450 48 L170 145 M450 48 L260 165 M450 48 L350 175 M450 48 L550 175 M450 48 L640 165 M450 48 L730 145" />
+</svg>
+</div>
+
+
+<div class="pe-catalogo">
+
+<div class="pe-marco"></div>
+
+<div class="pe-contenido">
+
+<!-- BANNER -->
+<div class="pe-banner">
+<img src="https://i.ibb.co/svTJRTf9/1791316674890.jpg" alt="Bienvenidos">
+</div>
+
+<!-- RELOJ + ZOMBIES 2 Y 3 -->
+<div class="pe-zombie-reloj">
+<video src="zombie%202.mp4" autoplay muted loop playsinline preload="none" aria-hidden="true"></video>
+<div class="pe-reloj-centro">
+<div class="pe-reloj">
+<span id="pe-saludo">Buenos días ☀️</span>
+<span id="pe-hora">00:00:00</span>
+<span id="pe-fecha">Cargando fecha...</span>
+</div>
+</div>
+<video src="zombie%203.mp4" autoplay muted loop playsinline preload="none" aria-hidden="true"></video>
+</div>
+
+<!-- INVITACION PARA TENER EL CATALOGO SIEMPRE A LA MANO: DEBAJO DEL RELOJ -->
+<section class="pe-instalar-panel" id="pe-instalar-panel" aria-label="Agregar catálogo al celular">
+  <div class="pe-instalar-decoracion" aria-hidden="true"><span class="pe-instalar-estrella">✨</span><span class="pe-instalar-movil">📱</span><span class="pe-instalar-estrella">💧</span></div>
+  <div id="pe-instalar-intro">
+    <h2 class="pe-instalar-titulo">¡Ten tu catálogo siempre a la mano!</h2>
+    <p class="pe-instalar-texto">Agrégalo a la pantalla de inicio de tu celular y consúltalo cuando quieras. Es práctico y no necesitas descargar una app tradicional.</p>
+    <button id="pe-instalar-app" class="pe-instalar-app" type="button"><span class="pe-instalar-app-icono" aria-hidden="true">📱</span> AGREGAR A MI CELULAR <span aria-hidden="true">✨</span></button>
+  </div>
+  <div id="pe-instalar-ayuda" class="pe-instalar-ayuda" aria-live="polite">
+    <p class="pe-instalar-paso-titulo">¡Muy fácil, solo 2 pasos! 🎉</p>
+    <div id="pe-instalar-pasos"></div>
+    <button id="pe-instalar-listo" class="pe-instalar-listo" type="button">¡ENTENDIDO! ✅</button>
+  </div>
+</section>
+
+<!-- CARRUSEL -->
+<div class="pe-carrusel">
+
+<button id="pe-prev" class="pe-boton-carrusel" type="button">‹</button>
+
+<div class="pe-carrusel-ventana">
+<div id="pe-pista" class="pe-carrusel-pista">
+
+<div class="pe-slide"><img src="https://i.ibb.co/Gv3cRRdc/Logo-Aguafiel-2.png" loading="lazy" decoding="async" alt="Aguafiel"></div>
+
+<div class="pe-slide"><img src="https://i.ibb.co/GfjQ3c1G/1000025618-bf825456c1d5580a528d5315312af723-23-4-2025-6-50-41-p-m-20251013-195258-0000.png" loading="lazy" decoding="async" alt="Producto"></div>
+
+<div class="pe-slide"><img src="https://i.ibb.co/ynkKdGX1/1000025606-1d4a51831b907a4f8b501fbec7c7af2e-23-4-2025-6-51-41-p-m-20251013-195212-0000.png" loading="lazy" decoding="async" alt="Producto"></div>
+
+<div class="pe-slide"><img src="https://i.ibb.co/Mw6dRGG/1000025646-9d370f5f68af783e23b5a9b0f5505bbb-23-4-2025-6-07-08-p-m-20251013-195450-0000.png" loading="lazy" decoding="async" alt="Producto"></div>
+
+<div class="pe-slide"><img src="https://i.ibb.co/ZzMtgbhD/1000025658-348f843033ce99ece84ca729355c0f1b-23-4-2025-6-00-49-p-m-20251013-195500-0000.png" loading="lazy" decoding="async" alt="Producto"></div>
+
+<div class="pe-slide"><img src="https://i.ibb.co/nNxrbRyh/1000025602-62ddb21849f0361580bc4d0efa34354e-23-4-2025-6-11-20-p-m-20251013-195339-0000.png" loading="lazy" decoding="async" alt="Producto"></div>
+
+<div class="pe-slide"><img src="https://i.ibb.co/Y7QxbJjY/1000025654-2692218fc8dc6f2b016e8d3683e5f858-23-4-2025-6-11-09-p-m-20251013-195350-0000.png" loading="lazy" decoding="async" alt="Producto"></div>
+
+<div class="pe-slide"><img src="https://i.ibb.co/sJt8BFwX/1000025642-c2cb61c3dde506ce9f3069066c669ba5-23-4-2025-6-11-01-p-m-20251013-195405-0000.png" loading="lazy" decoding="async" alt="Producto"></div>
+
+<div class="pe-slide"><img src="https://i.ibb.co/TxN97tWT/1000025626-1bff0cc8fae8cacf77890027fc33815a-23-4-2025-6-10-03-p-m-20251013-195417-0000.png" loading="lazy" decoding="async" alt="Producto"></div>
+
+<div class="pe-slide"><img src="https://i.ibb.co/CppsgtfQ/1000025630-feb45ba9b765bb9c1de588eb441f6482-23-4-2025-6-07-50-p-m-20251013-200047-0000.png" loading="lazy" decoding="async" alt="Producto"></div>
+
+<div class="pe-slide"><img src="https://i.ibb.co/vxJR42Kb/1000025666-58cc64ab75c3f8d940573a1759577a32-23-4-2025-6-00-22-p-m-20251013-195509-0000.png" loading="lazy" decoding="async" alt="Producto"></div>
+
+<div class="pe-slide"><img src="https://i.ibb.co/V0fSTkwF/1000025650-5c50d0142ea71648da15e8f0ddafd61f-23-4-2025-5-59-26-p-m-20251013-195518-0000.png" loading="lazy" decoding="async" alt="Producto"></div>
+
+<div class="pe-slide"><img src="https://i.ibb.co/jk16xsZJ/1000025638-0b248c89ee1732eb0af84073f3428ec0-23-4-2025-5-49-36-p-m-20251013-195532-0000.png" loading="lazy" decoding="async" alt="Producto"></div>
+
+<div class="pe-slide"><img src="https://i.ibb.co/V02qdfLy/1000007070-9694f92c3b44fe9ffead942f230bfb91-9-3-2025-11-01-30-p-m-20251013-195555-0000.png" loading="lazy" decoding="async" alt="Producto"></div>
+
+<div class="pe-slide"><img src="https://i.ibb.co/N6fbMLZD/1000006945-0068a95808c67fc45319ac198c497c31-9-3-2025-10-24-49-p-m-20251013-195609-0000.png" loading="lazy" decoding="async" alt="Producto"></div>
+
+</div>
+</div>
+
+<button id="pe-next" class="pe-boton-carrusel" type="button">›</button>
+
+</div>
+
+<!-- TITULO -->
+<div class="pe-titulo">CATÁLOGO DIGITAL</div>
+<div class="pe-actualizado">Actualizado septiembre 2026</div>
+<div class="pe-instruccion-zoom">🔎 <strong>Conoce nuestros productos</strong><br><span>Toca cualquier página del catálogo para ampliarla y usa dos dedos para acercar o alejar los precios y detalles.</span></div>
+
+<!-- CATALOGO -->
+<div class="pe-catalogo-paginas">
+
+<div class="pe-pagina-catalogo pe-zoomable" tabindex="0" role="button" aria-label="Ampliar catálogo página 1">
+<img src="https://i.ibb.co/0VWyqPS0/Catalogo-web-pag-1-20260929-075804-0000.png" loading="lazy" decoding="async" alt="Catálogo página 1">
+</div>
+
+<div class="pe-pagina-catalogo pe-zoomable" tabindex="0" role="button" aria-label="Ampliar catálogo página 2">
+<img src="https://i.ibb.co/zHb84Q2k/catalogo-web-pag-2-20260929-075618-0000.png" loading="lazy" decoding="async" alt="Catálogo página 2">
+</div>
+
+<!-- DESCARGA PDF -->
+<div class="pe-descarga-pdf">
+<a href="https://drive.usercontent.google.com/download?id=1tiLQ9w8Vz-uvHBydNrauWGxuK0Wxfpb3&export=download">
+<span class="pe-flecha">👉</span>
+&nbsp;DESCARGAR ESTE CATÁLOGO&nbsp;
+<span class="pe-flecha derecha">👈</span>
+</a>
+</div>
+
+</div>
+
+<!-- WHATSAPP -->
+<div class="pe-campana">
+<button id="pe-abrir-campana" type="button">NUEVA CAMPAÑA PEÑAFIEL <span>➜</span></button>
+</div>
+<div id="pe-modal-campana" class="pe-modal-campana" aria-hidden="true">
+<div class="pe-video-contenedor">
+<button id="pe-cerrar-campana" class="pe-cerrar-campana" type="button" aria-label="Cerrar">×</button>
+<iframe id="pe-video-campana" src="about:blank" loading="lazy" title="Campaña Peñafiel" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+</div>
+<div id="pe-alerta-tendencia" class="pe-alerta-tendencia" aria-hidden="true"><div class="pe-alerta-tendencia-contenido">✨ NUEVO PRODUCTO TENDENCIA ✨</div></div>
+<div id="pe-modal-promo" class="pe-modal-promo" aria-hidden="true">
+<div class="pe-promo-contenedor">
+<button id="pe-cerrar-promo" class="pe-promo-cerrar" type="button" aria-label="Cerrar">×</button>
+<img id="pe-promo-imagen" src="" alt="Promoción">
+<div id="pe-promo-texto" class="pe-promo-texto"></div>
+</div>
+</div>
+
+<div class="pe-whatsapp">
+<a href="https://wa.me/525665470369?text=Hola%21%20Gracias%20por%20visitar%20mi%20cat%C3%A1logo%20digital%20Dime%20en%20qu%C3%A9%20podemos%20ayudarte" target="_blank" rel="noopener">
+
+<img src="https://i.ibb.co/Fk68Lwr0/Ryan-RB-assistant-Person-circle-v2.webp" alt="WhatsApp">
+
+<span>Contáctanos por WhatsApp</span>
+
+</a>
+</div>
+
+<!-- LOGOS -->
+<div class="pe-logos-finales">
+
+<img src="https://i.ibb.co/4Z1XjHRn/Picsart-26-07-23-14-12-11-034.png" loading="lazy" decoding="async" alt="Logo">
+
+<img src="https://i.ibb.co/vvDDfCPG/1000033397-64fea34243d186d8ca4cfd5497610222-13-5-2025-7-59-35-p-m-20251219-110406-0000.png" loading="lazy" decoding="async" alt="Logo">
+
+</div>
+
+
+<!-- FOOTER -->
+<div class="pe-footer">
+Todos los derechos ©️ reservados.<br>
+Cambios sin previo aviso<br>
+Creado por Grupo Peñafiel y Ruta 1371 con todo el ❤️<br>Autoría y diseño web: Miguel Ángel C.
+</div>
+
+<!-- IMAGEN EXCLUSIVA ABSOLUTAMENTE AL FINAL DE LA PÁGINA -->
+<img class="pe-imagen-final" src="cementerio%20mortalkombat.gif" loading="lazy" decoding="async" alt="" aria-hidden="true">
+
+</div>
+</div>
+
+<script>
+
+/* RELOJ — SE MANTIENE EL CÓDIGO QUE YA FUNCIONABA */
+
+(function(){
+
+    function actualizarReloj(){
+
+        var ahora = new Date();
+
+        var horas = ahora.getHours();
+        var minutos = ahora.getMinutes();
+        var segundos = ahora.getSeconds();
+
+        var hora =
+            String(horas).padStart(2,"0") +
+            ":" +
+            String(minutos).padStart(2,"0") +
+            ":" +
+            String(segundos).padStart(2,"0");
+
+        var dias = [
+            "domingo",
+            "lunes",
+            "martes",
+            "miércoles",
+            "jueves",
+            "viernes",
+            "sábado"
+        ];
+
+        var meses = [
+            "enero",
+            "febrero",
+            "marzo",
+            "abril",
+            "mayo",
+            "junio",
+            "julio",
+            "agosto",
+            "septiembre",
+            "octubre",
+            "noviembre",
+            "diciembre"
+        ];
+
+        var fecha =
+            dias[ahora.getDay()] +
+            " " +
+            ahora.getDate() +
+            " de " +
+            meses[ahora.getMonth()] +
+            " de " +
+            ahora.getFullYear();
+
+        fecha =
+            fecha.charAt(0).toUpperCase() +
+            fecha.slice(1);
+
+        var horaElemento =
+            document.getElementById("pe-hora");
+
+        var fechaElemento =
+            document.getElementById("pe-fecha");
+
+        var saludoElemento =
+            document.getElementById("pe-saludo");
+
+        if(horaElemento){
+            horaElemento.textContent = hora;
+        }
+
+        if(fechaElemento){
+            fechaElemento.textContent = fecha;
+        }
+
+        if(saludoElemento){
+
+            if(horas >= 5 && horas < 12){
+
+                saludoElemento.textContent =
+                    "Buenos días ☀️";
+
+            }
+
+            else if(horas >= 12 && horas < 19){
+
+                saludoElemento.textContent =
+                    "Buenas tardes 🌤️";
+
+            }
+
+            else{
+
+                saludoElemento.textContent =
+                    "Buenas noches 🌙";
+
+            }
+
+        }
+
+    }
+
+    if(document.readyState === "loading"){
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            actualizarReloj
+        );
+
+    }else{
+
+        actualizarReloj();
+
+    }
+
+    setInterval(
+        actualizarReloj,
+        1000
+    );
+
+})();
+
+
+/* CARRUSEL */
+
+(function(){
+
+    function iniciarCarrusel(){
+
+        var pista =
+            document.getElementById("pe-pista");
+
+        var botonAnterior =
+            document.getElementById("pe-prev");
+
+        var botonSiguiente =
+            document.getElementById("pe-next");
+
+        if(!pista || !botonAnterior || !botonSiguiente){
+            return;
+        }
+
+        var slides =
+            pista.querySelectorAll(".pe-slide");
+
+        var total =
+            slides.length;
+
+        var indice = 0;
+
+
+        function mostrarSlide(){
+
+            pista.style.transform =
+                "translate3d(-" +
+                (indice * 100) +
+                "%, 0, 0)";
+
+        }
+
+
+        botonAnterior.onclick = function(e){
+
+            e.preventDefault();
+            e.stopPropagation();
+
+            indice--;
+
+            if(indice < 0){
+                indice = total - 1;
+            }
+
+            mostrarSlide();
+
+        };
+
+
+        botonSiguiente.onclick = function(e){
+
+            e.preventDefault();
+            e.stopPropagation();
+
+            indice++;
+
+            if(indice >= total){
+                indice = 0;
+            }
+
+            mostrarSlide();
+
+        };
+
+
+        mostrarSlide();
+
+
+        setInterval(
+            function(){
+
+                indice++;
+
+                if(indice >= total){
+                    indice = 0;
+                }
+
+                mostrarSlide();
+
+            },
+            3000
+        );
+
+    }
+
+
+    if(document.readyState === "loading"){
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            iniciarCarrusel
+        );
+
+    }else{
+
+        iniciarCarrusel();
+
+    }
+
+})();
+
+</script>
+
+<script>
+(function(){
+var promoData=[
+{nombre:"Aguafiel",imagen:"https://i.ibb.co/MyzQpzLL/images-2026-09-23-T110419-647.jpg",texto:"Conoce nuevas formas de hidratarte<br>Hazlo con Aguafiel"},
+{nombre:"Snapple",imagen:"https://i.ibb.co/VW340Q0y/images-2026-09-23-T111219-411.jpg",texto:"Hecho con lo mejor del mundo"},
+{nombre:"RC",imagen:"https://i.ibb.co/PG9LRPG6/Picsart-26-09-23-11-08-49-006.png",texto:"Destapa pláticas sabrosas"},
+{nombre:"Red Bull y Venom",imagen:"https://i.ibb.co/9H8xYT7C/Picsart-26-09-23-11-22-44-308.png",texto:"Ahora solo te falta decidir<br>Peñafiel te da las alas"},
+{nombre:"Crush",imagen:"https://i.ibb.co/Y45PxT1Z/Picsart-26-09-23-13-08-22-164.png",texto:"Grandes sabores al mejor precio<br>Tus comidas y reuniones ponle sabor con Crush sabores"}
+];
+var ultimoPromo=-1,promoTimer=null,promoOcultoPorVideo=false,promoAlertaTimer=null;
+var loading=document.getElementById("pe-loading"),progreso=document.getElementById("pe-loading-progreso"),porcentaje=document.getElementById("pe-loading-porcentaje");
+var modalPromo=document.getElementById("pe-modal-promo"),imagenPromo=document.getElementById("pe-promo-imagen"),textoPromo=document.getElementById("pe-promo-texto"),cerrarPromo=document.getElementById("pe-cerrar-promo"),alertaTendencia=document.getElementById("pe-alerta-tendencia"),contenedorPromo=document.querySelector(".pe-promo-contenedor");
+var modalCampana=document.getElementById("pe-modal-campana"),abrirCampana=document.getElementById("pe-abrir-campana"),cerrarCampana=document.getElementById("pe-cerrar-campana");
+var progresoActual=0,cargaLista=false;
+function actualizarProgreso(v){
+  progresoActual=Math.max(progresoActual,Math.min(100,v));
+  var barra=document.getElementById("pe-loading-progreso");
+  var contenedorBarra=document.querySelector(".pe-loading-barra");
+  if(barra)barra.style.width=progresoActual+"%";
+  if(contenedorBarra)contenedorBarra.setAttribute("aria-valuenow",String(Math.round(progresoActual)));
+  if(porcentaje)porcentaje.textContent=Math.round(progresoActual)+"%";
+}
+function ocultarCarga(){
+  if(cargaLista||!loading)return;
+  cargaLista=true;
+  actualizarProgreso(100);
+  loading.classList.add("oculto");
+  iniciarPromos();
+}
+/* BIENVENIDA: duración del video con respaldo para que nunca se quede bloqueada */
+var videoCarga=document.getElementById("pe-loading-zombie-video");
+var cargaOcultaProgramada=false;
+var progresoCargaTimer=null;
+var respaldoCargaTimer=null;
+var esperaMetadataTimer=null;
+var limiteMaximoCargaTimer=null;
+
+function terminarCarga(){
+  if(cargaOcultaProgramada)return;
+  cargaOcultaProgramada=true;
+  clearTimeout(progresoCargaTimer);
+  clearTimeout(respaldoCargaTimer);
+  clearTimeout(esperaMetadataTimer);
+  clearTimeout(limiteMaximoCargaTimer);
+  actualizarProgreso(100);
+  ocultarCarga();
+}
+
+function usarRespaldoCorto(){
+  if(cargaOcultaProgramada)return;
+  clearTimeout(progresoCargaTimer);
+  progresoCargaTimer=setTimeout(terminarCarga,3500);
+}
+
+function sincronizarCargaConVideo(){
+  if(!videoCarga){
+    usarRespaldoCorto();
+    return;
+  }
+
+  function actualizarDesdeVideo(){
+    var duracion=videoCarga.duration;
+    if(Number.isFinite(duracion)&&duracion>0){
+      actualizarProgreso(Math.min(99,(videoCarga.currentTime/duracion)*100));
+    }
+  }
+
+  videoCarga.addEventListener("timeupdate",actualizarDesdeVideo);
+  videoCarga.addEventListener("ended",terminarCarga,{once:true});
+  videoCarga.addEventListener("error",usarRespaldoCorto,{once:true});
+
+  videoCarga.addEventListener("loadedmetadata",function(){
+    clearTimeout(esperaMetadataTimer);
+    actualizarDesdeVideo();
+    if(Number.isFinite(videoCarga.duration)&&videoCarga.duration>0){
+      clearTimeout(respaldoCargaTimer);
+      respaldoCargaTimer=setTimeout(terminarCarga,Math.min(Math.ceil(videoCarga.duration*1000)+2500,45000));
+    }else{
+      usarRespaldoCorto();
+    }
+  },{once:true});
+
+  /* Si el video no carga sus datos en 10 s, se abre el catálogo igualmente. */
+  esperaMetadataTimer=setTimeout(function(){
+    if(videoCarga.readyState<1)usarRespaldoCorto();
+  },10000);
+
+  var reproduccion=videoCarga.play();
+  if(reproduccion&&typeof reproduccion.catch==="function"){
+    reproduccion.catch(usarRespaldoCorto);
+  }
+}
+
+/* Límite absoluto: nunca dejar la pantalla de bienvenida más de 45 s. */
+limiteMaximoCargaTimer=setTimeout(terminarCarga,45000);
+sincronizarCargaConVideo();
+
+function elegirPromo(){var i;if(promoData.length<=1)return 0;do{i=Math.floor(Math.random()*promoData.length)}while(i===ultimoPromo);ultimoPromo=i;return i}
+function ocultarAlertaTendencia(){if(!alertaTendencia)return;alertaTendencia.classList.remove("activo");alertaTendencia.setAttribute("aria-hidden","true")}
+function ocultarPromo(){if(!modalPromo)return;modalPromo.classList.remove("activo");modalPromo.setAttribute("aria-hidden","true");if(contenedorPromo)contenedorPromo.classList.remove("zoom-activo");clearTimeout(promoTimer);clearTimeout(promoAlertaTimer)}
+function programarSiguientePromo(){clearTimeout(promoTimer);if(contenedorPromo&&contenedorPromo.classList.contains("zoom-activo"))return;promoTimer=setTimeout(function(){mostrarPromo()},60000)}
+function pausarPromoPorZoom(){clearTimeout(promoTimer);clearTimeout(promoAlertaTimer);ocultarAlertaTendencia()}
+function reanudarPromoDespuesDeZoom(){if(modalPromo&&modalPromo.classList.contains("activo"))return;programarSiguientePromo()}
+function mostrarPromo(){if(!modalPromo||promoOcultoPorVideo)return;var p=promoData[elegirPromo()];imagenPromo.src=p.imagen;imagenPromo.alt=p.nombre;textoPromo.innerHTML=p.texto;ocultarAlertaTendencia();if(alertaTendencia){alertaTendencia.classList.add("activo");alertaTendencia.setAttribute("aria-hidden","false");promoAlertaTimer=setTimeout(function(){ocultarAlertaTendencia();modalPromo.classList.add("activo");modalPromo.setAttribute("aria-hidden","false");clearTimeout(promoTimer);promoTimer=setTimeout(function(){ocultarPromo();programarSiguientePromo()},5000)},1000)}else{modalPromo.classList.add("activo");modalPromo.setAttribute("aria-hidden","false");clearTimeout(promoTimer);promoTimer=setTimeout(function(){ocultarPromo();programarSiguientePromo()},5000)}}
+function iniciarPromos(){setTimeout(function(){mostrarPromo()},5500)}
+
+if(cerrarPromo)cerrarPromo.onclick=function(e){if(e)e.stopPropagation();ocultarPromo();programarSiguientePromo()};
+/* Tocar cualquier parte del pop-up promocional lo cierra; nunca aplica zoom. */
+if(contenedorPromo)contenedorPromo.addEventListener("click",function(e){
+  if(e.target===cerrarPromo)return;
+  ocultarPromo();
+  programarSiguientePromo();
+});
+if(modalPromo)modalPromo.addEventListener("click",function(e){if(e.target===modalPromo){ocultarPromo();programarSiguientePromo()}});
+
+function abrirVideo(){
+  if(!modalCampana)return;
+  promoOcultoPorVideo=true;
+  ocultarPromo();
+  var video=document.getElementById("pe-video-campana");
+  modalCampana.classList.add("activo");
+  modalCampana.setAttribute("aria-hidden","false");
+  if(video){
+    video.src="about:blank";
+    setTimeout(function(){
+      video.src="https://www.youtube.com/embed/CtGBwVyB024?rel=0&autoplay=1&playsinline=1&enablejsapi=1&origin="+encodeURIComponent(location.origin);
+      video.onload=function(){
+        try{
+          video.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}',"*");
+        }catch(e){}
+      };
+    },80);
+  }
+}
+function cerrarVideo(){
+  if(!modalCampana)return;
+  modalCampana.classList.remove("activo");
+  modalCampana.setAttribute("aria-hidden","true");
+  var video=document.getElementById("pe-video-campana");
+  if(video) video.src="about:blank";
+  promoOcultoPorVideo=false;
+  programarSiguientePromo();
+}
+if(abrirCampana)abrirCampana.onclick=abrirVideo;
+if(cerrarCampana)cerrarCampana.onclick=cerrarVideo;
+if(modalCampana)modalCampana.addEventListener("click",function(e){if(e.target===modalCampana)cerrarVideo()});
+document.addEventListener("keydown",function(e){if(e.key==="Escape"){if(modalCampana&&modalCampana.classList.contains("activo"))cerrarVideo();else if(modalPromo&&modalPromo.classList.contains("activo")){ocultarPromo();programarSiguientePromo()}}});
+})();
+</script>
+
+<script>
+/* IMAGEN FLOTANTE ALEATORIA — TRES ZONAS */
+(function(){
+    var imagen=document.getElementById("pe-imagen-flotante");
+    if(!imagen)return;
+
+    var posiciones=[
+        {top:"8%",    nombre:"arriba"},
+        {top:"43%",   nombre:"medio"},
+        {top:"76%",   nombre:"abajo"}
+    ];
+
+    var posicionAnterior=-1;
+
+    function moverImagen(){
+        var indice;
+        do{
+            indice=Math.floor(Math.random()*posiciones.length);
+        }while(indice===posicionAnterior && posiciones.length>1);
+
+        posicionAnterior=indice;
+
+        var zona=posiciones[indice];
+        var izquierda=12+Math.random()*76;
+        var rotacion=(Math.random()*10)-5;
+        var escala=.88+Math.random()*.24;
+
+        imagen.style.left=izquierda+"%";
+        imagen.style.top=zona.top;
+        imagen.style.transform=
+            "translate3d(-50%,0,0) scale("+escala+") rotate("+rotacion+"deg)";
+
+        imagen.classList.add("visible");
+
+        /* Siguiente aparición en un tiempo aleatorio:
+           aproximadamente entre 20 y 40 segundos. */
+        var siguiente=20000+Math.floor(Math.random()*20001);
+        setTimeout(moverImagen,siguiente);
+    }
+
+    /* Primera aparición en una zona aleatoria */
+    setTimeout(moverImagen,2500);
+})();
+</script>
+
+<script>
+(function(){
+    const arañas=document.querySelectorAll('.pe-arana');
+    function regenerar(a){
+        a.classList.remove('aplastada');
+        a.style.left=(5+Math.random()*88)+'vw';
+        a.style.top=(8+Math.random()*84)+'vh';
+        a.style.animationDelay=(-Math.random()*8)+'s';
+        a.style.animationDuration=(12+Math.random()*10)+'s';
+        if(a.classList.contains('extra')){
+            a.style.setProperty('--inicio-x',(3+Math.random()*90)+'vw');
+            a.style.setProperty('--inicio-y',(5+Math.random()*88)+'vh');
+            a.style.setProperty('--medio-x',(3+Math.random()*90)+'vw');
+            a.style.setProperty('--medio-y',(5+Math.random()*88)+'vh');
+            a.style.setProperty('--fin-x',(3+Math.random()*90)+'vw');
+            a.style.setProperty('--fin-y',(5+Math.random()*88)+'vh');
+        }
+    }
+    arañas.forEach(a=>{
+        if(a.classList.contains('extra'))regenerar(a);
+        a.addEventListener('pointerdown',function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            a.classList.add('aplastada');
+            setTimeout(()=>regenerar(a),700);
+        },{passive:false});
+    });
+})();
+</script>
+
+<!-- VISOR AMPLIADO DEL CATALOGO -->
+<div id="pe-visor-zoom" class="pe-visor-zoom" aria-hidden="true">
+<div class="pe-visor-controles">
+<button id="pe-visor-cerrar" class="pe-visor-control cerrar" type="button" aria-label="Cerrar ampliación">✕ Cerrar</button>
+<button id="pe-visor-inicio" class="pe-visor-control" type="button" aria-label="Volver al inicio">⌂ Volver al inicio</button>
+</div>
+<img id="pe-visor-imagen" alt="Catálogo ampliado">
+<div class="pe-visor-ayuda">🤏 Usa dos dedos para acercar o alejar · Desliza para recorrer</div>
+</div>
+<script>
+(function(){
+  var visor=document.getElementById('pe-visor-zoom');
+  var imagen=document.getElementById('pe-visor-imagen');
+  var cerrar=document.getElementById('pe-visor-cerrar');
+  var inicio=document.getElementById('pe-visor-inicio');
+  if(!visor||!imagen)return;
+  var scrollAnterior=0;
+  var overflowAnterior='';
+
+  function abrir(el){
+    var img=el.querySelector('img');
+    if(!img)return;
+    scrollAnterior=window.scrollY||window.pageYOffset||0;
+    overflowAnterior=document.body.style.overflow;
+    imagen.style.width='';
+    imagen.style.height='';
+    imagen.style.maxWidth='';
+    imagen.style.maxHeight='';
+    imagen.src=img.currentSrc||img.src;
+    visor.scrollTop=0;
+    visor.classList.add('activo');
+    visor.setAttribute('aria-hidden','false');
+    document.body.classList.add('pe-visor-abierto');
+    document.body.style.overflow='hidden';
+    if(cerrar)cerrar.focus({preventScroll:true});
+  }
+
+  function cerrarVisor(){
+    visor.classList.remove('activo');
+    visor.setAttribute('aria-hidden','true');
+    document.body.classList.remove('pe-visor-abierto');
+    document.body.style.overflow=overflowAnterior;
+    imagen.removeAttribute('src');
+    imagen.style.transform='';
+    imagen.style.width='';
+    imagen.style.height='';
+    window.scrollTo(0,scrollAnterior);
+  }
+
+  function volverAlInicio(){
+    cerrarVisor();
+    window.scrollTo({top:0,left:0,behavior:'smooth'});
+  }
+
+  document.querySelectorAll('.pe-zoomable').forEach(function(el){
+    el.addEventListener('click',function(){abrir(el);});
+    el.addEventListener('keydown',function(e){
+      if(e.key==='Enter'||e.key===' '){e.preventDefault();abrir(el);}
+    });
+  });
+
+  if(cerrar)cerrar.addEventListener('click',cerrarVisor);
+  if(inicio)inicio.addEventListener('click',volverAlInicio);
+  visor.addEventListener('click',function(e){if(e.target===visor)cerrarVisor();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&visor.classList.contains('activo'))cerrarVisor();});
+  window.addEventListener('orientationchange',function(){
+    if(visor.classList.contains('activo')){
+      imagen.style.maxWidth='100%';
+      imagen.style.maxHeight='calc(100dvh - 140px)';
+    }
+  });
+})();
+</script>
+
+ 
+<script>
+/* AGREGAR A PANTALLA DE INICIO (como web) + service worker */
+(function(){
+  var KEY='pe_catalogo_agregado';
+  var panel=document.getElementById('pe-instalar-panel');
+  var intro=document.getElementById('pe-instalar-intro');
+  var boton=document.getElementById('pe-instalar-app');
+  var ayuda=document.getElementById('pe-instalar-ayuda');
+  var pasos=document.getElementById('pe-instalar-pasos');
+  var listo=document.getElementById('pe-instalar-listo');
+  var params=new URLSearchParams(location.search);
+
+  function guardar(){ try{localStorage.setItem(KEY,'1');}catch(e){} }
+  function olvidar(){ try{localStorage.removeItem(KEY);}catch(e){} }
+  function yaAgregado(){ try{return localStorage.getItem(KEY)==='1';}catch(e){return false;} }
+  function ocultar(){ if(panel) panel.style.display='none'; }
+  function limpiarURL(nombre){
+    params.delete(nombre);
+    var q=params.toString();
+    try{ history.replaceState(null,'',location.pathname+(q?'?'+q:'')+location.hash); }catch(e){}
+  }
+
+  /* Para pruebas: abre la página con ?verbanner=1 y el aviso vuelve a aparecer. */
+  if(params.has('verbanner')){ olvidar(); limpiarURL('verbanner'); }
+
+  /* Si se abrió desde el icono agregado, se recuerda y el aviso ya no sale más. */
+  if(params.has('inicio')){ guardar(); limpiarURL('inicio'); }
+
+  /* Compatibilidad: si alguna vez se abre en modo pantalla completa. */
+  var modoApp=window.matchMedia && window.matchMedia('(display-mode: standalone)');
+  if((modoApp && modoApp.matches) || navigator.standalone===true){ guardar(); }
+
+  if(yaAgregado()){ ocultar(); }
+
+  if(boton) boton.addEventListener('click',function(){
+    var esIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
+    if(pasos){
+      pasos.innerHTML= esIOS
+        ? '<div class="pe-instalar-paso"><span class="pe-instalar-paso-icono">⬆️</span><span>Toca el botón <b>Compartir</b> de Safari.</span></div>'+
+          '<div class="pe-instalar-paso"><span class="pe-instalar-paso-icono">➕</span><span>Elige <b>“Agregar a pantalla de inicio”</b> y toca <b>Agregar</b>.</span></div>'
+        : '<div class="pe-instalar-paso"><span class="pe-instalar-paso-icono">⋮</span><span>Toca los <b>tres puntos</b> de arriba a la derecha en Chrome.</span></div>'+
+          '<div class="pe-instalar-paso"><span class="pe-instalar-paso-icono">➕</span><span>Elige <b>“Agregar a la pantalla principal”</b> y toca <b>Agregar</b>.</span></div>';
+    }
+    /* La dirección lleva una marca para que, al abrir desde el icono, el aviso se oculte. */
+    try{
+      var u=new URLSearchParams(location.search); u.set('inicio','1');
+      history.replaceState(null,'',location.pathname+'?'+u.toString()+location.hash);
+    }catch(e){}
+    guardar();
+    if(intro) intro.style.display='none';
+    if(ayuda) ayuda.classList.add('visible');
+  });
+  if(listo) listo.addEventListener('click',ocultar);
+
+  /* Service worker (también lo usará OneSignal para las notificaciones). */
+  if('serviceWorker' in navigator){
+    window.addEventListener('load',function(){
+      navigator.serviceWorker.register('./service-worker.js').then(function(r){ if(r.update) r.update(); }).catch(function(error){
+        console.warn('No se pudo activar el service worker:',error);
+      });
+    });
+  }
+})();
+</script>
+
+<!-- ONESIGNAL (NOTIFICACIONES) — app "Catálogo y Películas". Etiqueta de esta página: sitio = catalogo -->
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "7aba97c6-14da-43b9-bddb-89aa766d321e",
+      serviceWorkerPath: "Catalogo-pe-afiel-pdf/service-worker.js",
+      serviceWorkerParam: { scope: "/Catalogo-pe-afiel-pdf/" }
+    });
+    try { OneSignal.User.addTag("sitio", "catalogo"); } catch (e) {}
+  });
+</script>
+
+<!-- ===== MEJORAS VISUALES PEÑAFIEL: ANIMACIONES LIGERAS ===== -->
+<style id="pe-mejoras-animadas">
+  :root{
+    --pe-neon-naranja:#ff7a00;
+    --pe-neon-morado:#a64dff;
+    --pe-neon-azul:#2f8cff;
+    --pe-neon-dorado:#ffd400;
+  }
+
+  /* Resplandor decorativo sin sustituir el fondo ni el contenido existente */
+  .pe-catalogo{
+    background-image:
+      radial-gradient(ellipse at 12% 8%,rgba(166,77,255,.16),transparent 32%),
+      radial-gradient(ellipse at 88% 32%,rgba(255,122,0,.10),transparent 30%),
+      linear-gradient(180deg,rgba(0,87,184,.06),rgba(20,5,38,.10));
+    background-blend-mode:screen,screen,normal;
+  }
+
+  /* Banner principal: marco iluminado y reflejo que pasa suavemente */
+  .pe-banner{
+    position:relative;
+    isolation:isolate;
+    border:1px solid rgba(255,212,0,.72);
+    box-shadow:0 8px 24px rgba(0,0,0,.32),0 0 13px rgba(255,122,0,.22);
+  }
+  .pe-banner::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    background:linear-gradient(112deg,transparent 25%,rgba(255,255,255,.24) 45%,transparent 62%);
+    transform:translateX(-120%);
+    animation:peBannerDestello 8s ease-in-out infinite;
+  }
+  @keyframes peBannerDestello{
+    0%,62%{transform:translateX(-120%)}
+    84%,100%{transform:translateX(120%)}
+  }
+
+  /* Reloj con halo dorado sutil */
+  .pe-reloj{
+    border:1px solid rgba(255,212,0,.38);
+    box-shadow:0 7px 22px rgba(0,0,0,.22),inset 0 0 22px rgba(166,77,255,.12);
+    animation:peRelojHalo 5s ease-in-out infinite;
+  }
+  @keyframes peRelojHalo{
+    0%,100%{box-shadow:0 7px 22px rgba(0,0,0,.22),inset 0 0 18px rgba(166,77,255,.10)}
+    50%{box-shadow:0 7px 24px rgba(0,0,0,.25),0 0 15px rgba(166,77,255,.22),inset 0 0 22px rgba(255,122,0,.10)}
+  }
+
+  /* Banners y acciones: alternancia de acentos, sin arcoíris ni saturación */
+  .pe-instalar-panel,.pe-campana button,.pe-descarga-pdf a{
+    position:relative;
+    overflow:hidden;
+    isolation:isolate;
+  }
+  .pe-instalar-panel{
+    border-color:rgba(255,122,0,.72)!important;
+    box-shadow:0 8px 24px rgba(0,0,0,.26),0 0 13px rgba(166,77,255,.18);
+  }
+  .pe-campana button{
+    box-shadow:0 6px 18px rgba(0,0,0,.24),0 0 12px rgba(166,77,255,.22);
+    transition:transform .22s ease,box-shadow .22s ease,filter .22s ease;
+  }
+  .pe-campana button:hover{
+    transform:translateY(-2px);
+    filter:brightness(1.08);
+    box-shadow:0 9px 22px rgba(0,0,0,.28),0 0 18px rgba(255,122,0,.28);
+  }
+  .pe-descarga-pdf a{
+    border-color:rgba(255,255,255,.92);
+    box-shadow:0 7px 20px rgba(0,0,0,.28),0 0 13px rgba(255,122,0,.20);
+    transition:transform .22s ease,box-shadow .22s ease;
+  }
+  .pe-descarga-pdf a:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(0,0,0,.32),0 0 20px rgba(166,77,255,.28);
+  }
+
+  /* Carrusel y páginas: profundidad al tocar o pasar el puntero */
+  .pe-carrusel-ventana,.pe-pagina-catalogo{
+    box-shadow:0 7px 20px rgba(0,0,0,.30),0 0 0 1px rgba(255,255,255,.14);
+    transition:box-shadow .24s ease,transform .24s ease;
+  }
+  .pe-pagina-catalogo{transform-origin:center top}
+  @media(hover:hover) and (pointer:fine){
+    .pe-carrusel-ventana:hover,.pe-pagina-catalogo:hover{
+      transform:translateY(-2px);
+      box-shadow:0 12px 28px rgba(0,0,0,.34),0 0 16px rgba(166,77,255,.16);
+    }
+    .pe-logos-finales img{
+      transition:transform .25s ease,filter .25s ease;
+    }
+    .pe-logos-finales img:hover{
+      transform:translateY(-3px) scale(1.025);
+      filter:drop-shadow(0 5px 8px rgba(0,0,0,.28));
+    }
+  }
+
+  /* Contacto más táctil, sin alterar el enlace ni su destino */
+  .pe-whatsapp a{
+    transition:transform .22s ease,box-shadow .22s ease,filter .22s ease;
+  }
+  .pe-whatsapp a:active,.pe-campana button:active,.pe-descarga-pdf a:active{
+    transform:scale(.985);
+    filter:brightness(1.04);
+  }
+
+  /* Animaciones respetuosas con accesibilidad y ahorro de batería */
+  @media(prefers-reduced-motion:reduce){
+    .pe-banner::after,.pe-reloj,.pe-campana button,.pe-descarga-pdf a,
+    .pe-carrusel-ventana,.pe-pagina-catalogo,.pe-whatsapp a,.pe-logos-finales img{
+      animation:none!important;
+      transition:none!important;
+      transform:none!important;
+    }
+  }
+</style>
+<!-- ===== FIN MEJORAS VISUALES PEÑAFIEL ===== -->
+
+<!-- ===== TARJETAS CON PROFUNDIDAD Y RESPUESTA TÁCTIL ===== -->
+<style id="pe-tarjetas-profundidad-tactil">
+  .pe-pagina-catalogo{
+    position:relative;
+    isolation:isolate;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,.9);
+    box-shadow:
+      0 3px 0 rgba(8,24,65,.5),
+      0 9px 0 rgba(5,20,55,.22),
+      0 15px 28px rgba(0,0,0,.38),
+      0 0 0 1px rgba(255,212,0,.35);
+    transform:perspective(900px) translateZ(0);
+    transition:transform .22s cubic-bezier(.2,.8,.2,1),box-shadow .22s ease,filter .22s ease;
+    animation:peTarjetaEntrada .65s cubic-bezier(.2,.8,.2,1) both;
+  }
+  .pe-pagina-catalogo:nth-child(2){animation-delay:.09s}
+  .pe-pagina-catalogo::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:inherit;
+    pointer-events:none;
+    z-index:2;
+    background:linear-gradient(112deg,transparent 0%,rgba(255,255,255,0) 36%,rgba(255,255,255,.34) 48%,rgba(255,255,255,0) 60%,transparent 100%);
+    background-size:220% 100%;
+    background-position:130% 0;
+    opacity:.75;
+    transition:background-position .65s ease,opacity .25s ease;
+  }
+  .pe-pagina-catalogo:active,
+  .pe-pagina-catalogo.pe-tocada{
+    transform:perspective(900px) translateY(4px) scale(.985);
+    box-shadow:0 1px 0 rgba(8,24,65,.6),0 4px 0 rgba(5,20,55,.25),0 7px 15px rgba(0,0,0,.34),0 0 22px rgba(255,212,0,.58);
+    filter:brightness(1.045) saturate(1.04);
+  }
+  .pe-pagina-catalogo:active::after,
+  .pe-pagina-catalogo.pe-tocada::after{
+    background-position:-30% 0;
+    opacity:1;
+  }
+  .pe-carrusel-ventana{
+    border:2px solid rgba(255,212,0,.72);
+    box-shadow:0 4px 0 rgba(5,20,55,.35),0 12px 25px rgba(0,0,0,.38),0 0 15px rgba(255,212,0,.16);
+    transition:box-shadow .22s ease,transform .22s ease;
+  }
+  .pe-boton-carrusel,.pe-instalar-app,.pe-instalar-listo,.pe-campana button,
+  .pe-descarga-pdf a,.pe-whatsapp a{
+    -webkit-tap-highlight-color:transparent;
+    touch-action:manipulation;
+    transition:transform .16s ease,filter .16s ease,box-shadow .16s ease;
+  }
+  .pe-boton-carrusel{
+    box-shadow:0 4px 0 #c5a400,0 7px 12px rgba(0,0,0,.28),0 0 12px rgba(255,212,0,.32);
+    border:1px solid rgba(255,212,0,.8);
+  }
+  .pe-boton-carrusel:active,.pe-instalar-app:active,.pe-instalar-listo:active,
+  .pe-campana button:active,.pe-descarga-pdf a:active,.pe-whatsapp a:active{
+    transform:translateY(3px) scale(.975);
+    filter:brightness(1.12);
+    box-shadow:0 1px 0 rgba(0,0,0,.35),0 0 20px rgba(255,212,0,.48);
+  }
+  .pe-instalar-panel,.pe-reloj,.pe-carrusel-ventana{
+    animation:peHaloTarjetas 4.8s ease-in-out infinite;
+  }
+  @keyframes peTarjetaEntrada{
+    from{opacity:.55;transform:perspective(900px) translateY(14px) scale(.985)}
+    to{opacity:1;transform:perspective(900px) translateY(0) scale(1)}
+  }
+  @keyframes peHaloTarjetas{
+    0%,100%{filter:brightness(1)}
+    50%{filter:brightness(1.055)}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .pe-pagina-catalogo,.pe-instalar-panel,.pe-reloj,.pe-carrusel-ventana{animation:none!important}
+    .pe-pagina-catalogo,.pe-carrusel-ventana,.pe-boton-carrusel,.pe-instalar-app,.pe-instalar-listo,.pe-campana button,.pe-descarga-pdf a,.pe-whatsapp a{transition:none!important}
+  }
+</style>
+<script>
+(function(){
+  document.querySelectorAll('.pe-pagina-catalogo,.pe-carrusel-ventana,.pe-boton-carrusel,.pe-instalar-app,.pe-instalar-listo,.pe-campana button,.pe-descarga-pdf a,.pe-whatsapp a').forEach(function(el){
+    el.addEventListener('pointerdown',function(){
+      el.classList.add('pe-tocada');
+      window.setTimeout(function(){el.classList.remove('pe-tocada')},420);
+    },{passive:true});
+    el.addEventListener('pointercancel',function(){el.classList.remove('pe-tocada')},{passive:true});
+  });
+})();
+</script>
+<!-- ===== FIN TARJETAS CON PROFUNDIDAD Y RESPUESTA TÁCTIL ===== -->
+
+<script src="efectos-catalogo.js?v=2" defer></script>
+</body>
+</html>
