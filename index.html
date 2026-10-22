@@ -511,13 +511,12 @@ body{
 }
 .pe-loading-zombie{
     position:absolute;
-    left:0;
-    right:0;
-    bottom:0;
+    inset:0;
     width:100%;
-    height:38%;
+    height:100%;
     object-fit:contain;
-    object-position:center bottom;
+    object-position:center;
+    background:#050505;
     z-index:1;
     pointer-events:none;
 }
@@ -529,7 +528,6 @@ body{
         max-width:105px;
         max-height:92px;
     }
-    .pe-loading-zombie{height:34%;}
 }
 
 /* =====================================================
@@ -996,7 +994,7 @@ body.pe-visor-abierto{overflow:hidden!important;overscroll-behavior:none;}
 <!-- CARGA DE OCTUBRE -->
 <div id="pe-loading" aria-label="Cargando Catálogo Peñafiel">
 <div class="pe-loading-marco"></div>
-<video class="pe-loading-zombie" src="zombie%201.mp4" autoplay muted playsinline preload="metadata" aria-hidden="true" id="pe-loading-zombie-video"></video>
+<video class="pe-loading-zombie" src="orange%20crush.mp4" autoplay muted playsinline preload="auto" aria-label="Video de bienvenida del Catálogo Peñafiel" id="pe-loading-zombie-video"></video>
 <div class="pe-loading-contenido">
 <div class="pe-loading-bienvenidos">BIENVENIDOS</div>
 <div class="pe-loading-titulo">Catálogo Peñafiel</div>
@@ -1446,57 +1444,68 @@ function ocultarCarga(){
   loading.classList.add("oculto");
   iniciarPromos();
 }
-/* PANTALLA DE CARGA — 4 SEGUNDOS CON PROGRESO REALMENTE VISIBLE
-   El porcentaje avanza de 1% a 100% por tiempo.
-   El video/GIF son decorativos y NO controlan la salida. */
+/* PANTALLA DE BIENVENIDA: la barra acompaña la duración real del video */
 var videoCarga=document.getElementById("pe-loading-zombie-video");
-var inicioCarga=Date.now();
-var cargaMinimaMs=4000;
 var cargaOcultaProgramada=false;
 var progresoCargaTimer=null;
+var respaldoCargaTimer=null;
 
-function animarProgresoCarga(){
-  var transcurrido=Date.now()-inicioCarga;
-  var porcentaje=Math.min(100,Math.max(1,Math.floor((transcurrido/cargaMinimaMs)*100)));
-  actualizarProgreso(porcentaje);
-
-  if(porcentaje<100){
-    progresoCargaTimer=setTimeout(animarProgresoCarga,40);
-  }
+function terminarCarga(){
+  if(cargaOcultaProgramada)return;
+  cargaOcultaProgramada=true;
+  if(progresoCargaTimer)clearTimeout(progresoCargaTimer);
+  if(respaldoCargaTimer)clearTimeout(respaldoCargaTimer);
+  actualizarProgreso(100);
+  ocultarCarga();
 }
 
 function sincronizarCargaConVideo(){
-  /* El video puede reproducirse como decoración, pero NO controla la salida. */
-  if(videoCarga){
-    var reproduccion=videoCarga.play();
-    if(reproduccion&&typeof reproduccion.catch==="function"){
-      reproduccion.catch(function(){});
+  if(!videoCarga){
+    actualizarProgreso(1);
+    progresoCargaTimer=setTimeout(terminarCarga,4000);
+    return;
+  }
+
+  function actualizarDesdeVideo(){
+    var duracion=videoCarga.duration;
+    if(Number.isFinite(duracion)&&duracion>0){
+      actualizarProgreso(Math.min(99,(videoCarga.currentTime/duracion)*100));
     }
   }
 
-  /* Empieza en 1% y avanza continuamente hasta 100% en 4 segundos. */
-  actualizarProgreso(1);
-  animarProgresoCarga();
-
-  setTimeout(function(){
+  videoCarga.addEventListener("timeupdate",actualizarDesdeVideo);
+  videoCarga.addEventListener("ended",terminarCarga,{once:true});
+  videoCarga.addEventListener("error",function(){
     if(cargaOcultaProgramada)return;
-    cargaOcultaProgramada=true;
     if(progresoCargaTimer)clearTimeout(progresoCargaTimer);
-    actualizarProgreso(100);
-    ocultarCarga();
-  },cargaMinimaMs);
+    progresoCargaTimer=setTimeout(terminarCarga,4000);
+  },{once:true});
+
+  videoCarga.addEventListener("loadedmetadata",function(){
+    actualizarDesdeVideo();
+    /* Respaldo por si el navegador no dispara ended al final del video. */
+    if(Number.isFinite(videoCarga.duration)&&videoCarga.duration>0){
+      if(respaldoCargaTimer)clearTimeout(respaldoCargaTimer);
+      respaldoCargaTimer=setTimeout(terminarCarga,Math.ceil(videoCarga.duration*1000)+2500);
+    }
+  },{once:true});
+
+  var reproduccion=videoCarga.play();
+  if(reproduccion&&typeof reproduccion.catch==="function"){
+    reproduccion.catch(function(){
+      if(cargaOcultaProgramada)return;
+      if(progresoCargaTimer)clearTimeout(progresoCargaTimer);
+      progresoCargaTimer=setTimeout(terminarCarga,4000);
+    });
+  }
 }
 
 sincronizarCargaConVideo();
 
-/* Respaldo: garantizar que nunca quede bloqueada por una animación externa. */
+/* Respaldo final para que un fallo de carga nunca bloquee el catálogo. */
 setTimeout(function(){
-  if(cargaOcultaProgramada)return;
-  cargaOcultaProgramada=true;
-  if(progresoCargaTimer)clearTimeout(progresoCargaTimer);
-  actualizarProgreso(100);
-  ocultarCarga();
-},cargaMinimaMs+500);
+  if(!cargaOcultaProgramada&&videoCarga&&videoCarga.error)terminarCarga();
+},12000);
 
 function elegirPromo(){var i;if(promoData.length<=1)return 0;do{i=Math.floor(Math.random()*promoData.length)}while(i===ultimoPromo);ultimoPromo=i;return i}
 function ocultarAlertaTendencia(){if(!alertaTendencia)return;alertaTendencia.classList.remove("activo");alertaTendencia.setAttribute("aria-hidden","true")}
