@@ -1913,5 +1913,139 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape"){if(modalCam
 <!-- ===== FIN TARJETAS CON PROFUNDIDAD Y RESPUESTA TÁCTIL ===== -->
 
 <script src="efectos-catalogo.js?v=2" defer></script>
+<script>
+(function(){
+  /* ===== AJUSTA SOLO ESTO ===== */
+  var CFG={
+    esquina:'araña esquina.wp',        /* imagen de la esquina: el código prueba también .webp */
+    colgante:'araña colgante.wp',     /* araña que sube y baja por el centro */
+    camina:'araña camina.wp',         /* araña que camina */
+    ladoEsquina:'izquierda',          /* 'izquierda' o 'derecha' */
+    miraCamina:'derecha',             /* hacia dónde mira la araña del dibujo */
+    velocidadColgante:170,            /* píxeles por segundo */
+    caminaCadaMin:6,                  /* segundos mínimos entre apariciones */
+    caminaCadaMax:16                  /* segundos máximos entre apariciones */
+  };
+  /* ============================ */
+
+  var d=document;
+  function rnd(a,b){return a+Math.random()*(b-a);}
+  var carga=d.getElementById('pe-loading');
+  function listo(){return !carga||!carga.isConnected||carga.classList.contains('oculto');}
+
+  var st=d.createElement('style');
+  st.textContent=
+  /* Tu araña de emoji pasa al lado izquierdo (mismo efecto) */
+  '.pe-arana-colgante{left:18%}'+
+  '.fxa-capa{position:absolute;top:0;left:0;width:100%;height:0;z-index:30;pointer-events:none;overflow-x:clip}'+
+  '.fxa-capa img{pointer-events:none;user-select:none;-webkit-user-drag:none}'+
+  '.fxa-esquina{position:absolute;top:0;width:clamp(120px,36vw,230px);height:auto;filter:drop-shadow(0 4px 6px rgba(0,0,0,.45))}'+
+  '.fxa-esquina.izq{left:0;transform-origin:0 0;animation:fxaVientoIzq 6s ease-in-out infinite}'+
+  '.fxa-esquina.der{right:0;transform-origin:100% 0;animation:fxaVientoDer 6s ease-in-out infinite}'+
+  '@keyframes fxaVientoIzq{0%,100%{transform:rotate(-1.2deg)}50%{transform:rotate(1.6deg)}}'+
+  '@keyframes fxaVientoDer{0%,100%{transform:scaleX(-1) rotate(-1.2deg)}50%{transform:scaleX(-1) rotate(1.6deg)}}'+
+  '.fxa-colgante{position:absolute;top:0;left:50%;width:0;height:0}'+
+  '.fxa-hilo{position:absolute;left:-1px;top:0;width:2px;height:100px;transform-origin:50% 0;transform:scaleY(0);background:linear-gradient(180deg,rgba(255,255,255,.35),#f2f2f7)}'+
+  '.fxa-bicho{position:absolute;left:0;top:0;will-change:transform}'+
+  '.fxa-bicho img{display:block;width:clamp(70px,20vw,130px);height:auto;transform-origin:50% 0;animation:fxaBalanceo 3.2s ease-in-out infinite;filter:drop-shadow(0 4px 5px rgba(0,0,0,.5))}'+
+  '@keyframes fxaBalanceo{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}'+
+  '.fxa-camina{position:absolute;left:0;top:0;width:clamp(70px,18vw,120px);height:auto;will-change:transform;filter:drop-shadow(0 3px 4px rgba(0,0,0,.5))}';
+  d.head.appendChild(st);
+
+  var capa=d.createElement('div');
+  capa.className='fxa-capa';
+  capa.setAttribute('aria-hidden','true');
+  d.body.appendChild(capa);
+
+  /* Si el nombre no carga, prueba la otra terminación (.wp / .webp) */
+  function candidatos(n){
+    var l=[n];
+    if(/\.webp$/i.test(n))l.push(n.replace(/\.webp$/i,'.wp'));
+    else if(/\.wp$/i.test(n))l.push(n.replace(/\.wp$/i,'.webp'));
+    var extra=[];
+    l.forEach(function(x){
+      var f=x.normalize?x.normalize('NFD'):x;
+      if(f!==x)extra.push(f);
+    });
+    return l.concat(extra);
+  }
+  function imagen(clase,archivo,alFallar){
+    var i=new Image(),lista=candidatos(archivo),k=0;
+    i.className=clase;
+    i.alt='';
+    i.decoding='async';
+    i.draggable=false;
+    i.onerror=function(){
+      k++;
+      if(k<lista.length){i.src=encodeURI(lista[k]);}
+      else{i.onerror=null;i.remove();if(alFallar)alFallar();}
+    };
+    i.src=encodeURI(lista[0]);
+    return i;
+  }
+
+  /* 1) Araña de la esquina superior */
+  capa.appendChild(imagen('fxa-esquina '+(CFG.ladoEsquina==='derecha'?'der':'izq'),CFG.esquina));
+
+  /* 2) Araña colgante: sube y baja por el centro hasta el final de la página */
+  var cont=d.createElement('div');cont.className='fxa-colgante';
+  var hilo=d.createElement('div');hilo.className='fxa-hilo';
+  var bicho=d.createElement('div');bicho.className='fxa-bicho';
+  var colgFallo=false;
+  bicho.appendChild(imagen('',CFG.colgante,function(){colgFallo=true;cont.remove();}));
+  cont.appendChild(hilo);cont.appendChild(bicho);capa.appendChild(cont);
+
+  var y=0,dir=1,pausaHasta=0,proxPausa=performance.now()+rnd(3000,7000),ultimo=0,ultimaMedida=-9999,altoDoc=0;
+  function medir(){altoDoc=Math.max(d.documentElement.scrollHeight,d.body.scrollHeight);}
+  function bucle(t){
+    if(colgFallo)return;
+    requestAnimationFrame(bucle);
+    if(!listo()){ultimo=t;return;}
+    var dt=Math.min(.05,(t-(ultimo||t))/1000);
+    ultimo=t;
+    if(t-ultimaMedida>1500){medir();ultimaMedida=t;}
+    var tope=Math.max(0,altoDoc-(bicho.offsetHeight||120)-2);
+    if(t>=pausaHasta){
+      y+=dir*CFG.velocidadColgante*dt;
+      if(y>=tope){y=tope;dir=-1;pausaHasta=t+1400;}
+      else if(y<=0){y=0;dir=1;pausaHasta=t+1400;}
+      else if(t>proxPausa){pausaHasta=t+rnd(600,1500);proxPausa=pausaHasta+rnd(3000,8000);}
+    }
+    bicho.style.transform='translate3d(-50%,'+y+'px,0)';
+    hilo.style.transform='scaleY('+(y/100)+')';
+  }
+  requestAnimationFrame(bucle);
+  window.addEventListener('load',medir);
+  window.addEventListener('resize',medir);
+
+  /* 3) Araña que camina: aparece a distintas alturas en tiempo aleatorio */
+  var caminaFallo=false;
+  function programar(){
+    if(caminaFallo)return;
+    setTimeout(caminar,rnd(CFG.caminaCadaMin,CFG.caminaCadaMax)*1000);
+  }
+  function caminar(){
+    if(caminaFallo||!Element.prototype.animate)return;
+    if(d.hidden||!listo()){setTimeout(caminar,1500);return;}
+    var im=imagen('fxa-camina',CFG.camina,function(){caminaFallo=true;});
+    var vw=capa.clientWidth||window.innerWidth;
+    var ancho=Math.max(70,Math.min(120,vw*.18));
+    medir();
+    var pos=Math.max(0,Math.min(altoDoc-ancho-4,(window.pageYOffset||0)+window.innerHeight*rnd(.12,.82)));
+    var derecha=Math.random()<.5;
+    var x0=derecha?-ancho:vw,x1=derecha?vw:-ancho;
+    var flip=(derecha===(CFG.miraCamina==='derecha'))?1:-1;
+    im.style.top=pos+'px';
+    capa.appendChild(im);
+    var dur=(Math.abs(x1-x0)/rnd(70,125))*1000;
+    var a=im.animate([
+      {transform:'translate3d('+x0+'px,0,0) scaleX('+flip+')'},
+      {transform:'translate3d('+x1+'px,'+rnd(-50,50)+'px,0) scaleX('+flip+')'}
+    ],{duration:dur,easing:'linear',fill:'forwards'});
+    a.onfinish=function(){im.remove();programar();};
+  }
+  setTimeout(caminar,rnd(3000,7000));
+})();
+</script>
 </body>
 </html>
