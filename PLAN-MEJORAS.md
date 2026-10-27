@@ -45,6 +45,7 @@ Conservar los recursos temáticos como campaña temporal independiente. No mezcl
 - Se recibió la medición inicial móvil de PageSpeed: rendimiento 56, accesibilidad 100, recomendaciones 96 y SEO 100.
 - Métricas destacadas: LCP 5.1 s, CLS 1.012, TBT 0 ms y tamaño total transferido 13,256 KiB.
 - Primera modificación de bajo riesgo en `index.html`: prioridad alta para descubrir la imagen principal, decodificación asíncrona del banner, `preload="metadata"` para el video de bienvenida y dimensiones explícitas para el icono de WhatsApp (75 × 75, acorde con su CSS).
+- Segundo ajuste CLS: añadidas dimensiones proporcionales 1414 × 2000 a las dos imágenes de páginas del catálogo para que el navegador reserve espacio antes de cargarlas. Confirmar que coinciden con la proporción real en la vista previa antes de integrar.
 - Estos cambios están solo en `mejora/catalogo-premium`; la rama `main` y el sitio publicado no se han modificado.
 - No se afirma todavía una mejora de puntuación: hace falta volver a medir y revisar visualmente la página.
 
