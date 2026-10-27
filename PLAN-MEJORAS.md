@@ -46,11 +46,12 @@ Conservar los recursos temáticos como campaña temporal independiente. No mezcl
 - Métricas destacadas: LCP 5.1 s, CLS 1.012, TBT 0 ms y tamaño total transferido 13,256 KiB.
 - Primera modificación de bajo riesgo en `index.html`: prioridad alta para descubrir la imagen principal, decodificación asíncrona del banner, `preload="metadata"` para el video de bienvenida y dimensiones explícitas para el icono de WhatsApp (75 × 75, acorde con su CSS).
 - Segundo ajuste CLS: añadidas dimensiones proporcionales 1414 × 2000 a las dos imágenes de páginas del catálogo para que el navegador reserve espacio antes de cargarlas. Confirmar que coinciden con la proporción real en la vista previa antes de integrar.
+- Tercer ajuste CLS: el contenedor de logos finales ahora reserva un mínimo de 100 px de alto, acorde con el `max-height:100px` de sus imágenes, para reducir el movimiento cuando se carguen.
 - Estos cambios están solo en `mejora/catalogo-premium`; la rama `main` y el sitio publicado no se han modificado.
 - No se afirma todavía una mejora de puntuación: hace falta volver a medir y revisar visualmente la página.
 
 ## Próximos pasos
 1. Repetir PageSpeed en la rama publicada después de una futura integración; para probar la rama antes, usar una vista previa o despliegue de prueba sin tocar `main`.
-2. Identificar dimensiones reales y peso de las imágenes grandes para optimizarlas sin alterar el catálogo.
+2. Conseguir y optimizar copias de las imágenes grandes (especialmente las páginas del catálogo y recursos de campaña) sin alterar el original; confirmar dimensiones y calidad visual.
 3. Investigar la causa concreta del CLS con el informe de elementos que cambian de posición.
 4. Validar el funcionamiento de carga, carrusel, PDF, WhatsApp, PWA, caché y OneSignal antes de integrar.
