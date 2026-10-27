@@ -41,5 +41,15 @@ Conservar los recursos temáticos como campaña temporal independiente. No mezcl
 6. Probar todos los puntos de la lista de funciones.
 7. Comparar resultados y, solo tras validar, decidir si integrar los cambios a `main`.
 
-## Próximo paso
-Registrar el diagnóstico inicial de PageSpeed Insights y revisar el catálogo en un teléfono. No se han modificado todavía los archivos funcionales de la página.
+## Avance — 27 de octubre de 2026
+- Se recibió la medición inicial móvil de PageSpeed: rendimiento 56, accesibilidad 100, recomendaciones 96 y SEO 100.
+- Métricas destacadas: LCP 5.1 s, CLS 1.012, TBT 0 ms y tamaño total transferido 13,256 KiB.
+- Primera modificación de bajo riesgo en `index.html`: prioridad alta para descubrir la imagen principal, decodificación asíncrona del banner, `preload="metadata"` para el video de bienvenida y dimensiones explícitas para el icono de WhatsApp (75 × 75, acorde con su CSS).
+- Estos cambios están solo en `mejora/catalogo-premium`; la rama `main` y el sitio publicado no se han modificado.
+- No se afirma todavía una mejora de puntuación: hace falta volver a medir y revisar visualmente la página.
+
+## Próximos pasos
+1. Repetir PageSpeed en la rama publicada después de una futura integración; para probar la rama antes, usar una vista previa o despliegue de prueba sin tocar `main`.
+2. Identificar dimensiones reales y peso de las imágenes grandes para optimizarlas sin alterar el catálogo.
+3. Investigar la causa concreta del CLS con el informe de elementos que cambian de posición.
+4. Validar el funcionamiento de carga, carrusel, PDF, WhatsApp, PWA, caché y OneSignal antes de integrar.
